@@ -18,15 +18,11 @@ const lato = Lato({
   variable: '--font-lato',
 })
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body>
-        <div className={`${inter.variable} ${lato.variable} font-sans bg-skin-base`}>
+        <div className={`${inter.variable} ${lato.variable} bg-skin-base font-sans`}>
           {children}
         </div>
       </body>

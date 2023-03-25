@@ -12,29 +12,41 @@ export default function SelectMenu(props: any) {
   const { name, label, states } = props
 
   return (
-    <div className='flex flex-col -mt-[23px] relative'>
+    <div className='relative -mt-6 flex flex-col justify-center'>
       <label
-        className='font-lato tracking-tight text-skin-label block text-sm font-semibold'
+        className='block font-lato text-sm font-semibold tracking-tight text-skin-label'
         htmlFor={name}>
         {label}
       </label>
-      <Listbox {...method.field} value={method.field.value ? method.field.value : states[0].optionName} as='div' className='relative mt-0.5'>
+      <Listbox
+        {...method.field}
+        value={method.field.value ? method.field.value : states[0].optionName}
+        as='div'
+        className='relative mt-0.5'>
         {({ open }) => (
-          <div className="h-full">
-            <Listbox.Button className='relative min-w-[100px] bg-white border border-BORDER_DARK rounded-[4px] px-4 h-[50px]'>
-              <div className='flex items-center justify-between w-full cursor-pointer h-full'>
-                <p className={`${method.field.value ? 'text-skin-base' : 'text-skin-placeholder'}  font-normal text-sm flex-1 w-full`}>
+          <div className='h-full'>
+            <Listbox.Button className='relative h-[50px] min-w-[100px] rounded-[4px] border border-BORDER_DARK bg-white px-4'>
+              <div className='flex h-full w-full cursor-pointer items-center justify-between'>
+                <p
+                  className={`${
+                    method.field.value ? 'text-skin-base' : 'text-skin-placeholder'
+                  }  w-full flex-1 text-sm font-normal`}>
                   {method.field.value ? method.field.value : states[0].optionName}
                 </p>
-                <ChevronDownIcon className='w-5 h-5 text-skin-base' />
+                <ChevronDownIcon className='h-5 w-5 text-skin-base' />
               </div>
             </Listbox.Button>
             {open && (
-              <Listbox.Options className='absolute top-full right-0 w-full sm:w-[100px] mt-1 h-60 overflow-auto scrollbar-hide z-10 bg-white border border-BORDER_DARK py-1 rounded-md'>
+              <Listbox.Options className='absolute top-full right-0 z-10 mt-1 h-60 w-full overflow-auto rounded-md border border-BORDER_DARK bg-white py-1 scrollbar-hide sm:w-[100px]'>
                 {states.map((state: any, i: number) => (
                   <Listbox.Option key={i} value={state.value}>
                     {({ active }) => (
-                      <button className={`block px-4 py-2 text-sm w-full text-baseAlt4Color ${active || state.value === method.field.value ? 'bg-BG_LIGHT text-skin-label' : ''}`}>
+                      <button
+                        className={`block w-full px-4 py-2 text-sm text-baseAlt4Color ${
+                          active || state.value === method.field.value
+                            ? 'bg-BG_LIGHT text-skin-label'
+                            : ''
+                        }`}>
                         {state.value ? state.value : state.optionName}
                       </button>
                     )}
@@ -46,7 +58,7 @@ export default function SelectMenu(props: any) {
         )}
       </Listbox>
       {method.formState.errors && (
-        <span className="absolute -bottom-5 right-0 font-lato text-xs font-black tracking-wider text-skin-warning">
+        <span className='absolute -bottom-5 right-0 font-lato text-xs font-black tracking-wider text-skin-warning'>
           {method.formState?.errors?.state?.message?.toString()}
         </span>
       )}

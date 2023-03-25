@@ -9,18 +9,33 @@ type RequiredPhoneProps = {
   errors: any
 }
 
-export default function RequiredPhone({ label, name, placeholder, control, errors }: RequiredPhoneProps) {
+export default function RequiredPhone({
+  label,
+  name,
+  placeholder,
+  control,
+  errors,
+}: RequiredPhoneProps) {
   return (
-    <div className='flex flex-col relative mb-6 sm:w-full mx-1'>
-      <label className='font-lato tracking-tight text-skin-label block text-sm font-semibold' htmlFor={label}>{label}</label>
-      <PhoneInput className='outline-none w-full text-skin-base placeholder:text-skin-placeholder focus:ring-1 focus:ring-DRIVLY mt-0.5 focus:border-drivly h-[50px] px-4 border border-BORDER_DARK rounded-[5px]' name={name} placeholder={placeholder} control={control} rules={{
-        required: 'Required',
-        validate: (value: any) => isPossiblePhoneNumber(value) || `Invalid ${label}`
-      }}
+    <div className='relative mx-1 mb-6 flex flex-col sm:w-full'>
+      <label
+        className='block font-lato text-sm font-semibold tracking-tight text-skin-label'
+        htmlFor={label}>
+        {label}
+      </label>
+      <PhoneInput
+        className='focus:border-drivly mt-0.5 h-[50px] w-full rounded-[5px] border border-BORDER_DARK px-4 text-skin-base outline-none placeholder:text-skin-placeholder focus:ring-1 focus:ring-DRIVLY'
+        name={name}
+        placeholder={placeholder}
+        control={control}
+        rules={{
+          required: 'Required',
+          validate: (value: any) => isPossiblePhoneNumber(value) || `Invalid ${label}`,
+        }}
         country='US'
       />
       {errors && (
-        <span className='font-lato text-xs font-black absolute -bottom-5 right-0 text-skin-warning tracking-wider'>
+        <span className='absolute -bottom-5 right-0 font-lato text-xs font-black tracking-wider text-skin-warning'>
           {errors[name]?.message?.toString()}
         </span>
       )}

@@ -1,233 +1,233 @@
 export const states = [
   {
-      value: "",
-      optionName: "Select"
+    value: '',
+    optionName: 'Select',
   },
   {
-      value: 'AK',
-      optionName: 'Alaska',
+    value: 'AK',
+    optionName: 'Alaska',
   },
   {
-      value: 'AZ',
-      optionName: 'Arizona',
+    value: 'AZ',
+    optionName: 'Arizona',
   },
   {
-      value: 'AR',
-      optionName: 'Arkansas',
+    value: 'AR',
+    optionName: 'Arkansas',
   },
   {
-      value: 'CA',
-      optionName: 'California',
+    value: 'CA',
+    optionName: 'California',
   },
   {
-      value: 'CO',
-      optionName: 'Colorado',
+    value: 'CO',
+    optionName: 'Colorado',
   },
   {
-      value: 'CT',
-      optionName: 'Connecticut',
+    value: 'CT',
+    optionName: 'Connecticut',
   },
   {
-      value: 'DE',
-      optionName: 'Delaware',
+    value: 'DE',
+    optionName: 'Delaware',
   },
   {
-      value: 'DC',
-      optionName: 'D. C.',
+    value: 'DC',
+    optionName: 'D. C.',
   },
   {
-      value: 'FL',
-      optionName: 'Florida',
+    value: 'FL',
+    optionName: 'Florida',
   },
   {
-      value: 'GA',
-      optionName: 'Georgia',
+    value: 'GA',
+    optionName: 'Georgia',
   },
   {
-      value: 'HI',
-      optionName: 'Hawaii',
+    value: 'HI',
+    optionName: 'Hawaii',
   },
   {
-      value: 'ID',
-      optionName: 'Idaho',
+    value: 'ID',
+    optionName: 'Idaho',
   },
   {
-      value: 'IL',
-      optionName: 'Illinois',
+    value: 'IL',
+    optionName: 'Illinois',
   },
   {
-      value: 'IN',
-      optionName: 'Indiana',
+    value: 'IN',
+    optionName: 'Indiana',
   },
   {
-      value: 'IA',
-      optionName: 'Iowa',
+    value: 'IA',
+    optionName: 'Iowa',
   },
   {
-      value: 'KS',
-      optionName: 'Kansas',
+    value: 'KS',
+    optionName: 'Kansas',
   },
   {
-      value: 'KY',
-      optionName: 'Kentucky',
+    value: 'KY',
+    optionName: 'Kentucky',
   },
   {
-      value: 'LA',
-      optionName: 'Louisiana',
+    value: 'LA',
+    optionName: 'Louisiana',
   },
   {
-      value: 'ME',
-      optionName: 'Maine',
+    value: 'ME',
+    optionName: 'Maine',
   },
   {
-      value: 'MD',
-      optionName: 'Maryland',
+    value: 'MD',
+    optionName: 'Maryland',
   },
   {
-      value: 'MA',
-      optionName: 'Massachusetts',
+    value: 'MA',
+    optionName: 'Massachusetts',
   },
   {
-      value: 'MI',
-      optionName: 'Michigan',
+    value: 'MI',
+    optionName: 'Michigan',
   },
   {
-      value: 'MN',
-      optionName: 'Minnesota',
+    value: 'MN',
+    optionName: 'Minnesota',
   },
   {
-      value: 'MS',
-      optionName: 'Mississippi',
+    value: 'MS',
+    optionName: 'Mississippi',
   },
   {
-      value: 'MO',
-      optionName: 'Missouri',
+    value: 'MO',
+    optionName: 'Missouri',
   },
   {
-      value: 'MT',
-      optionName: 'Montana',
+    value: 'MT',
+    optionName: 'Montana',
   },
   {
-      value: 'NE',
-      optionName: 'Nebraska',
+    value: 'NE',
+    optionName: 'Nebraska',
   },
   {
-      value: 'NV',
-      optionName: 'Nevada',
+    value: 'NV',
+    optionName: 'Nevada',
   },
   {
-      value: 'NH',
-      optionName: 'New Hampshire',
+    value: 'NH',
+    optionName: 'New Hampshire',
   },
   {
-      value: 'NJ',
-      optionName: 'New Jersey',
+    value: 'NJ',
+    optionName: 'New Jersey',
   },
   {
-      value: 'NM',
-      optionName: 'New Mexico',
+    value: 'NM',
+    optionName: 'New Mexico',
   },
   {
-      value: 'NY',
-      optionName: 'New York',
+    value: 'NY',
+    optionName: 'New York',
   },
   {
-      value: 'NC',
-      optionName: 'North Carolina',
+    value: 'NC',
+    optionName: 'North Carolina',
   },
   {
-      value: 'ND',
-      optionName: 'North Dakota',
+    value: 'ND',
+    optionName: 'North Dakota',
   },
   {
-      value: 'OH',
-      optionName: 'Ohio',
+    value: 'OH',
+    optionName: 'Ohio',
   },
   {
-      value: 'OK',
-      optionName: 'Oklahoma',
+    value: 'OK',
+    optionName: 'Oklahoma',
   },
   {
-      value: 'OR',
-      optionName: 'Oregon',
+    value: 'OR',
+    optionName: 'Oregon',
   },
   {
-      value: 'PA',
-      optionName: 'Pennsylvania',
+    value: 'PA',
+    optionName: 'Pennsylvania',
   },
   {
-      value: 'RI',
-      optionName: 'Rhode Island',
+    value: 'RI',
+    optionName: 'Rhode Island',
   },
   {
-      value: 'SC',
-      optionName: 'South Carolina',
+    value: 'SC',
+    optionName: 'South Carolina',
   },
   {
-      value: 'SD',
-      optionName: 'South Dakota',
+    value: 'SD',
+    optionName: 'South Dakota',
   },
   {
-      value: 'TN',
-      optionName: 'Tennessee',
+    value: 'TN',
+    optionName: 'Tennessee',
   },
   {
-      value: 'TX',
-      optionName: 'Texas',
+    value: 'TX',
+    optionName: 'Texas',
   },
   {
-      value: 'UT',
-      optionName: 'Utah',
+    value: 'UT',
+    optionName: 'Utah',
   },
   {
-      value: 'VT',
-      optionName: 'Vermont',
+    value: 'VT',
+    optionName: 'Vermont',
   },
   {
-      value: 'VA',
-      optionName: 'Virginia',
+    value: 'VA',
+    optionName: 'Virginia',
   },
   {
-      value: 'WA',
-      optionName: 'Washington',
+    value: 'WA',
+    optionName: 'Washington',
   },
   {
-      value: 'WV',
-      optionName: 'West Virginia',
+    value: 'WV',
+    optionName: 'West Virginia',
   },
   {
-      value: 'WI',
-      optionName: 'Wisconsin',
+    value: 'WI',
+    optionName: 'Wisconsin',
   },
   {
-      value: 'WY',
-      optionName: 'Wyoming',
+    value: 'WY',
+    optionName: 'Wyoming',
   },
 ]
 
 export const suffixes = [
-    {
-        value: "",
-        optionName: "Select"
-    },
-    {
-        value: 'JR',
-        optionName: 'junior',
-    },
-    {
-        value: 'SR',
-        optionName: 'senior',
-    },
-    {
-        value: 'II',
-        optionName: 'second',
-    },
-    {
-        value: 'III',
-        optionName: 'third',
-    },
-    {
-        value: 'IV',
-        optionName: 'fourth',
-    }
+  {
+    value: '',
+    optionName: 'Select',
+  },
+  {
+    value: 'JR',
+    optionName: 'junior',
+  },
+  {
+    value: 'SR',
+    optionName: 'senior',
+  },
+  {
+    value: 'II',
+    optionName: 'second',
+  },
+  {
+    value: 'III',
+    optionName: 'third',
+  },
+  {
+    value: 'IV',
+    optionName: 'fourth',
+  },
 ]
