@@ -24,7 +24,7 @@ const InputField = React.forwardRef<HTMLInputElement, InputProps & IProps>((prop
       </label>
       <input
         ref={ref}
-        className='mt-0.5 h-[50px] rounded-[5px] border border-BORDER_DARK px-4 text-skin-base outline-none placeholder:text-skin-placeholder focus:border-DRIVLY focus:ring-1 focus:ring-DRIVLY'
+        className='mt-0.5 h-[50px] rounded-[5px] border border-BORDER_DARK px-4 text-skin-base outline-none placeholder:text-skin-placeholder/60 focus:border-DRIVLY focus:ring-1 focus:ring-DRIVLY'
         type={type}
         autoComplete='on'
         placeholder={placeholder}

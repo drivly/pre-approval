@@ -24,7 +24,7 @@ export default function RequiredPhone({
         {label}
       </label>
       <PhoneInput
-        className='focus:border-drivly mt-0.5 h-[50px] w-full rounded-[5px] border border-BORDER_DARK px-4 text-skin-base outline-none placeholder:text-skin-placeholder focus:ring-1 focus:ring-DRIVLY'
+        className='focus:border-drivly mt-0.5 h-[50px] w-full rounded-[5px] border border-BORDER_DARK px-4 text-skin-base outline-none placeholder:text-skin-placeholder/60 focus:ring-1 focus:ring-DRIVLY'
         name={name}
         placeholder={placeholder}
         control={control}

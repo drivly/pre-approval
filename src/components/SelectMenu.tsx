@@ -29,7 +29,7 @@ export default function SelectMenu(props: any) {
               <div className='flex h-full w-full cursor-pointer items-center justify-between'>
                 <p
                   className={`${
-                    method.field.value ? 'text-skin-base' : 'text-skin-placeholder'
+                    method.field.value ? 'text-skin-base' : 'text-skin-placeholder/60'
                   }  w-full flex-1 text-sm font-normal`}>
                   {method.field.value ? method.field.value : states[0].optionName}
                 </p>

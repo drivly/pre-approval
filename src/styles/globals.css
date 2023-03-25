@@ -4,17 +4,18 @@
 
 @layer base {
   :root {
-    --color-text-base: #060611;
-    --color-text-label: #666f75;
-    --color-text-placeholder: #a0a6ac99;
-    --color-text-warning: #e13756;
-    --color-text-inverted: #ffffff;
-    --color-bg-base: #f6f9fc;
-    --color-bg-card: #e8eced;
-    --color-button-primary: #ffffff;
-    --color-button-inverted: #060611;
-    --color-accent-primary: #00cab9;
+    --color-text-base: 6, 6, 17;
+    --color-text-label: 102, 111, 117;
+    --color-text-placeholder: 160, 166, 172;
+    --color-text-warning: 225, 55, 86;
+    --color-text-inverted: 255, 255, 255;
+    --color-bg-base: 246, 249, 252;
+    --color-bg-card: 232, 236, 237;
+    --color-button-primary: 255, 255, 255;
+    --color-button-inverted: 6, 6, 17;
+    --color-accent-primary: 0, 202, 185;
   }
+  /* Define a new theme with different colors */
 }
 
 :root {
