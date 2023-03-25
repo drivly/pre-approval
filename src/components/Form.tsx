@@ -1,18 +1,32 @@
-"use client";
+"use client"
 
-import { states, suffixes } from "@lib/categories";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { emailReg, zipReg } from "../lib/regex";
-import AgreementText from "./AgreementText";
-import InputField from "./InputField";
-import RequiredPhone from "./RequiredPhone";
-import SelectMenu from "./SelectMenu";
-import ToggleInput from "./ToggleInput";
+import { states, suffixes } from "@lib/categories"
+import { useState } from "react"
+import { SubmitHandler, useForm } from "react-hook-form"
+import { emailReg, zipReg } from "../lib/regex"
+import AgreementText from "./AgreementText"
+import InputField from "./InputField"
+import RequiredPhone from "./RequiredPhone"
+import SelectMenu from "./SelectMenu"
+import ToggleInput from "./ToggleInput"
+
+interface RequestInput {
+  firstName: string
+  middleInitial?: string
+  lastName: string
+  suffix?: string
+  email: string
+  phoneNumber: string
+  streetAddress: string
+  city: string
+  state: string
+  zipcode: string
+  agree: boolean
+}
 
 export default function Form() {
-  const methods = useForm({ mode: "onBlur" });
-  const [state, setState] = useState(null);
+  const methods = useForm<RequestInput>({ mode: "onBlur" })
+  const [state, setState] = useState(null)
   const {
     register,
     control,
@@ -20,33 +34,33 @@ export default function Form() {
     reset,
     watch,
     formState: { errors, isValid, isSubmitSuccessful },
-  } = methods;
+  } = methods
 
-  async function handlePreApproval(post) {
+  async function handlePreApproval(post: RequestInput) {
     const res = await fetch("/api/pre-approval", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(post),
-    });
-    const data = await res.json();
-    return data;
+    })
+    const data = await res.json()
+    return data
   }
 
-  const onSubmit = async (data: any) => {
+  const onSubmit: SubmitHandler<RequestInput> = async (data: any) => {
     try {
-      const request = await handlePreApproval(data);
+      const request = await handlePreApproval(data)
       if (isSubmitSuccessful && request.success) {
-        reset();
+        reset()
         // send toast message & success message or page
       }
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
-  };
+  }
 
-  const watchAgree = watch("agree");
+  const watchAgree = watch("agree")
 
   return (
     <>
@@ -73,9 +87,9 @@ export default function Form() {
                 {...register("middleInitial", {
                   maxLength: { value: 3, message: "Must be less than 3" },
                   validate: (value) => {
-                    return value === "" || value.match(/^[A-Z]+$/)
+                    return value === "" || value?.match(/^[A-Z]+$/)
                       ? true
-                      : "Invalid";
+                      : "Invalid"
                   },
                 })}
                 label="MI"
@@ -197,5 +211,5 @@ export default function Form() {
         </div>
       )}
     </>
-  );
+  )
 }
