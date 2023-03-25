@@ -103,7 +103,7 @@ export default function Form() {
               errormsg={errors.lastName?.message!}
               placeholder='Smith'
             />
-            <SelectMenu label='Suffix' name='suffix' control={control} states={suffixes} />
+            <SelectMenu label='Suffix' name='suffix' control={control} cats={suffixes} />
           </div>
         </div>
         <div className='items-center sm:flex'>
@@ -153,7 +153,7 @@ export default function Form() {
                 label='State'
                 name='state'
                 control={control}
-                states={states}
+                cats={states}
                 rules={{ required: 'Required' }}
               />
 

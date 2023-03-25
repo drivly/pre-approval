@@ -9,7 +9,7 @@ interface SelectMenuProps {
 
 export default function SelectMenu(props: any) {
   const method = useController(props)
-  const { name, label, states } = props
+  const { name, label, cats } = props
 
   return (
     <div className='relative -mt-6 flex flex-col justify-center'>
@@ -20,7 +20,7 @@ export default function SelectMenu(props: any) {
       </label>
       <Listbox
         {...method.field}
-        value={method.field.value ? method.field.value : states[0].optionName}
+        value={method.field.value ? method.field.value : cats[0].optionName}
         as='div'
         className='relative mt-0.5'>
         {({ open }) => (
@@ -31,23 +31,23 @@ export default function SelectMenu(props: any) {
                   className={`${
                     method.field.value ? 'text-skin-base' : 'text-skin-placeholder/60'
                   }  w-full flex-1 text-sm font-normal`}>
-                  {method.field.value ? method.field.value : states[0].optionName}
+                  {method.field.value ? method.field.value : cats[0].optionName}
                 </p>
                 <ChevronDownIcon className='h-5 w-5 text-skin-base' />
               </div>
             </Listbox.Button>
             {open && (
-              <Listbox.Options className='absolute top-full right-0 z-10 mt-1 h-60 w-full overflow-auto rounded-md border border-BORDER_DARK bg-skin-base py-1 scrollbar-hide sm:w-[100px]'>
-                {states.map((state: any, i: number) => (
-                  <Listbox.Option key={i} value={state.value}>
+              <Listbox.Options className='absolute top-full right-0 z-10 mt-1 h-56 w-full overflow-auto rounded-md border border-BORDER_DARK bg-skin-base py-1 scrollbar-hide sm:w-[100px]'>
+                {cats.map((cat: any, i: number) => (
+                  <Listbox.Option key={i} value={cat.value}>
                     {({ active }) => (
                       <button
                         className={`block w-full px-4 py-2 text-sm text-skin-label hover:text-skin-base ${
-                          active || state.value === method.field.value
+                          active || cat.value === method.field.value
                             ? 'bg-skin-card text-skin-base'
                             : ''
                         }`}>
-                        {state.value ? state.value : state.optionName}
+                        {cat.value ? cat.value : cat.optionName}
                       </button>
                     )}
                   </Listbox.Option>
