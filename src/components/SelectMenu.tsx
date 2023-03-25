@@ -47,7 +47,7 @@ export default function SelectMenu(props: any) {
       </Listbox>
       {method.formState.errors && (
         <span className="absolute -bottom-5 right-0 font-lato text-xs font-black tracking-wider text-skin-warning">
-          {method.formState.errors.state?.message.toString()}
+          {method.formState?.errors?.state?.message?.toString()}
         </span>
       )}
     </div>
