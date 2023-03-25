@@ -64,7 +64,7 @@ export default function Form() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='my-8 rounded-[4px] bg-skin-card p-8'>
-      <h1 className='mb-5 text-xl font-bold text-txtPrimaryColor'>Get Pre-approved</h1>
+      <h1 className='mb-5 text-xl font-bold text-skin-base'>Get Pre-approved</h1>
       <div className='flex flex-col'>
         <div className='flex w-full flex-col items-center justify-center'>
           <div className='flex w-full items-center'>
@@ -178,8 +178,7 @@ export default function Form() {
         <ToggleInput name='agree' control={control} label='I agree' disabled={!isValid} />
         {watchAgree && (
           <button
-            className='h-[50px] rounded-[4px] border bg-white px-5 text-skin-base hover:border-DRIVLY hover:bg-DRIVLY hover:text-skin-inverted disabled:hover:border-gray-200 disabled:hover:bg-gray-50 disabled:hover:text-skin-label'
-            disabled={!watchAgree || !isValid}
+            className='h-[50px] rounded-[4px] border bg-skin-button-primary px-5 text-skin-base hover:border-DRIVLY hover:bg-skin-button-inverted hover:text-skin-inverted'
             type='submit'>
             Submit
           </button>

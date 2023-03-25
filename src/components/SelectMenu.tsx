@@ -37,14 +37,14 @@ export default function SelectMenu(props: any) {
               </div>
             </Listbox.Button>
             {open && (
-              <Listbox.Options className='absolute top-full right-0 z-10 mt-1 h-60 w-full overflow-auto rounded-md border border-BORDER_DARK bg-white py-1 scrollbar-hide sm:w-[100px]'>
+              <Listbox.Options className='absolute top-full right-0 z-10 mt-1 h-60 w-full overflow-auto rounded-md border border-BORDER_DARK bg-skin-base py-1 scrollbar-hide sm:w-[100px]'>
                 {states.map((state: any, i: number) => (
                   <Listbox.Option key={i} value={state.value}>
                     {({ active }) => (
                       <button
-                        className={`block w-full px-4 py-2 text-sm text-baseAlt4Color ${
+                        className={`block w-full px-4 py-2 text-sm text-skin-label hover:text-skin-base ${
                           active || state.value === method.field.value
-                            ? 'bg-BG_LIGHT text-skin-label'
+                            ? 'bg-skin-card text-skin-base'
                             : ''
                         }`}>
                         {state.value ? state.value : state.optionName}
@@ -57,7 +57,7 @@ export default function SelectMenu(props: any) {
           </div>
         )}
       </Listbox>
-      {method.formState.errors && (
+      {name === 'state' && method.formState.errors && (
         <span className='absolute -bottom-5 right-0 font-lato text-xs font-black tracking-wider text-skin-warning'>
           {method.formState?.errors?.state?.message?.toString()}
         </span>

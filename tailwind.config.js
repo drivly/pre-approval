@@ -20,6 +20,8 @@ module.exports = {
           base: 'var(--color-bg-base)',
           card: 'var(--color-bg-card)',
           accent: 'var(--color-accent-primary)',
+          'button-primary': 'var(--color-button-primary)',
+          'button-inverted': 'var(--color-button-inverted)',
         },
       },
       fontFamily: {
