@@ -67,7 +67,7 @@ export default function Form() {
       <h1 className='mb-5 text-xl font-bold text-skin-base'>Get Pre-approved</h1>
       <div className='flex flex-col'>
         <div className='flex w-full flex-col items-center justify-center'>
-          <div className='flex w-full items-center'>
+          <div className='flex w-full items-center gap-x-1'>
             <InputField
               {...register('firstName', { required: 'Required' })}
               label='First Name'
@@ -93,7 +93,7 @@ export default function Form() {
             />
           </div>
 
-          <div className='flex w-full items-center'>
+          <div className='flex w-full items-center gap-x-1'>
             <InputField
               {...register('lastName', { required: 'Required' })}
               label='Last Name'
@@ -106,7 +106,7 @@ export default function Form() {
             <SelectMenu label='Suffix' name='suffix' control={control} cats={suffixes} />
           </div>
         </div>
-        <div className='items-center sm:flex'>
+        <div className='items-center sm:flex gap-x-1'>
           <InputField
             {...register('email', {
               required: 'Required',
@@ -128,7 +128,7 @@ export default function Form() {
           />
         </div>
 
-        <div>
+        <div className='gap-x-1'>
           <InputField
             {...register('streetAddress', { required: 'Required' })}
             label='Street address'
@@ -138,7 +138,7 @@ export default function Form() {
             errormsg={errors.streetAddress?.message!}
             placeholder='526 E 8th St'
           />
-          <div className='flex w-full flex-col xl:flex-row xl:items-center'>
+          <div className='flex w-full flex-col xl:flex-row xl:items-center gap-x-1'>
             <InputField
               {...register('city', { required: 'Required' })}
               label='City'
@@ -148,7 +148,7 @@ export default function Form() {
               errormsg={errors.city?.message!}
               placeholder='West Palm Beach'
             />
-            <div className='flex items-center'>
+            <div className='flex items-center gap-x-1'>
               <SelectMenu
                 label='State'
                 name='state'

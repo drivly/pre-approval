@@ -17,7 +17,7 @@ export default function RequiredPhone({
   errors,
 }: RequiredPhoneProps) {
   return (
-    <div className='relative mb-6 flex flex-col sm:w-full'>
+    <div className='relative mb-6 flex flex-col w-full'>
       <label
         className='block font-lato text-sm font-semibold tracking-tight text-skin-label'
         htmlFor={label}>
