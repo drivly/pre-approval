@@ -63,14 +63,14 @@ export default function Form() {
   const watchAgree = watch('agree')
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='lg:mt-8 rounded-[4px] bg-skin-card p-8'>
+    <form onSubmit={handleSubmit(onSubmit)} className='rounded-[4px] bg-skin-card py-8 px-4 sm:p-8'>
       <h1 className='mb-5 text-xl font-bold text-skin-base'>Get Pre-approved</h1>
       <div className='flex flex-col'>
-        <div className='flex w-full flex-col items-center justify-center'>
+        <div className='flex w-full flex-col items-center justify-center md:flex-row gap-x-1'>
           <div className='flex w-full items-center gap-x-1'>
             <InputField
               {...register('firstName', { required: 'Required' })}
-              label='First Name'
+              label='First Name *'
               type='text'
               name='firstName'
               variant='w-full'
@@ -80,15 +80,15 @@ export default function Form() {
             <InputField
               {...register('middleInitial', {
                 maxLength: { value: 3, message: 'Must be less than 3' },
-                validate: (value) => {
-                  return value === '' || value?.match(/^[A-Z]+$/) ? true : 'Invalid'
+                onChange: (e) => {
+                  e.target.value = e.target.value.toUpperCase()
                 },
               })}
               label='MI'
               type='text'
               name='middleInitial'
               errormsg={errors.middleInitial?.message!}
-              variant='w-20'
+              variant='w-20 uppercase'
               placeholder='W'
             />
           </div>
@@ -96,7 +96,7 @@ export default function Form() {
           <div className='flex w-full items-center gap-x-1'>
             <InputField
               {...register('lastName', { required: 'Required' })}
-              label='Last Name'
+              label='Last Name *'
               type='text'
               name='lastName'
               variant='w-full'
@@ -112,7 +112,7 @@ export default function Form() {
               required: 'Required',
               pattern: { value: emailReg, message: 'Invalid Email' },
             })}
-            label='Email'
+            label='Email *'
             type='text'
             name='email'
             errormsg={errors.email?.message!}
@@ -121,36 +121,35 @@ export default function Form() {
           />
           <RequiredPhone
             name='phone'
-            label='Phone'
+            label='Phone *'
             placeholder='561-255-1345'
             control={control}
             errors={errors}
           />
         </div>
-
         <div className='gap-x-1'>
           <InputField
             {...register('streetAddress', { required: 'Required' })}
-            label='Street address'
+            label='Street address *'
             type='text'
             name='streetAddress'
             variant=''
             errormsg={errors.streetAddress?.message!}
             placeholder='526 E 8th St'
           />
-          <div className='flex w-full flex-col xl:flex-row xl:items-center gap-x-1'>
+          <div className='flex w-full flex-col md:flex-row xl:items-center gap-x-1'>
             <InputField
               {...register('city', { required: 'Required' })}
-              label='City'
+              label='City *'
               type='text'
               name='city'
-              variant='xl:w-full'
+              variant='md:w-full'
               errormsg={errors.city?.message!}
               placeholder='West Palm Beach'
             />
             <div className='flex items-center gap-x-1'>
               <SelectMenu
-                label='State'
+                label='State *'
                 name='state'
                 control={control}
                 cats={states}
@@ -162,7 +161,7 @@ export default function Form() {
                   required: 'Required',
                   pattern: { value: zipReg, message: 'Invalid Zip' },
                 })}
-                label='Zipcode'
+                label='Zipcode *'
                 type='text'
                 name='zipcode'
                 errormsg={errors.zipcode?.message!}
@@ -173,16 +172,15 @@ export default function Form() {
           </div>
         </div>
       </div>
-      <AgreementText />
-      <div className='flex items-center justify-between'>
+      <hr className='mb-8 mt-2 border-px border-baseAlt2Color mx-1' />
+      <AgreementText dealer="Cloud Motors" />
+      <div className='flex items-center justify-between w-full'>
         <ToggleInput name='agree' control={control} label='I agree' disabled={!isValid} />
-        {watchAgree && (
-          <button
-            className='h-[50px] rounded-[4px] border bg-skin-button-primary px-5 text-skin-base hover:border-DRIVLY hover:bg-skin-button-inverted hover:text-skin-inverted'
-            type='submit'>
-            Submit
-          </button>
-        )}
+        <button
+          className={`${watchAgree ? 'bg-skin-button-inverted text-skin-inverted' : ''} h-[50px] rounded-[4px] border bg-skin-button-primary w-36 text-skin-base hover:border-DRIVLY`}
+          type='submit'>
+          Submit
+        </button>
       </div>
     </form>
   )

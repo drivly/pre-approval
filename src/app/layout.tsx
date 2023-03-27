@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang='en'>
       <body>
-        <div className={`${inter.variable} ${lato.variable} bg-skin-base font-sans`}>
+        <div className={`${inter.variable} ${lato.variable} bg-skin-base font-sans min-h-screen`}>
           <div className='sm:px-4 md:px-8 flex flex-1 flex-col'>
             {children}
           </div>

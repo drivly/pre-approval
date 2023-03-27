@@ -3,17 +3,12 @@ import Form from '@components/Form'
 export default function Home({ params }: { params: any }) {
   console.log("params", params)
   return (
-    <div>
-      <main className="mx-auto mb-0 grid min-h-screen max-w-6xl grid-cols-1 py-8  lg:grid-cols-10 lg:gap-[75px]">
-        <section className="lg:col-span-6 lg:mt-0 lg:mb-0">
+    <div className='flex flex-1 w-full h-full mx-auto'>
+      <main className="mx-auto mb-0  min-h-screen max-w-[700px] py-8 flex items-center">
+        <section className="lg:my-0">
           <Form />
-        </section>
-        <section className="col-span-1 lg:col-span-4">
-          {/* Image of VIN Vehicle goes here and details if any */}
-          {/* Or just show the form if no VIN */}
         </section>
       </main>
     </div>
-
   )
 }

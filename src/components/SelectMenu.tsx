@@ -1,5 +1,5 @@
 import { Listbox } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/24/solid'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { useController } from 'react-hook-form'
 
 interface SelectMenuProps {
@@ -33,7 +33,7 @@ export default function SelectMenu(props: any) {
                   }  w-full flex-1 text-sm font-normal`}>
                   {method.field.value ? method.field.value : cats[0].optionName}
                 </p>
-                <ChevronDownIcon className='h-5 w-5 text-skin-base' />
+                <ChevronDownIcon className='h-5 w-5 text-skin-base/50' />
               </div>
             </Listbox.Button>
             {open && (
