@@ -16,7 +16,7 @@ interface IProps {
 const InputField = React.forwardRef<HTMLInputElement, InputProps & IProps>((props, ref) => {
   const { label, name, placeholder, type, errormsg, variant } = props
   return (
-    <div className={`${variant} relative mx-1 mb-6 flex flex-col`}>
+    <div className={`${variant} relative mb-6 flex flex-col`}>
       <label
         className='block font-lato text-sm font-semibold tracking-tight text-skin-label'
         htmlFor={name}>

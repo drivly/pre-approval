@@ -1,6 +1,7 @@
 import '@styles/globals.css'
 import { Lato } from 'next/font/google'
 import { Inter } from 'next/font/google'
+import Script from 'next/script'
 
 export const metadata = {
   title: 'Create Next App',
@@ -23,7 +24,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang='en'>
       <body>
         <div className={`${inter.variable} ${lato.variable} bg-skin-base font-sans`}>
-          {children}
+          <div className='sm:px-4 md:px-8 flex flex-1 flex-col'>
+            {children}
+          </div>
         </div>
       </body>
     </html>

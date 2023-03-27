@@ -63,7 +63,7 @@ export default function Form() {
   const watchAgree = watch('agree')
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='my-8 rounded-[4px] bg-skin-card p-8'>
+    <form onSubmit={handleSubmit(onSubmit)} className='mt-8 rounded-[4px] bg-skin-card p-8'>
       <h1 className='mb-5 text-xl font-bold text-skin-base'>Get Pre-approved</h1>
       <div className='flex flex-col'>
         <div className='flex w-full flex-col items-center justify-center'>
@@ -134,7 +134,7 @@ export default function Form() {
             label='Street address'
             type='text'
             name='streetAddress'
-            variant=' mx-1'
+            variant=''
             errormsg={errors.streetAddress?.message!}
             placeholder='526 E 8th St'
           />
@@ -174,7 +174,7 @@ export default function Form() {
         </div>
       </div>
       <AgreementText />
-      <div className='mx-1 flex items-center justify-between'>
+      <div className='flex items-center justify-between'>
         <ToggleInput name='agree' control={control} label='I agree' disabled={!isValid} />
         {watchAgree && (
           <button
