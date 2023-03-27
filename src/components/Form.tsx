@@ -63,7 +63,7 @@ export default function Form() {
   const watchAgree = watch('agree')
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='mt-8 rounded-[4px] bg-skin-card p-8'>
+    <form onSubmit={handleSubmit(onSubmit)} className='lg:mt-8 rounded-[4px] bg-skin-card p-8'>
       <h1 className='mb-5 text-xl font-bold text-skin-base'>Get Pre-approved</h1>
       <div className='flex flex-col'>
         <div className='flex w-full flex-col items-center justify-center'>
