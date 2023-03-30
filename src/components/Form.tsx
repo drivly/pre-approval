@@ -16,7 +16,7 @@ export interface RequestInput {
   lastName: string
   suffix?: string
   email: string
-  phoneNumber: string
+  phone: string
   streetAddress: string
   city: string
   state: string
@@ -118,12 +118,12 @@ export default function Form() {
           placeholder='Email*'
         />
         <RequiredPhone
-          name='phoneNumber'
+          name='phone'
           label='Phone *'
           placeholder='Phone number*'
           variant='sm:col-span-3 col-span-6'
           control={control}
-          errormsg={errors.phoneNumber?.message!}
+          errormsg={errors.phone?.message!}
         />
         <InputField
           {...register('streetAddress', { required: 'Required' })}
