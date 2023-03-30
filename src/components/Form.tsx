@@ -1,8 +1,9 @@
 'use client'
 
 import { states, suffixes } from '@lib/categories'
-import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { toast } from 'sonner'
+import { RequestInput } from '../../typings'
 import { emailReg, zipReg } from '../lib/regex'
 import AgreementText from './AgreementText'
 import InputField from './InputField'
@@ -10,33 +11,16 @@ import RequiredPhone from './RequiredPhone'
 import SelectMenu from './SelectMenu'
 import ToggleInput from './ToggleInput'
 
-export interface RequestInput {
-  firstName: string
-  middleInitial?: string
-  lastName: string
-  suffix?: string
-  email: string
-  phone: string
-  streetAddress: string
-  city: string
-  state: string
-  zipcode: string
-  agree: boolean
-}
-
 export default function Form() {
   const methods = useForm<RequestInput>({ mode: 'all' })
-  const [state, setState] = useState(null)
   const {
     register,
     control,
     handleSubmit,
     reset,
-    watch,
-    formState: { errors, isValid, isSubmitSuccessful },
+    formState: { errors, isValid },
   } = methods
 
-  console.log('isValid', isValid)
   async function handlePreApproval(post: RequestInput) {
     const res = await fetch('/api/pre-approval', {
       method: 'POST',
@@ -45,28 +29,32 @@ export default function Form() {
       },
       body: JSON.stringify(post),
     })
-    const data = await res.json()
-    return data
+    if (res.ok) {
+      toast.success('Success! We will be in touch shortly.')
+    }
   }
 
   const onSubmit: SubmitHandler<RequestInput> = async (data: any) => {
     try {
-      const request = await handlePreApproval(data)
+      await handlePreApproval(data)
       reset()
-     console.log(isSubmitSuccessful && request.success)
     } catch (error) {
       console.error(error)
+      toast.error('Something went wrong. Please try again later.')
     }
   }
 
-  const watchAgree = watch('agree')
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='rounded-[4px] bg-skin-card py-8 px-4 sm:p-8'>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className='max-w-[640px] rounded-md bg-skin-card py-8 px-4 drop-shadow-md  sm:p-8'>
       <h1 className='mb-5 text-xl font-bold text-skin-base'>Get Pre-approved</h1>
       <div className='grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6'>
         <InputField
-          {...register('firstName', { required: 'Required' })}
+          {...register('firstName', {
+            required: 'Required',
+            maxLength: { value: 30, message: 'Max 30 chars' },
+          })}
           label='First Name *'
           type='text'
           name='firstName'
@@ -90,7 +78,10 @@ export default function Form() {
         />
 
         <InputField
-          {...register('lastName', { required: 'Required' })}
+          {...register('lastName', {
+            required: 'Required',
+            maxLength: { value: 30, message: 'Max 30 chars' },
+          })}
           label='Last Name *'
           type='text'
           name='lastName'
@@ -126,7 +117,10 @@ export default function Form() {
           errormsg={errors.phone?.message!}
         />
         <InputField
-          {...register('streetAddress', { required: 'Required' })}
+          {...register('streetAddress', {
+            required: 'Required',
+            maxLength: { value: 200, message: 'Max 200 chars' },
+          })}
           label='Street address *'
           type='text'
           name='streetAddress'
@@ -135,7 +129,10 @@ export default function Form() {
           placeholder='Street address*'
         />
         <InputField
-          {...register('city', { required: 'Required' })}
+          {...register('city', {
+            required: 'Required',
+            maxLength: { value: 30, message: 'Max 30 chars' },
+          })}
           label='City *'
           type='text'
           name='city'

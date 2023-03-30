@@ -2,6 +2,8 @@ import '@styles/globals.css'
 import { Lato } from 'next/font/google'
 import { Inter } from 'next/font/google'
 import Script from 'next/script'
+import { Toaster } from 'sonner'
+import ToastWrapper from '../components/ToastWrapper'
 
 export const metadata = {
   title: 'Pre-Approval App',
@@ -23,10 +25,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang='en'>
       <body>
-        <div className={`${inter.variable} ${lato.variable} bg-skin-base font-sans min-h-screen`}>
-          <div className='sm:px-4 md:px-8 flex flex-1 flex-col'>
-            {children}
-          </div>
+        <div className={`${inter.variable} ${lato.variable} min-h-screen bg-skin-base font-sans`}>
+          <div className='flex flex-1 flex-col sm:px-4 md:px-8'>{children}</div>
         </div>
       </body>
     </html>
