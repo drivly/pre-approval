@@ -1,41 +1,39 @@
 import { Switch } from '@headlessui/react'
 import { useController } from 'react-hook-form'
 
-export default function ToggleInput(props: any) {
-  const {
-    field: { onChange, value  }, formState: { errors },
-  } = useController(props)
-  const { disabled, name, label, errormsg } = props
+export default function ToggleField(props: any) {
+  const { name, label, variant, control, value } = props
+  const { field } = useController({
+    name,
+    control,
+    rules: { required: true },
+  })
+
+  console.log('props', value)
 
   return (
-    <div className='relative flex items-center py-3.5'>
-      <Switch
-        {...props}
-        disabled={disabled}
-        value={value}
-        name={name}
-        onChange={onChange}
-        className={`${
-          value ? 'bg-skin-accent' : 'bg-gray-600'
-        } relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none `}>
-        <span className='sr-only'>Agree to pre-approval</span>
-        <span
+    <div className={`${variant} flex items-center gap-x-4`}>
+      <Switch.Group>
+        <Switch
+          {...field}
+          name={name}
+          onChange={field.onChange}
+          checked={value}
           className={`${
-            value ? 'translate-x-6' : 'translate-x-1'
-          } inline-block h-4 w-4 transform rounded-full bg-white/80 backdrop-blur-lg transition`}
-        />
-      </Switch>
-      <label
-        className={`${
-          value ? 'text-skin-accent' : 'text-skin-base'
-        } ml-4 text-sm font-medium tracking-wide`}>
-        <span>{label}</span>
-      </label>
-      {errormsg && (
-        <span className='absolute -bottom-3 whitespace-nowrap text-[11px] font-medium text-red-400'>
-          {errormsg}
-        </span>
-      )}
+            field.value ? 'bg-black' : 'bg-gray-400'
+          } relative my-3 inline-flex h-5 w-10 min-w-[40px] items-center rounded-full transition-colors focus:outline-none`}>
+          <span className='sr-only'>Agree to Credit App</span>
+          <span
+            className={`${
+              field.value ? 'translate-x-[22px]' : 'translate-x-1'
+            } inline-block h-3.5 w-3.5 transform rounded-full bg-white backdrop-blur-lg transition`}
+          />
+        </Switch>
+        <Switch.Label
+          className={`${field.value ? 'text-gray-900' : 'text-gray-600'} cursor-pointer text-sm`}>
+          {label}
+        </Switch.Label>
+      </Switch.Group>
     </div>
   )
 }

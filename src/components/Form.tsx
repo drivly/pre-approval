@@ -166,14 +166,7 @@ export default function Form() {
       <hr className='border-px mx-1 my-8 border-baseAlt2Color' />
       <AgreementText dealer='Cloud Motors' />
       <div className='flex w-full items-center justify-between'>
-        <ToggleInput
-          rules={{ required: 'Agree to continue' }}
-          name='agree'
-          control={control}
-          label='I agree'
-          disabled={isValid}
-          errormsg={errors?.agree?.message!}
-        />
+        <ToggleInput name='agree' control={control} label='I agree' disabled={isValid} />
         <button
           className='h-[50px] w-36 rounded-[4px] border bg-skin-button-inverted text-skin-inverted hover:border-DRIVLY'
           type='submit'>
