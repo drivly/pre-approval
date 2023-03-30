@@ -3,13 +3,14 @@ import { useController } from 'react-hook-form'
 
 export default function ToggleInput(props: any) {
   const {
-    field: { onChange, value },
+    field: { onChange, value  }, formState: { errors },
   } = useController(props)
-  const { disabled, name, label } = props
+  const { disabled, name, label, errormsg } = props
 
   return (
-    <div className='flex items-center py-3.5'>
+    <div className='relative flex items-center py-3.5'>
       <Switch
+        {...props}
         disabled={disabled}
         value={value}
         name={name}
@@ -30,6 +31,11 @@ export default function ToggleInput(props: any) {
         } ml-4 text-sm font-medium tracking-wide`}>
         <span>{label}</span>
       </label>
+      {errormsg && (
+        <span className='absolute -bottom-3 whitespace-nowrap text-[11px] font-medium text-red-400'>
+          {errormsg}
+        </span>
+      )}
     </div>
   )
 }

@@ -2,11 +2,11 @@ import { emailReg, zipReg } from '@lib/regex'
 import { NextResponse } from 'next/server'
 
 export async function POST(request: Request) {
-  const { firstName, lastName, email, phone, streetAddress, city, state, zipcode, agree } =
-    await request.json()
+  const data = await request.json()
 
-  const isEmailValid = validateEmail(email)
-  const isZipcodeValid = validateZipcode(zipcode)
+  console.log('data api request', data)
+  const isEmailValid = validateEmail(data.email)
+  const isZipcodeValid = validateZipcode(data.zipcode)
 
   if (!isEmailValid || !isZipcodeValid) {
     return new Response('Invalid input', { status: 400 })

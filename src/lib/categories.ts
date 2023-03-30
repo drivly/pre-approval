@@ -1,7 +1,12 @@
+export interface CategoryType {
+  value: string
+  optionName: string
+}
+
 export const states = [
   {
     value: '',
-    optionName: 'Select',
+    optionName: 'State*',
   },
   {
     value: 'AK',
@@ -208,7 +213,7 @@ export const states = [
 export const suffixes = [
   {
     value: '',
-    optionName: 'Select',
+    optionName: 'Suffix',
   },
   {
     value: 'JR',

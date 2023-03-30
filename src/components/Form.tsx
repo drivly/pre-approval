@@ -10,7 +10,7 @@ import RequiredPhone from './RequiredPhone'
 import SelectMenu from './SelectMenu'
 import ToggleInput from './ToggleInput'
 
-interface RequestInput {
+export interface RequestInput {
   firstName: string
   middleInitial?: string
   lastName: string
@@ -25,7 +25,7 @@ interface RequestInput {
 }
 
 export default function Form() {
-  const methods = useForm<RequestInput>({ mode: 'onBlur' })
+  const methods = useForm<RequestInput>({ mode: 'all' })
   const [state, setState] = useState(null)
   const {
     register,
@@ -36,6 +36,7 @@ export default function Form() {
     formState: { errors, isValid, isSubmitSuccessful },
   } = methods
 
+  console.log('isValid', isValid)
   async function handlePreApproval(post: RequestInput) {
     const res = await fetch('/api/pre-approval', {
       method: 'POST',
@@ -51,10 +52,8 @@ export default function Form() {
   const onSubmit: SubmitHandler<RequestInput> = async (data: any) => {
     try {
       const request = await handlePreApproval(data)
-      if (isSubmitSuccessful && request.success) {
-        reset()
-        // send toast message & success message or page
-      }
+      reset()
+     console.log(isSubmitSuccessful && request.success)
     } catch (error) {
       console.error(error)
     }
@@ -65,119 +64,121 @@ export default function Form() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='rounded-[4px] bg-skin-card py-8 px-4 sm:p-8'>
       <h1 className='mb-5 text-xl font-bold text-skin-base'>Get Pre-approved</h1>
-      <div className='flex flex-col'>
-        <div className='flex w-full flex-col items-center justify-center md:flex-row gap-x-1'>
-          <div className='flex w-full items-center gap-x-1'>
-            <InputField
-              {...register('firstName', { required: 'Required' })}
-              label='First Name *'
-              type='text'
-              name='firstName'
-              variant='w-full'
-              errormsg={errors.firstName?.message!}
-              placeholder='John'
-            />
-            <InputField
-              {...register('middleInitial', {
-                maxLength: { value: 3, message: 'Must be less than 3' },
-                onChange: (e) => {
-                  e.target.value = e.target.value.toUpperCase()
-                },
-              })}
-              label='MI'
-              type='text'
-              name='middleInitial'
-              errormsg={errors.middleInitial?.message!}
-              variant='w-20 uppercase'
-              placeholder='W'
-            />
-          </div>
+      <div className='grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6'>
+        <InputField
+          {...register('firstName', { required: 'Required' })}
+          label='First Name *'
+          type='text'
+          name='firstName'
+          variant='w-full sm:col-span-2'
+          errormsg={errors.firstName?.message!}
+          placeholder='First Name*'
+        />
+        <InputField
+          {...register('middleInitial', {
+            maxLength: { value: 3, message: 'Must be less than 3' },
+            onChange: (e) => {
+              e.target.value = e.target.value.toUpperCase()
+            },
+          })}
+          label='MI'
+          type='text'
+          name='middleInitial'
+          errormsg={errors.middleInitial?.message!}
+          variant='sm:col-span-1'
+          placeholder='MI'
+        />
 
-          <div className='flex w-full items-center gap-x-1'>
-            <InputField
-              {...register('lastName', { required: 'Required' })}
-              label='Last Name *'
-              type='text'
-              name='lastName'
-              variant='w-full'
-              errormsg={errors.lastName?.message!}
-              placeholder='Smith'
-            />
-            <SelectMenu label='Suffix' name='suffix' control={control} cats={suffixes} />
-          </div>
-        </div>
-        <div className='items-center sm:flex gap-x-1'>
-          <InputField
-            {...register('email', {
-              required: 'Required',
-              pattern: { value: emailReg, message: 'Invalid Email' },
-            })}
-            label='Email *'
-            type='text'
-            name='email'
-            errormsg={errors.email?.message!}
-            variant='sm:w-full'
-            placeholder='johnwsmith@gmail.com'
-          />
-          <RequiredPhone
-            name='phone'
-            label='Phone *'
-            placeholder='561-255-1345'
-            control={control}
-            errors={errors}
-          />
-        </div>
-        <div className='gap-x-1'>
-          <InputField
-            {...register('streetAddress', { required: 'Required' })}
-            label='Street address *'
-            type='text'
-            name='streetAddress'
-            variant=''
-            errormsg={errors.streetAddress?.message!}
-            placeholder='526 E 8th St'
-          />
-          <div className='flex w-full flex-col md:flex-row xl:items-center gap-x-1'>
-            <InputField
-              {...register('city', { required: 'Required' })}
-              label='City *'
-              type='text'
-              name='city'
-              variant='md:w-full'
-              errormsg={errors.city?.message!}
-              placeholder='West Palm Beach'
-            />
-            <div className='flex items-center gap-x-1'>
-              <SelectMenu
-                label='State *'
-                name='state'
-                control={control}
-                cats={states}
-                rules={{ required: 'Required' }}
-              />
+        <InputField
+          {...register('lastName', { required: 'Required' })}
+          label='Last Name *'
+          type='text'
+          name='lastName'
+          variant='w-full sm:col-span-2'
+          errormsg={errors.lastName?.message!}
+          placeholder='Last Name*'
+        />
+        <SelectMenu
+          variant='col-span-6 sm:col-span-1'
+          label='Suffix'
+          name='suffix'
+          control={control}
+          cats={suffixes}
+        />
+        <InputField
+          {...register('email', {
+            required: 'Required',
+            pattern: { value: emailReg, message: 'Invalid Email' },
+          })}
+          label='Email *'
+          type='text'
+          name='email'
+          errormsg={errors.email?.message!}
+          variant='sm:col-span-3'
+          placeholder='Email*'
+        />
+        <RequiredPhone
+          name='phoneNumber'
+          label='Phone *'
+          placeholder='Phone number*'
+          variant='sm:col-span-3 col-span-6'
+          control={control}
+          errormsg={errors.phoneNumber?.message!}
+        />
+        <InputField
+          {...register('streetAddress', { required: 'Required' })}
+          label='Street address *'
+          type='text'
+          name='streetAddress'
+          variant=''
+          errormsg={errors.streetAddress?.message!}
+          placeholder='Street address*'
+        />
+        <InputField
+          {...register('city', { required: 'Required' })}
+          label='City *'
+          type='text'
+          name='city'
+          variant='sm:col-span-3'
+          errormsg={errors.city?.message!}
+          placeholder='City*'
+        />
+        <SelectMenu
+          label='State *'
+          name='state'
+          control={control}
+          cats={states}
+          variant='col-span-6 sm:col-span-1'
+          rules={{ required: 'Required' }}
+        />
 
-              <InputField
-                {...register('zipcode', {
-                  required: 'Required',
-                  pattern: { value: zipReg, message: 'Invalid Zip' },
-                })}
-                label='Zipcode *'
-                type='text'
-                name='zipcode'
-                errormsg={errors.zipcode?.message!}
-                variant='flex-1 md:w-36'
-                placeholder='33401'
-              />
-            </div>
-          </div>
-        </div>
+        <InputField
+          {...register('zipcode', {
+            required: 'Required',
+            pattern: { value: zipReg, message: 'Invalid Zip' },
+          })}
+          label='Zipcode *'
+          type='text'
+          name='zipcode'
+          errormsg={errors.zipcode?.message!}
+          variant='sm:col-span-2'
+          placeholder='Zipcode*'
+        />
       </div>
-      <hr className='mb-8 mt-2 border-px border-baseAlt2Color mx-1' />
-      <AgreementText dealer="Cloud Motors" />
-      <div className='flex items-center justify-between w-full'>
-        <ToggleInput name='agree' control={control} label='I agree' disabled={!isValid} />
+
+      <hr className='border-px mx-1 my-8 border-baseAlt2Color' />
+      <AgreementText dealer='Cloud Motors' />
+      <div className='flex w-full items-center justify-between'>
+        <ToggleInput
+          rules={{ required: 'Agree to continue' }}
+          name='agree'
+          control={control}
+          label='I agree'
+          disabled={isValid}
+          errormsg={errors?.agree?.message!}
+        />
         <button
-          className={`${watchAgree ? 'bg-skin-button-inverted text-skin-inverted' : ''} h-[50px] rounded-[4px] border bg-skin-button-primary w-36 text-skin-base hover:border-DRIVLY`}
+          className='h-[50px] w-36 rounded-[4px] border bg-skin-button-inverted text-skin-inverted hover:border-DRIVLY'
           type='submit'>
           Submit
         </button>

@@ -1,42 +1,66 @@
+import {
+  Control,
+  FieldError,
+  FieldErrors,
+  FieldErrorsImpl,
+  FieldValues,
+  Merge,
+} from 'react-hook-form'
 import { isPossiblePhoneNumber } from 'react-phone-number-input'
 import PhoneInput from 'react-phone-number-input/react-hook-form-input'
+import { RequestInput } from './Form'
 
-type RequiredPhoneProps = {
+type PhoneFieldProps = {
   label: string
   name: string
   placeholder: string
-  control: any
-  errors: any
+  control: Control<RequestInput, any>
+  errormsg?: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined
+  variant: string
+  message?: string
 }
 
-export default function RequiredPhone({
+export default function PhoneField({
   label,
   name,
   placeholder,
   control,
-  errors,
-}: RequiredPhoneProps) {
+  errormsg,
+  variant,
+  message,
+}: PhoneFieldProps) {
   return (
-    <div className='relative mb-6 flex flex-col w-full'>
+    <div className={`${variant} relative flex w-full flex-col`}>
       <label
-        className='block font-lato text-sm font-semibold tracking-tight text-skin-label'
+        className={`${
+          errormsg ? 'text-red-400' : 'text-gray-900'
+        } block text-sm font-medium leading-6 `}
         htmlFor={label}>
         {label}
       </label>
       <PhoneInput
-        className='focus:border-drivly mt-0.5 h-[50px] w-full rounded-[5px] border border-BORDER_DARK px-4 text-skin-base outline-none placeholder:text-skin-placeholder/60 focus:ring-1 focus:ring-DRIVLY'
+        className={`${
+          errormsg
+            ? 'text-red-400 outline-none ring-2 ring-inset ring-red-400 focus:ring-2 focus:ring-inset focus:ring-red-400'
+            : 'text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset'
+        } mt-2 block w-full rounded-md border-0 py-1.5 px-3 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6`}
         name={name}
         placeholder={placeholder}
         control={control}
         rules={{
-          required: 'Required',
-          validate: (value: any) => isPossiblePhoneNumber(value) || `Invalid ${label}`,
+          required: `Phone required`,
+          validate: (value: any) => isPossiblePhoneNumber(value) || `Invalid ${name}`,
         }}
         country='US'
       />
-      {errors && (
-        <span className='absolute -bottom-5 right-0 font-lato text-xs font-black tracking-wider text-skin-warning'>
-          {errors[name]?.message?.toString()}
+      {errormsg && (
+        <span className='absolute top-4 right-0 text-[11px] font-medium text-red-400'>
+          {errormsg?.toString()}
+        </span>
+      )}
+      {message && (
+        <span className='absolute -bottom-4 left-0.5 text-[9px] font-medium text-gray-800'>
+          <span className='whitespace-nowrap'>{message}</span>
         </span>
       )}
     </div>
