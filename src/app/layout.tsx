@@ -1,9 +1,5 @@
 import '@styles/globals.css'
-import { Lato } from 'next/font/google'
-import { Inter } from 'next/font/google'
-import Script from 'next/script'
-import { Toaster } from 'sonner'
-import ToastWrapper from '../components/ToastWrapper'
+import { Inter, Lato } from 'next/font/google'
 
 export const metadata = {
   title: 'Pre-Approval App',

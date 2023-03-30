@@ -1,14 +1,7 @@
-import {
-  Control,
-  FieldError,
-  FieldErrors,
-  FieldErrorsImpl,
-  FieldValues,
-  Merge,
-} from 'react-hook-form'
+import { Control, FieldError, FieldErrorsImpl, Merge } from 'react-hook-form'
 import { isPossiblePhoneNumber } from 'react-phone-number-input'
 import PhoneInput from 'react-phone-number-input/react-hook-form-input'
-import { RequestInput } from './Form'
+import { RequestInput } from '../../typings'
 
 type PhoneFieldProps = {
   label: string

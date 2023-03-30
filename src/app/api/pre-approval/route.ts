@@ -29,13 +29,3 @@ function validateEmail(email: string) {
 function validateZipcode(zipcode: string) {
   return zipReg.test(zipcode)
 }
-  // firstName: 'Chris',
-  // middleInitial: '',
-  // lastName: 'Risner',
-  // email: 'chris@driv.ly',
-  // streetAddress: '3209 Pheasant Run Trl',
-  // city: 'Mur',
-  // zipcode: '37130',
-  // phone: '+15617812819',
-  // state: 'AZ',
-  // agree: true
