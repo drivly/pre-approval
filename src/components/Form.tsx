@@ -60,7 +60,7 @@ export default function Form() {
           name='firstName'
           variant='w-full sm:col-span-2'
           errormsg={errors.firstName?.message!}
-          placeholder='First Name*'
+          placeholder='Jon'
         />
         <InputField
           {...register('middleInitial', {
@@ -74,7 +74,7 @@ export default function Form() {
           name='middleInitial'
           errormsg={errors.middleInitial?.message!}
           variant='sm:col-span-1'
-          placeholder='MI'
+          placeholder='B'
         />
 
         <InputField
@@ -87,7 +87,7 @@ export default function Form() {
           name='lastName'
           variant='w-full sm:col-span-2'
           errormsg={errors.lastName?.message!}
-          placeholder='Last Name*'
+          placeholder='Jones'
         />
         <SelectMenu
           variant='col-span-6 sm:col-span-1'
@@ -106,12 +106,12 @@ export default function Form() {
           name='email'
           errormsg={errors.email?.message!}
           variant='sm:col-span-3'
-          placeholder='Email*'
+          placeholder='jonjones@gmail.com'
         />
         <RequiredPhone
           name='phone'
           label='Phone *'
-          placeholder='Phone number*'
+          placeholder='575-555-1212'
           variant='sm:col-span-3 col-span-6'
           control={control}
           errormsg={errors.phone?.message!}
@@ -126,7 +126,7 @@ export default function Form() {
           name='streetAddress'
           variant=''
           errormsg={errors.streetAddress?.message!}
-          placeholder='Street address*'
+          placeholder='512 E. Main St.'
         />
         <InputField
           {...register('city', {
@@ -138,7 +138,7 @@ export default function Form() {
           name='city'
           variant='sm:col-span-3'
           errormsg={errors.city?.message!}
-          placeholder='City*'
+          placeholder='Sante Fe'
         />
         <SelectMenu
           label='State *'
@@ -159,7 +159,7 @@ export default function Form() {
           name='zipcode'
           errormsg={errors.zipcode?.message!}
           variant='sm:col-span-2'
-          placeholder='Zipcode*'
+          placeholder='55874'
         />
       </div>
 
