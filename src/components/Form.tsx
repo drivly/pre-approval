@@ -28,8 +28,8 @@ export default function Form() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(post),
-    })
-    if (res.ok) {
+    }).then((res) => res.json())
+    if (res.status === 200) {
       toast.success('Success! We will be in touch shortly.')
     }
   }

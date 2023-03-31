@@ -1,3 +1,4 @@
+import ToastWrapper from '@components/ToastWrapper'
 import '@styles/globals.css'
 import { Inter, Lato } from 'next/font/google'
 
@@ -22,7 +23,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang='en'>
       <body>
         <div className={`${inter.variable} ${lato.variable} min-h-screen bg-skin-base font-sans`}>
-          <div className='flex flex-1 flex-col sm:px-4 md:px-8'>{children}</div>
+          <div className='flex flex-1 flex-col sm:px-4 md:px-8'>
+            {children} 
+            <ToastWrapper />
+          </div>
         </div>
       </body>
     </html>

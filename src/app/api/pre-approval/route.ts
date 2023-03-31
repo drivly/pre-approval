@@ -12,14 +12,18 @@ export async function POST(request: Request) {
   const isZipcodeValid = validateZipcode(data.zipcode)
 
   if (!isEmailValid || !isZipcodeValid) {
-    return new Response('Invalid input', { status: 400 })
+    return NextResponse.json({ status: 400, success: false, message: 'Invalid request' })
   }
 
-  const slackReq = await slackMsgRequest({ url: slackUrl, data })
-  
-  console.log('slackReq', slackReq)
+  try {
+    await slackMsgRequest({ url: slackUrl, data })
 
-  return NextResponse.json({ success: true })
+
+    return NextResponse.json({ status: 200, success: true })
+  } catch (error) {
+    console.log('error', error)
+    return NextResponse.json({ status: 500, success: false, message: 'Internal Server Error' })
+  }
 }
 
 function validateEmail(email: string) {

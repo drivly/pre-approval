@@ -34,7 +34,7 @@ const InputField = React.forwardRef<HTMLInputElement, InputProps & IProps>((prop
               : 'text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset'
           } block w-full rounded-md border-0 py-1.5 px-3 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6`}
           type={type}
-          autoComplete='on'
+          // autoComplete='on'
           placeholder={placeholder}
           {...props}
         />

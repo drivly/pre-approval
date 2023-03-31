@@ -1,5 +1,4 @@
 import Form from '../../components/Form'
-import ToastWrapper from '../../components/ToastWrapper'
 
 export default function Page() {
   return (
@@ -9,7 +8,6 @@ export default function Page() {
           <Form />
         </section>
       </main>
-      <ToastWrapper />
     </div>
   )
 }

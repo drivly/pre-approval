@@ -10,7 +10,7 @@ export default function Home({ params }: { params: any }) {
           <Form />
         </section>
       </main>
-      <ToastWrapper />
+
     </div>
   )
 }
