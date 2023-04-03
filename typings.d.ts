@@ -11,3 +11,15 @@ export interface RequestInput {
   state: string
   agree: boolean
 }
+
+
+export type VehicleInfoProps = {
+  price: number
+  mileage: number
+  color: string
+  year: number
+  make: string
+  model: string
+  image: string
+  vin: string
+}

@@ -47,7 +47,7 @@ export default function Form() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className='max-w-[640px] rounded-md bg-skin-card py-8 px-4 drop-shadow-md  sm:p-8'>
+      className='max-w-[640px] rounded-b-md lg:rounded-md bg-skin-card py-8 px-4 drop-shadow-md  sm:p-8'>
       <h1 className='mb-5 text-xl font-bold text-skin-base'>Get Pre-approved</h1>
       <div className='grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6'>
         <InputField

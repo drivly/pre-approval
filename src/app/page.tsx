@@ -1,16 +1,20 @@
 import Form from '@components/Form'
-import ToastWrapper from '../components/ToastWrapper'
+import Link from 'next/link'
 
 export default function Home({ params }: { params: any }) {
-  console.log("params", params)
+  console.log('params', params)
   return (
     <div className='mx-auto flex h-full w-full flex-1'>
+      <Link href='/1D7RV1CT8AS103067'>
+        <span className='my-2 flex h-10 items-center rounded-[5px] bg-FADE_BLACK px-3 text-sm text-white'>
+          VIN page
+        </span>
+      </Link>
       <main className='mx-auto mb-0  flex min-h-screen  max-w-[640px] items-center py-8'>
         <section className='lg:my-0'>
           <Form />
         </section>
       </main>
-
     </div>
   )
 }
