@@ -1,9 +1,12 @@
 import VehicleCard from '@components/VehicleCard'
 import { fetchVehicleInfo } from '@utils/fetchVehicleInfo'
 import Form from '../../components/Form'
+import { redirect } from 'next/navigation'
 
 export default async function VinPage({ params }: { params: { vin: string } }) {
   const vehicle = await fetchVehicleInfo(params.vin)
+
+  if (!vehicle) redirect('/')
 
   return (
     <div className='mx-auto flex h-full w-full flex-1'>
