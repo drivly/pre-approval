@@ -1,5 +1,5 @@
 import { RequestInput } from '../../typings'
-import formatDate from './formatDate'
+import { formatDate } from '.'
 
 interface SlackMsgRequest {
   url: string | undefined

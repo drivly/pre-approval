@@ -1,7 +1,7 @@
 import VehicleCard from '@components/VehicleCard'
-import { fetchVehicleInfo } from '@utils/fetchVehicleInfo'
-import Form from '../../components/Form'
+import { fetchVehicleInfo } from '@utils'
 import { redirect } from 'next/navigation'
+import Form from '../../components/Form'
 
 export default async function VinPage({ params }: { params: { vin: string } }) {
   const vehicle = await fetchVehicleInfo(params.vin)

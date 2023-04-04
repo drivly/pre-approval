@@ -1,8 +1,7 @@
 import Form from '@components/Form'
 import Link from 'next/link'
 
-export default function Home({ params }: { params: any }) {
-  console.log('params', params)
+export default function Home() {
   return (
     <div className='mx-auto flex h-full w-full flex-1'>
       <Link href='/1D7RV1CT8AS103067'>
