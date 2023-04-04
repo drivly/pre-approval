@@ -1,10 +1,13 @@
 import { VehicleInfoProps } from '../../typings'
 
-export async function fetchVehicleInfo(vin: string): Promise<VehicleInfoProps | null> {
-  const res = await fetch(`https://stock.photos.vin/${vin}`).then((res) => res.json())
-  const vehicleInfo = res.stock
+export async function fetchVehicleDetails(vin: string) {
+  const res = await fetch(`https://listings.vin/${vin}`).then((res) => res.json())
+  const { data } = res
+  let price = Math.max(data?.retailListing?.price || 0, data?.wholesaleListing?.price || 0)
+  let mileage = Math.max(data?.retailListing?.miles || 0, data?.wholesaleListing?.miles || 0)
 
-  return vehicleInfo as VehicleInfoProps
+  const { exteriorColor, year, make, model } = data?.vehicle
+  return { price, mileage, color: exteriorColor, year, make, model }
 }
 
 export function formatDate(date: string | Date | number | any): string {
@@ -37,64 +40,3 @@ export function formatMoney(value: number | undefined) {
   if (moneyLength < 8)
     return '$' + money.slice(0, 1) + ',' + money.slice(1, 4) + ',' + money.slice(4)
 }
-
-
-
-
-
-// interface VehicleIdProps {
-//   year: string
-//   make: string
-//   model: string
-// }
-
-// interface AssetUrlProps {
-//   vehicleId: string
-//   productId: string
-//   color: string
-// }
-
-// export const VEHICLE_ID = ({ year, make, model }: VehicleIdProps) =>
-//   `vehicles/?year=${year}&make=${make}&model=${model}`
-
-// export const ASSET_URL = ({ vehicleId, productId, color }: AssetUrlProps) =>
-//   `vehicle/${vehicleId}?productID=${productId}&color=${color}&angle=032`
-
-// export const fetchDetails = async (url: string) => {
-//   const KEY = process.env.API_KEY
-//   const DOMAIN = process.env.API_URL
-//   const data = await fetch(`${DOMAIN}${url}&api_key=${KEY}`).then((res) => res.json())
-
-//   return data
-// }
-
-// const res = await fetch(`https://listings.vin/${vin}`).then((res) => res.json())
-// const { data } = res
-
-// const vehicle = data?.vehicle
-// const retail = data?.retailListing
-// const wholesale = data?.wholesaleListing
-
-// let price = Math.max(retail?.price || 0, wholesale?.price || 0)
-// let mileage = Math.max(retail?.miles || 0, wholesale?.miles || 0)
-
-// if (vehicle) {
-//   let year = vehicle?.year
-//   let make = vehicle?.make?.toLowerCase()
-//   const model = vehicle?.model?.toLowerCase()
-//   let color = vehicle?.exteriorColor?.toLowerCase()
-//   let productId = vehicle?.exteriorColor === 'white' ? '1' : '2' || '1'
-//   let newModel = model
-//   const filteredModel = exclude.filter((word: string) => newModel?.includes(word))
-
-//   newModel = newModel.replace(filteredModel, '').trim().replace(/\s+/g, ' ')
-
-//   const search = { year, make, model: newModel }
-//   const vehicleId = await fetchDetails(VEHICLE_ID(search)).then((data) => data?.[0]?.id)
-
-//   const assetInfo = { vehicleId, productId, color }
-//   const products = await fetchDetails(ASSET_URL(assetInfo))
-//   const formats = products?.products?.[0]?.productFormats.filter(
-//     (format: any) => format.angle === '032'
-//   )
-//   const image = formats?.[0]?.assets?.map((asset: any) => asset.url)[0]

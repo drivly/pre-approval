@@ -16,10 +16,9 @@ export interface RequestInput {
 export type VehicleInfoProps = {
   price: number
   mileage: number
-  color: string
-  year: number
-  make: string
-  model: string
-  image: string
+  color: any
+  year: any
+  make: any
+  model: any
   vin: string
 }

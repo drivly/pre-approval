@@ -7,7 +7,7 @@ interface VehicleCardProps {
   vehicle: VehicleInfoProps | null
 }
 
-export default function VehicleCard({ vehicle }: VehicleCardProps) {
+export default async function VehicleCard({ vehicle }: VehicleCardProps) {
   if (!vehicle) return null
 
   return (
@@ -23,7 +23,7 @@ export default function VehicleCard({ vehicle }: VehicleCardProps) {
       </header>
       <div className='relative pb-[66%]'>
         <img
-          src={vehicle?.image!}
+          src={`https://stock.photos.vin/${vehicle?.vin}`}
           alt='Vehcile Detail Images'
           className='absolute h-full w-full object-cover'
         />
