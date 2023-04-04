@@ -19,6 +19,8 @@ export const ASSET_URL = ({ vehicleId, productId, color }: AssetUrlProps) =>
 export const fetchDetails = async (url: string) => {
   const KEY = process.env.API_KEY
   const DOMAIN = process.env.API_URL
-  const data = await fetch(`${DOMAIN}${url}&api_key=${KEY}`).then((res) => res.json())
+  const data = await fetch(`${DOMAIN}${url}&api_key=${KEY}`)
+    .then((res) => res.json())
+    
   return data
 }
