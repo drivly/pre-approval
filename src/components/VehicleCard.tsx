@@ -11,7 +11,7 @@ export default function VehicleCard({ vehicle }: VehicleCardProps) {
   if (!vehicle) return null
 
   return (
-    <div className='flex flex-col justify-between h-full max-w-[640px] rounded-t-md bg-skin-card py-8 px-4 drop-shadow-md sm:p-8  lg:rounded-md'>
+    <div className='flex h-full max-w-[640px] flex-col justify-between rounded-t-md bg-skin-card py-8 px-4 drop-shadow-md sm:p-8  lg:rounded-md'>
       <header className='space-y-0.5'>
         <h1 className='text-xl font-bold capitalize text-skin-base'>
           {vehicle?.year} {vehicle?.make} {vehicle?.model}
@@ -28,12 +28,9 @@ export default function VehicleCard({ vehicle }: VehicleCardProps) {
           className='absolute h-full w-full object-cover'
         />
       </div>
-      <div className='mt-4'>
-        <p className='text-sm text-skin-base font-light'>
-          Powered by Drivly. Cloud Motors is a licensed and bonded auto broker. We provide a free, no
-          obligation, and confidential service to help you find the best financing options for your
-          next vehicle.
-        </p>
+      <div className='flex h-[50px] items-center justify-between text-sm font-normal'>
+        <a href='https://driv.ly/privacy'>Privacy Notice</a>
+        <a href='https://driv.ly/terms'>Terms and Conditions</a>
       </div>
     </div>
   )
