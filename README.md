@@ -19,7 +19,7 @@ Then you can install with running `yarn` or `npm install`
 
 You'll also need to create a `.env.local` file in the root directory and add your SLACK_WEBHOOK_URL:
 
-env.localCopy code
+envlocalCopy code
 
 `SLACK_WEBHOOK_URL=<your_slack_webhook_url>`
 
