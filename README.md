@@ -1,8 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Pre-Approval
+============
 
-## Getting Started
+Pre-Approval is a web application that allows users to fill out a form to get pre-approved for a car loan. The application is built with React, Next.js, TailwindCSS and TypeScript and uses react-hook-form for form validation and submission. Slack messaging is built in as well to keep you notified of any new applicants
 
-First, run the development server:
+Get Your Own
+------------
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/project?template=https://github.com/drivly/pre-approval.git)
+
+Getting Started
+---------------
+
+To get started with Pre-Approval, clone the repository and install the dependencies:
+
+`git clone https://github.com/drivly/pre-approval.git cd pre-approval`
+
+Then you can install with running `yarn` or `npm install`
+
+You'll also need to create a `.env.local` file in the root directory and add your SLACK_WEBHOOK_URL:
+
+env.localCopy code
+
+`SLACK_WEBHOOK_URL=<your_slack_webhook_url>`
+
+Finally, start the development server:
 
 ```bash
 npm run dev
@@ -12,27 +33,21 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+You should now be able to access the application at [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Usage
+-----
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+To use Pre-Approval, fill out the form with your personal information and submit it. Once submitted, the application will send a POST request to the `/api/pre-approval` endpoint, which will validate the form data and respond with a success or error message.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+If the form data is valid, the application will display a success message using the `toast` component from the Sonner library and send a message to your SLACK_WEBHOOK_URL.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Contributing
+------------
 
-## Learn More
+If you'd like to contribute to Pre-Approval, please fork the repository and create a new branch for your changes. Once you've made your changes, submit a pull request and we'll review it as soon as possible.
 
-To learn more about Next.js, take a look at the following resources:
+License
+-------
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Pre-Approval is open source software licensed under the MIT license. See the LICENSE file for more information.

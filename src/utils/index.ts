@@ -1,5 +1,3 @@
-import { VehicleInfoProps } from '../../typings'
-
 export async function fetchVehicleDetails(vin: string) {
   const res = await fetch(`https://listings.vin/${vin}`).then((res) => res.json())
   const { data } = res
