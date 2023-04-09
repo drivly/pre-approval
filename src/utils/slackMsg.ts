@@ -8,7 +8,7 @@ interface SlackMsgRequest {
 
 export async function slackMsgRequest({ url, data }: SlackMsgRequest) {
   const date = formatDate(new Date())
-  const messageValues = Object.values(data.message).join(' | ')
+  const messageValues = Object.values(data.message).join(' | ') || 'No message'
   const message = {
     blocks: [
       {
