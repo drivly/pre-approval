@@ -11,7 +11,7 @@ import RequiredPhone from './RequiredPhone'
 import SelectMenu from './SelectMenu'
 import ToggleInput from './ToggleInput'
 
-export default function Form({ searchParams }: { searchParams: any }) {
+export default function Form({ searchParams }: { searchParams?: any }) {
   const methods = useForm<RequestInput>({ mode: 'all' })
   const {
     register,
