@@ -11,7 +11,7 @@ import RequiredPhone from './RequiredPhone'
 import SelectMenu from './SelectMenu'
 import ToggleInput from './ToggleInput'
 
-export default function Form() {
+export default function Form({ searchParams }: { searchParams: any }) {
   const methods = useForm<RequestInput>({ mode: 'all' })
   const {
     register,
@@ -22,12 +22,13 @@ export default function Form() {
   } = methods
 
   async function handlePreApproval(post: RequestInput) {
+    const request = { ...post, message: searchParams}
     const res = await fetch('/api/pre-approval', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(post),
+      body: JSON.stringify(request),
     }).then((res) => res.json())
     if (res.status === 200) {
       toast.success('Success! We will be in touch shortly.')
@@ -47,7 +48,7 @@ export default function Form() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className='max-w-[640px] rounded-b-md lg:rounded-md bg-skin-card py-8 px-4 drop-shadow-md  sm:p-8'>
+      className='max-w-[640px] rounded-b-md bg-skin-card py-8 px-4 drop-shadow-md sm:p-8  lg:rounded-md'>
       <h1 className='mb-5 text-xl font-bold text-skin-base'>Get Pre-approved</h1>
       <div className='grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6'>
         <InputField

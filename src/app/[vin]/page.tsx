@@ -3,7 +3,7 @@ import { fetchVehicleDetails } from '@utils'
 import { redirect } from 'next/navigation'
 import Form from '../../components/Form'
 
-export default async function VinPage({ params }: { params: { vin: string } }) {
+export default async function VinPage({ params, searchParams }: { params: { vin: string }; searchParams: any }) {
   const vehicleInfo = await fetchVehicleDetails(params.vin)
   const vehicle = { vin: params?.vin, ...vehicleInfo }
 
@@ -19,7 +19,7 @@ export default async function VinPage({ params }: { params: { vin: string } }) {
           <VehicleCard vehicle={vehicle} />
         </section>
         <section className='max-w-[640px] lg:my-0'>
-          <Form />
+          <Form searchParams={searchParams} />
         </section>
       </main>
     </div>

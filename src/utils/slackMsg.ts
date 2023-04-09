@@ -3,11 +3,12 @@ import { formatDate } from '.'
 
 interface SlackMsgRequest {
   url: string | undefined
-  data: RequestInput
+  data: any
 }
 
 export async function slackMsgRequest({ url, data }: SlackMsgRequest) {
   const date = formatDate(new Date())
+  const messageValues = Object.values(data.message).join(' | ')
   const message = {
     blocks: [
       {
@@ -31,6 +32,16 @@ export async function slackMsgRequest({ url, data }: SlackMsgRequest) {
           }\n*Address:* ${data.streetAddress} \n*City:* ${data.city}\n*State:* ${
             data.state
           }\n*Zipcode:* ${data.zipcode}\n *Date:* ${date}\"`,
+        },
+      },
+      {
+        type: 'divider',
+      },
+      {
+        type: 'section',
+        text: {
+          type: 'mrkdwn',
+          text: `*Message:* ${messageValues}\"`,
         },
       },
     ],

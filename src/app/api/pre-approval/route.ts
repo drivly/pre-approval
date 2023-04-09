@@ -7,7 +7,7 @@ const slackUrl = process.env.SLACK_WEBHOOK_URL
 export async function POST(request: Request) {
   const data = await request.json()
 
-  console.log('data api request', data)
+  // console.log('data api request', data)
   const isEmailValid = validateEmail(data.email)
   const isZipcodeValid = validateZipcode(data.zipcode)
 
@@ -17,7 +17,6 @@ export async function POST(request: Request) {
 
   try {
     await slackMsgRequest({ url: slackUrl, data })
-
 
     return NextResponse.json({ status: 200, success: true })
   } catch (error) {
