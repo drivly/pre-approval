@@ -1,5 +1,5 @@
 import React from 'react'
-import { useController, useFormContext } from 'react-hook-form'
+import { useController } from 'react-hook-form'
 
 type InputProps = React.DetailedHTMLProps<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -15,14 +15,10 @@ interface CheckboxProps {
 
 const Checkbox = React.forwardRef<HTMLInputElement, InputProps & CheckboxProps>((props, ref) => {
   const { control, isValid, label, name } = props
-  console.log('props', props)
-    const { field } = useController({
-      name,
-      control,
-      
-    })
-    const form = useFormContext()
-  console.log('isValid', isValid)
+  const { field } = useController({
+    name,
+    control,
+  })
 
   return (
     <label htmlFor={name} className='relative flex h-8 cursor-pointer items-center'>
@@ -35,7 +31,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, InputProps & CheckboxProps>(
           checked={field.value ? true : false}
           id={name}
           type='checkbox'
-          className='border-DRIVLY text-skin-base h-4 w-4 rounded accent-DRIVLY focus:ring-DRIVLY'
+          className='h-4 w-4 rounded border-DRIVLY text-skin-base accent-DRIVLY focus:ring-DRIVLY'
         />
       </div>
       <div className='text-sm leading-6'>

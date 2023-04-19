@@ -171,7 +171,7 @@ export default function Form({ searchParams }: { searchParams?: any }) {
       <hr className='border-px mx-1 my-8 border-baseAlt2Color' />
       <AgreementText dealer='Cloud Motors' />
       <div className='flex w-full items-center justify-between'>
-        <Checkbox control={control} name='agree' label='I Agree*' isValid={isValid} />
+        <Checkbox control={control} name='agree' label='I Agree *' isValid={isValid} />
         <button
           disabled={!watchAgree}
           className='h-[50px] w-36 rounded-[4px]  border bg-skin-button-inverted text-skin-inverted hover:border-DRIVLY'

@@ -213,7 +213,7 @@ export const states = [
 export const suffixes = [
   {
     value: '',
-    optionName: 'Suffix',
+    optionName: '--',
   },
   {
     value: 'JR',
