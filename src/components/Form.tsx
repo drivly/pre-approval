@@ -7,6 +7,7 @@ import { RequestInput } from '../../typings'
 import { emailReg, zipReg } from '../lib/regex'
 import AgreementText from './AgreementText'
 import Checkbox from './Checkbox'
+import Footer from './Footer'
 import InputField from './InputField'
 import RequiredPhone from './RequiredPhone'
 import SelectMenu from './SelectMenu'
@@ -50,6 +51,7 @@ export default function Form({ searchParams }: { searchParams?: any }) {
   }
 
   return (
+    <>
     <form
       onSubmit={handleSubmit(onSubmit)}
       className={`${searchParams ? 'shadow__left' : ''} max-w-[640px] select-none py-8 px-4 sm:p-8`}>
@@ -180,5 +182,9 @@ export default function Form({ searchParams }: { searchParams?: any }) {
         </button>
       </div>
     </form>
+      <div className='block lg:hidden mt-4'>
+        <Footer />
+      </div>
+    </>
   )
 }

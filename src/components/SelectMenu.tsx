@@ -15,6 +15,7 @@ export default function SelectField(props: any) {
   const method = useController(props)
   const { name, label, cats, variant, errormsg } = props as SelectFieldProps
 
+  console.log('method.field.value', method.field.value)
   return (
     <div className={`${variant} relative`}>
       <label
@@ -35,13 +36,13 @@ export default function SelectField(props: any) {
             <Listbox.Button
               className={`${
                 errormsg
-                  ? 'text-red-400 outline-none ring-2 ring-inset ring-red-400 focus:ring-2 focus:ring-inset focus:ring-red-400'
-                  : ''
-              } block h-[36px] w-full rounded-md border-0 px-3 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6`}>
+                  ? 'text-red-400 outline-none ring-1 ring-inset ring-red-400 focus:ring-2 focus:ring-inset focus:ring-red-400'
+                  : 'outline-none ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-DRIVLY'
+              } block h-[36px] w-full rounded-md border-0 px-3 text-left text-gray-900 shadow-sm ring-1 ring-inset  sm:max-w-xs sm:text-sm sm:leading-6`}>
               <div className='flex h-full w-full cursor-pointer items-center justify-between'>
                 <p
                   className={`${
-                    method.field.value ? 'text-gray-900' : 'text-gray-400'
+                    method.field.value !== undefined ? 'text-gray-900' : 'text-[#8E8EA3]/50'
                   }  w-full flex-1 text-sm font-normal`}>
                   {method.field.value ? method.field.value : cats[0].optionName}
                 </p>
@@ -55,7 +56,7 @@ export default function SelectField(props: any) {
                     key={i}
                     value={cat.value}
                     className={({ active }) =>
-                      `relative mx-1 cursor-default select-none py-2 pl-6 pr-4 text-sm ${
+                      `relative mx-1 cursor-default select-none py-2 pl-6 pr-4 text-xs ${
                         active ? 'bg-blue-400 text-white' : 'text-gray-200'
                       }`
                     }>
@@ -67,7 +68,7 @@ export default function SelectField(props: any) {
                         </span>
                         {selected ? (
                           <span className='absolute inset-y-0 left-0 flex items-center pl-1.5 text-white'>
-                            <CheckIcon className='h-4 w-4' aria-hidden='true' />
+                            <CheckIcon className='h-3 w-4' aria-hidden='true' />
                           </span>
                         ) : null}
                       </>

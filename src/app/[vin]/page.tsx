@@ -20,17 +20,17 @@ export default async function VinPage({
   }
 
   return (
-    <div className='mx-auto flex h-full w-full flex-1'>
+    <div className='mx-auto flex min-h-screen w-full flex-1'>
       <main className='mx-auto mb-0 grid min-h-screen max-w-7xl grid-cols-1 place-content-center gap-4 py-8 lg:grid-cols-2'>
-        <section className='max-w-[640px] lg:my-0 '>
+        <section className='h-full max-w-[640px] lg:my-0'>
           <Suspense fallback={<div>Loading...</div>}>
             {/* @ts-ignore */}
             <VehicleCard vehicle={vehicle} />
           </Suspense>
         </section>
 
-        <section className='flex max-w-[639px] lg:my-0'>
-          <hr className='h-full drop-shadow-lg' />
+        <section className='flex h-full max-w-[639px] flex-col lg:my-0'>
+          {/* <hr className='h-full drop-shadow-lg' /> */}
           <Form searchParams={searchParams} />
         </section>
       </main>

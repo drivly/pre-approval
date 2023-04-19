@@ -3,7 +3,7 @@
 import { formatMiles, formatMoney } from '@utils'
 import Image from 'next/image'
 import { VehicleInfoProps } from '../../typings'
-
+import Footer from './Footer'
 
 interface VehicleCardProps {
   vehicle: VehicleInfoProps
@@ -14,15 +14,19 @@ export default function VehicleCard({ vehicle }: VehicleCardProps) {
   const price = formatMoney(vehicle.price) || 'N / A'
 
   return (
-    <div className='flex h-full max-w-[640px] flex-col justify-between py-8 px-4 sm:p-8'>
+    <div className='flex min-h-full max-w-[640px] flex-col justify-between py-8 px-4 sm:p-8'>
       <header className='space-y-0.5'>
         <h1 className='text-xl font-bold capitalize text-skin-base'>
           {vehicle?.year} {vehicle?.make} {vehicle?.model}
         </h1>
-        <p className='text-base font-medium text-skin-base'>
-          {price} | {formatMiles(vehicle?.mileage)} miles
+        <div className='flex items-center text-base font-medium text-skin-base'>
+          <span>{price}</span> <hr className='w-4 rotate-90 border-b-0 border-DRIVLY' />{' '}
+          <span>{formatMiles(vehicle?.mileage)} miles</span>
+        </div>
+        <p className='text-xs tracking-[0.02em] pt-0.5'>
+          <span>VIN:</span>
+          <span className='tracking-[0.2em]'> {vehicle?.vin}</span>{' '}
         </p>
-        <p className='text-xs tracking-[0.02em]'>VIN {vehicle?.vin}</p>
       </header>
       <div className='relative pb-[66%]'>
         <img
@@ -31,16 +35,8 @@ export default function VehicleCard({ vehicle }: VehicleCardProps) {
           className='absolute h-full w-full object-cover'
         />
       </div>
-      <div className='flex h-[50px] items-center justify-center space-x-6'>
-        <div className='flex items-center space-x-[6px]'>
-          <span className='font-sans text-xs text-[#8792A2]'>Powered by</span>
-          <Image src='/drivly.svg' alt='Powered by' width={42} height={22} />
-        </div>
-        <div className='h-[20px] w-px bg-black' />
-        <div className='flex space-x-6 font-sans text-xs font-medium tracking-[0.015em] text-[#8792A2]'>
-          <a href='https://driv.ly/terms'>Terms</a>
-          <a href='https://driv.ly/privacy'>Privacy</a>
-        </div>
+      <div className='hidden lg:block'>
+        <Footer />
       </div>
     </div>
   )

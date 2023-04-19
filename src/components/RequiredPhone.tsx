@@ -34,9 +34,9 @@ export default function PhoneField({
       <PhoneInput
         className={`${
           errormsg
-            ? 'text-red-400 outline-none ring-2 ring-inset ring-red-400 focus:ring-2 focus:ring-inset focus:ring-red-400'
-            : 'text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset'
-        } mt-2 block w-full rounded-md border-0 py-1.5 px-3 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6`}
+            ? 'text-red-400 outline-none ring-1 ring-inset ring-red-400 focus:ring-2 focus:ring-inset focus:ring-red-400'
+            : 'text-gray-900 outline-none ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-DRIVLY'
+        } mt-2 block w-full rounded-md border-0 py-1.5 px-3 shadow-sm placeholder:text-[#8E8EA3]/50  sm:text-sm sm:leading-6`}
         name={name}
         placeholder={placeholder}
         control={control}
@@ -47,7 +47,7 @@ export default function PhoneField({
         country='US'
       />
       {errormsg && (
-        <span className='absolute top-0 right-0 text-sm font-medium leading-6 text-red-400'>
+        <span className='absolute top-[1px] right-0 text-xs font-medium leading-6 text-red-400'>
           {errormsg.toString()}
         </span>
       )}
