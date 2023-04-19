@@ -25,7 +25,7 @@ export function formatMiles(value: number | undefined) {
   if (milesLength < 8) return miles.slice(0, 1) + ',' + miles.slice(1, 4) + ',' + miles.slice(4)
 }
 
-export function formatMoney(value: number | undefined) {
+export async function formatMoney(value: number | undefined) {
   if (!value) return value
   const money = value.toString().replace(/\D/g, '')
   const moneyLength = money.length

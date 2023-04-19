@@ -1,34 +1,27 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
-import { VehicleInfoProps } from '../../typings'
 import { formatMiles, formatMoney } from '@utils'
-import Poweredby from '../../public/Poweredby.svg'
-import Drivly from '../../public/drivly.svg'
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import Drivly from '../../public/drivly.svg'
+import { VehicleInfoProps } from '../../typings'
 
 interface VehicleCardProps {
   vehicle: VehicleInfoProps | null
 }
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-})
-
 export default async function VehicleCard({ vehicle }: VehicleCardProps) {
   if (!vehicle) return null
+  const price = await formatMoney(vehicle.price) || 'N / A'
 
   console.log('vehicle', vehicle)
 
   return (
-    <div className={`${inter.className} flex h-full max-w-[640px] flex-col justify-between py-8 px-4 sm:p-8`}>
+    <div className='flex h-full max-w-[640px] flex-col justify-between py-8 px-4 sm:p-8'>
       <header className='space-y-0.5'>
         <h1 className='text-xl font-bold capitalize text-skin-base'>
           {vehicle?.year} {vehicle?.make} {vehicle?.model}
         </h1>
         <p className='text-base font-medium text-skin-base'>
-          {formatMoney(vehicle?.price)} | {formatMiles(vehicle?.mileage)} miles
+          {price} | {formatMiles(vehicle?.mileage)} miles
         </p>
         <p className='text-xs tracking-[0.02em]'>VIN {vehicle?.vin}</p>
       </header>
@@ -40,8 +33,8 @@ export default async function VehicleCard({ vehicle }: VehicleCardProps) {
         />
       </div>
       <div className='flex h-[50px] items-center justify-center space-x-6'>
-        <div className='items-center flex space-x-[6px]'>
-          <span className='font-sans text-[#8792A2] text-xs'>Powered by</span>
+        <div className='flex items-center space-x-[6px]'>
+          <span className='font-sans text-xs text-[#8792A2]'>Powered by</span>
           <Image src={Drivly} alt='Powered by' />
         </div>
         <div className='h-[20px] w-px bg-black' />

@@ -6,12 +6,15 @@ import { Lato } from 'next/font/google'
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
+  display: 'swap',
 })
+
 
 const lato = Lato({
   subsets: ['latin'],
   weight: ['400', '700'],
   variable: '--font-lato',
+  display: 'swap',
 })
 
 export const metadata = {
@@ -22,9 +25,9 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang='en'>
+    <html lang='en' className={`${inter.variable} ${lato.variable}`}>
       <body>
-        <div className={`${inter.variable} ${lato.variable} min-h-screen bg-white font-sans`}>
+        <div className='min-h-screen bg-white font-sans'>
           <div className='flex flex-1 flex-col sm:px-4 md:px-8'>
             {children} 
             <ToastWrapper />

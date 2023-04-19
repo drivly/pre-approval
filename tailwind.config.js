@@ -13,6 +13,10 @@ function withOpacity(variableName) {
 module.exports = {
   content: ['./src/app/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
   theme: {
+    fontFamily: {
+      sans: ['var(--font-inter)', ...fontFamily.sans],
+      lato: [`var(--font-lato)`, ...fontFamily.sans],
+    },
     extend: {
       textColor: {
         skin: {
@@ -32,10 +36,6 @@ module.exports = {
           'button-primary': withOpacity('--color-button-primary'),
           'button-inverted': withOpacity('--color-button-inverted'),
         },
-      },
-      fontFamily: {
-        sans: ['var(--font-inter)', ...fontFamily.sans],
-        lato: [`var(--font-lato)`, ...fontFamily.sans],
       },
       colors: {
         FADE_BLACK: '#161C24',
