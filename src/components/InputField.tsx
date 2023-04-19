@@ -31,8 +31,8 @@ const InputField = React.forwardRef<HTMLInputElement, InputProps & IProps>((prop
           className={`${
             errormsg
               ? 'text-red-400 outline-none ring-2 ring-inset ring-red-400 focus:ring-2 focus:ring-inset focus:ring-red-400'
-              : 'text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset'
-          } block w-full rounded-md border-0 py-1.5 px-3 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6`}
+              : 'text-blue-500 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset'
+          } block w-full rounded-md border-0 py-1.5 px-3  shadow-sm placeholder:text-[#8E8EA3] sm:text-sm sm:leading-6`}
           type={type}
           // autoComplete='on'
           placeholder={placeholder}
@@ -40,7 +40,7 @@ const InputField = React.forwardRef<HTMLInputElement, InputProps & IProps>((prop
         />
       </div>
       {errormsg && (
-        <span className='absolute top-4 right-0 text-[11px] font-medium text-red-400'>
+        <span className='absolute top-0 right-0 text-sm font-medium leading-6 text-red-400'>
           {errormsg.toString()}
         </span>
       )}

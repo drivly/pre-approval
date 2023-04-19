@@ -6,7 +6,7 @@ export interface CategoryType {
 export const states = [
   {
     value: '',
-    optionName: 'State*',
+    optionName: 'NM',
   },
   {
     value: 'AK',

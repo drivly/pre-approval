@@ -2,16 +2,25 @@
 import React from 'react'
 import { VehicleInfoProps } from '../../typings'
 import { formatMiles, formatMoney } from '@utils'
+import Poweredby from '../../public/Poweredby.svg'
+import Drivly from '../../public/drivly.svg'
+import Image from 'next/image'
+import { Inter } from 'next/font/google'
 
 interface VehicleCardProps {
   vehicle: VehicleInfoProps | null
 }
 
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+})
+
 export default async function VehicleCard({ vehicle }: VehicleCardProps) {
   if (!vehicle) return null
 
   return (
-    <div className='flex h-full max-w-[640px] flex-col justify-between rounded-t-md bg-skin-card py-8 px-4 drop-shadow-md sm:p-8  lg:rounded-md'>
+    <div className={`${inter.className} flex h-full max-w-[640px] flex-col justify-between py-8 px-4 sm:p-8`}>
       <header className='space-y-0.5'>
         <h1 className='text-xl font-bold capitalize text-skin-base'>
           {vehicle?.year} {vehicle?.make} {vehicle?.model}
@@ -28,9 +37,16 @@ export default async function VehicleCard({ vehicle }: VehicleCardProps) {
           className='absolute h-full w-full object-cover'
         />
       </div>
-      <div className='flex h-[50px] items-center justify-between text-sm font-normal'>
-        <a href='https://driv.ly/privacy'>Privacy Notice</a>
-        <a href='https://driv.ly/terms'>Terms and Conditions</a>
+      <div className='flex h-[50px] items-center justify-center space-x-6'>
+        <div className='items-center flex space-x-[6px]'>
+          <span className='font-sans text-[#8792A2] text-xs'>Powered by</span>
+          <Image src={Drivly} alt='Powered by' />
+        </div>
+        <div className='h-[20px] w-px bg-black' />
+        <div className='flex space-x-6 font-sans text-xs font-medium tracking-[0.015em] text-[#8792A2]'>
+          <a href='https://driv.ly/terms'>Terms</a>
+          <a href='https://driv.ly/privacy'>Privacy</a>
+        </div>
       </div>
     </div>
   )

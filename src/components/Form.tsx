@@ -6,6 +6,7 @@ import { toast } from 'sonner'
 import { RequestInput } from '../../typings'
 import { emailReg, zipReg } from '../lib/regex'
 import AgreementText from './AgreementText'
+import Checkbox from './Checkbox'
 import InputField from './InputField'
 import RequiredPhone from './RequiredPhone'
 import SelectMenu from './SelectMenu'
@@ -18,11 +19,14 @@ export default function Form({ searchParams }: { searchParams?: any }) {
     control,
     handleSubmit,
     reset,
+    watch,
     formState: { errors, isValid },
   } = methods
+  
+  const watchAgree = watch('agree', false)
 
   async function handlePreApproval(post: RequestInput) {
-    const request = { ...post, message: searchParams}
+    const request = { ...post, message: searchParams }
     const res = await fetch('/api/pre-approval', {
       method: 'POST',
       headers: {
@@ -48,7 +52,7 @@ export default function Form({ searchParams }: { searchParams?: any }) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className='max-w-[640px] rounded-b-md bg-skin-card py-8 px-4 drop-shadow-md sm:p-8  lg:rounded-md'>
+      className={`${searchParams ? 'shadow__left' : ''} max-w-[640px] select-none py-8 px-4 sm:p-8`}>
       <h1 className='mb-5 text-xl font-bold text-skin-base'>Get Pre-approved</h1>
       <div className='grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6'>
         <InputField
@@ -65,7 +69,7 @@ export default function Form({ searchParams }: { searchParams?: any }) {
         />
         <InputField
           {...register('middleInitial', {
-            maxLength: { value: 3, message: 'Must be less than 3' },
+            maxLength: { value: 3, message: '< 3' },
             onChange: (e) => {
               e.target.value = e.target.value.toUpperCase()
             },
@@ -100,7 +104,7 @@ export default function Form({ searchParams }: { searchParams?: any }) {
         <InputField
           {...register('email', {
             required: 'Required',
-            pattern: { value: emailReg, message: 'Invalid Email' },
+            pattern: { value: emailReg, message: 'Invalid' },
           })}
           label='Email *'
           type='text'
@@ -153,7 +157,7 @@ export default function Form({ searchParams }: { searchParams?: any }) {
         <InputField
           {...register('zipcode', {
             required: 'Required',
-            pattern: { value: zipReg, message: 'Invalid Zip' },
+            pattern: { value: zipReg, message: 'Invalid' },
           })}
           label='Zipcode *'
           type='text'
@@ -167,9 +171,10 @@ export default function Form({ searchParams }: { searchParams?: any }) {
       <hr className='border-px mx-1 my-8 border-baseAlt2Color' />
       <AgreementText dealer='Cloud Motors' />
       <div className='flex w-full items-center justify-between'>
-        <ToggleInput name='agree' control={control} label='I agree' disabled={isValid} />
+        <Checkbox control={control} name='agree' label='I Agree*' isValid={isValid} />
         <button
-          className='h-[50px] w-36 rounded-[4px] border bg-skin-button-inverted text-skin-inverted hover:border-DRIVLY'
+          disabled={!watchAgree}
+          className='h-[50px] w-36 rounded-[4px]  border bg-skin-button-inverted text-skin-inverted hover:border-DRIVLY'
           type='submit'>
           Submit
         </button>

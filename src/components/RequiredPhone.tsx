@@ -41,14 +41,14 @@ export default function PhoneField({
         placeholder={placeholder}
         control={control}
         rules={{
-          required: `Phone required`,
-          validate: (value: any) => isPossiblePhoneNumber(value) || `Invalid ${name}`,
+          required: `Required`,
+          validate: (value: any) => isPossiblePhoneNumber(value) || `Invalid`,
         }}
         country='US'
       />
       {errormsg && (
-        <span className='absolute top-4 right-0 text-[11px] font-medium text-red-400'>
-          {errormsg?.toString()}
+        <span className='absolute top-0 right-0 text-sm font-medium leading-6 text-red-400'>
+          {errormsg.toString()}
         </span>
       )}
       {message && (

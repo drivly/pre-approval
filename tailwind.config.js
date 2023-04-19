@@ -34,7 +34,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: [`var(--font-inter)`, ...fontFamily.sans],
+        sans: ['var(--font-inter)', ...fontFamily.sans],
         lato: [`var(--font-lato)`, ...fontFamily.sans],
       },
       colors: {
@@ -52,7 +52,7 @@ module.exports = {
         WHITE_GRAY: '#F9F9FB',
         DRIVLY_GREEN: '#00CAB9',
         txtPrimaryColor: '#16161a',
-        txtHintColor: '#666f75',
+        txtHintColor: '#8792A2',
         txtDisabledColor: '#a0a6ac',
         primaryColor: '#16161a',
         bodyColor: '#f8f9fa',

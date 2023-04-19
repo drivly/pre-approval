@@ -9,8 +9,6 @@ export default function ToggleField(props: any) {
     rules: { required: true },
   })
 
-  console.log('props', value)
-
   return (
     <div className={`${variant} flex items-center gap-x-4`}>
       <Switch.Group>
