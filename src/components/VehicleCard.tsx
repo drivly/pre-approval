@@ -19,6 +19,8 @@ const inter = Inter({
 export default async function VehicleCard({ vehicle }: VehicleCardProps) {
   if (!vehicle) return null
 
+  console.log('vehicle', vehicle)
+
   return (
     <div className={`${inter.className} flex h-full max-w-[640px] flex-col justify-between py-8 px-4 sm:p-8`}>
       <header className='space-y-0.5'>
