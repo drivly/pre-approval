@@ -1,18 +1,17 @@
+'use client'
 /* eslint-disable @next/next/no-img-element */
 import { formatMiles, formatMoney } from '@utils'
 import Image from 'next/image'
-import Drivly from '../../public/drivly.svg'
 import { VehicleInfoProps } from '../../typings'
 
+
 interface VehicleCardProps {
-  vehicle: VehicleInfoProps | null
+  vehicle: VehicleInfoProps
 }
 
-export default async function VehicleCard({ vehicle }: VehicleCardProps) {
+export default function VehicleCard({ vehicle }: VehicleCardProps) {
   if (!vehicle) return null
-  const price = await formatMoney(vehicle.price) || 'N / A'
-
-  console.log('vehicle', vehicle)
+  const price = formatMoney(vehicle.price) || 'N / A'
 
   return (
     <div className='flex h-full max-w-[640px] flex-col justify-between py-8 px-4 sm:p-8'>
@@ -35,7 +34,7 @@ export default async function VehicleCard({ vehicle }: VehicleCardProps) {
       <div className='flex h-[50px] items-center justify-center space-x-6'>
         <div className='flex items-center space-x-[6px]'>
           <span className='font-sans text-xs text-[#8792A2]'>Powered by</span>
-          <Image src={Drivly} alt='Powered by' />
+          <Image src='/drivly.svg' alt='Powered by' width={42} height={22} />
         </div>
         <div className='h-[20px] w-px bg-black' />
         <div className='flex space-x-6 font-sans text-xs font-medium tracking-[0.015em] text-[#8792A2]'>
