@@ -4,7 +4,7 @@ import Link from 'next/link'
 export default function Home() {
   return (
     <div className='mx-auto flex h-full w-full flex-1'>
-      <Link href='/2C3CDZGG7LH189078' className='absolute z-50'>
+      <Link href='/1C4RJFBG2MC686287' className='absolute z-50'>
         <span className='my-2 flex h-10 items-center rounded-[5px] bg-FADE_BLACK px-3 text-sm text-white'>
           VIN page
         </span>
