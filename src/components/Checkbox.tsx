@@ -33,7 +33,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, InputProps & CheckboxProps>(
           checked={field.value ? true : false}
           id={name}
           type='checkbox'
-          className={`${isValid ? 'outline-DRIVLY focus:ring-DRIVLY border-gray-300 ring-DRIVLY ring-offset-2' : ''} h-4 w-4 rounded text-skin-base accent-DRIVLY `}
+          className={`${isValid ? 'outline-DRIVLY focus:ring-DRIVLY border-gray-300 ring-DRIVLY ring-offset-2' : ''} h-4 w-4 rounded-full text-skin-base accent-DRIVLY `}
         />
       </div>
       <div className='text-sm leading-6'>

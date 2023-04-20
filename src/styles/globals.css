@@ -4,6 +4,9 @@
 
 @layer base {
   :root {
+    --dark: rgb(22, 22, 22);
+    --white: rgb(255, 255, 255);
+    --gray-400: rgb(203, 203, 203);
     --color-text-base: 6, 6, 17;
     --color-text-label: 102, 111, 117;
     --color-text-placeholder: 160, 166, 172;

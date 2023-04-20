@@ -15,7 +15,6 @@ export default function SelectField(props: any) {
   const method = useController(props)
   const { name, label, cats, variant, errormsg } = props as SelectFieldProps
 
-  console.log('method.field.value', method.field.value)
   return (
     <div className={`${variant} relative`}>
       <Listbox
