@@ -55,7 +55,10 @@ export default function Form({ searchParams }: { searchParams?: any }) {
       <form
         onSubmit={handleSubmit(onSubmit)}
         className='h-full max-w-[640px] select-none py-8 px-4 sm:pl-10 sm:pr-8 lg:min-h-[700px]'>
+          <div className='w-fit'>
+
         <h1 className='mb-5 text-xl font-bold text-skin-base'>Get Pre-approved</h1>
+          </div>
         <div className='grid max-w-2xl grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-6'>
           <InputField
             {...register('firstName', {
@@ -176,12 +179,12 @@ export default function Form({ searchParams }: { searchParams?: any }) {
           <Checkbox control={control} name='agree' label='I Agree *' isValid={isValid} />
           <button
             disabled={!watchAgree}
-            className='h-[50px] w-36 rounded-[4px]  border bg-skin-button-inverted text-skin-inverted hover:border-DRIVLY'
+            className='h-12 w-[174px] rounded-[4px]  border bg-skin-button-inverted text-skin-inverted hover:border-DRIVLY'
             type='submit'>
             Submit
           </button>
         </div>
-      <div className='pt-16 pb-8 block lg:hidden'>
+      <div className={`${searchParams ? 'lg:hidden pt-16 pb-8' : 'pt-16'}  block `}>
         <Footer />
       </div>
       </form>
