@@ -181,9 +181,7 @@ export default function Form({ searchParams }: { searchParams?: any }) {
             name='agree'
             control={control}
             isValid={isValid}
-            
           />
-          {/* <Checkbox control={control} name='agree' label='I Agree *' isValid={isValid} /> */}
           <button
             disabled={!watchAgree}
             className='h-12 min-w-[174px] rounded-[4px]  border bg-skin-button-inverted text-skin-inverted hover:border-DRIVLY'

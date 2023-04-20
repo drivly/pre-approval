@@ -4,19 +4,19 @@ import { useController } from 'react-hook-form'
 import CheckIcon from './CheckIcon'
 
 export default function RadioInput(props: any) {
-  const { name, label, control, value } = props
+  const { name, label, control, value, isValid } = props
   const { field } = useController({
     name,
-    control,
-    rules: { required: true },
+    control
   })
 
-  console.log('value', value)
+  console.log('isValid', isValid)
 
   return (
     <RadioGroup
       {...field}
       onChange={field.onChange}
+      disabled={!isValid}
       value={value}
       as='div'
       className='flex w-full flex-col'>
