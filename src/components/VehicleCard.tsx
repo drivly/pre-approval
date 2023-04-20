@@ -7,7 +7,7 @@ import Footer from './Footer'
 
 interface Props {
   vehicle: VehicleInfoProps
-  havsVin?: boolean
+  hasVin?: boolean
 }
 
 export default function VehicleCard({ hasVin, vehicle }: Props) {
