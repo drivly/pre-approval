@@ -4,14 +4,13 @@ import { states, suffixes } from '@lib/categories'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { RequestInput } from '../../typings'
+import InputField from '../form-inputs/InputField'
+import RadioInput from '../form-inputs/RadioInput'
+import RequiredPhone from '../form-inputs/RequiredPhone'
+import SelectMenu from '../form-inputs/SelectMenu'
 import { emailReg, zipReg } from '../lib/regex'
 import AgreementText from './AgreementText'
-import Checkbox from './Checkbox'
 import Footer from './Footer'
-import InputField from './InputField'
-import RadioInput from './RadioInput'
-import RequiredPhone from './RequiredPhone'
-import SelectMenu from './SelectMenu'
 
 export default function Form({ searchParams, hasVin }: { searchParams?: any; hasVin?: boolean }) {
   const methods = useForm<RequestInput>({ mode: 'all' })
@@ -25,7 +24,7 @@ export default function Form({ searchParams, hasVin }: { searchParams?: any; has
   } = methods
 
   const watchAgree = watch('agree', false)
-  
+
   async function handlePreApproval(post: RequestInput) {
     const request = { ...post, message: searchParams }
     const res = await fetch('/api/pre-approval', {

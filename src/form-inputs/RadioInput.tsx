@@ -1,13 +1,13 @@
 import { RadioGroup } from '@headlessui/react'
 import { motion } from 'framer-motion'
 import { useController } from 'react-hook-form'
-import CheckIcon from './CheckIcon'
+import CheckIcon from '../components/CheckIcon'
 
 export default function RadioInput(props: any) {
   const { name, label, control, value, isValid } = props
   const { field } = useController({
     name,
-    control
+    control,
   })
 
   return (
