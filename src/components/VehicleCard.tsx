@@ -14,7 +14,7 @@ export default function VehicleCard({ vehicle }: VehicleCardProps) {
   const price = formatMoney(vehicle.price) || 'N / A'
 
   return (
-    <div className='flex min-h-full max-w-[640px] flex-col justify-between py-8 px-4 sm:p-8'>
+    <div className='lg:min-h-[700px] flex max-w-[640px] flex-col justify-between py-8 px-4 sm:pl-8 sm:pr-0'>
       <header className='space-y-0.5'>
         <h1 className='text-xl font-bold capitalize text-skin-base'>
           {vehicle?.year} {vehicle?.make} {vehicle?.model}
@@ -23,7 +23,7 @@ export default function VehicleCard({ vehicle }: VehicleCardProps) {
           <span>{price}</span> <hr className='w-4 rotate-90 border-b-0 border-DRIVLY' />{' '}
           <span>{formatMiles(vehicle?.mileage)} miles</span>
         </div>
-        <p className='text-xs tracking-[0.02em] pt-0.5'>
+        <p className='pt-0.5 text-xs tracking-[0.02em]'>
           <span>VIN:</span>
           <span className='tracking-[0.2em]'> {vehicle?.vin}</span>{' '}
         </p>
@@ -35,7 +35,7 @@ export default function VehicleCard({ vehicle }: VehicleCardProps) {
           className='absolute h-full w-full object-cover'
         />
       </div>
-      <div className='hidden lg:block'>
+      <div className='hidden lg:block pr-8'>
         <Footer />
       </div>
     </div>

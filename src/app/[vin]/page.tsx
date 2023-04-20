@@ -12,7 +12,7 @@ export default async function VinPage({
   searchParams: any
 }) {
   const vehicleInfo = await fetchVehicleDetails(params.vin)
-  const vehicle =  { vin: params?.vin, ...vehicleInfo }
+  const vehicle = { vin: params?.vin, ...vehicleInfo }
   console.log('vehicle', vehicle)
 
   if (!vehicleInfo) {
@@ -20,20 +20,16 @@ export default async function VinPage({
   }
 
   return (
-    <div className='mx-auto flex min-h-screen w-full flex-1'>
-      <main className='mx-auto mb-0 grid min-h-screen max-w-7xl grid-cols-1 place-content-center gap-4 py-8 lg:grid-cols-2'>
-        <section className='h-full max-w-[640px] lg:my-0'>
-          <Suspense fallback={<div>Loading...</div>}>
-            {/* @ts-ignore */}
-            <VehicleCard vehicle={vehicle} />
-          </Suspense>
-        </section>
-
-        <section className='flex h-full max-w-[639px] flex-col lg:my-0'>
-          {/* <hr className='h-full drop-shadow-lg' /> */}
-          <Form searchParams={searchParams} />
-        </section>
-      </main>
-    </div>
+    <main className='mx-auto grid min-h-screen max-w-7xl grid-cols-1 lg:grid-cols-2 gap-y-8 gap-x-4'>
+      <section className='flex h-full w-full flex-col justify-center lg:min-h-[691px]'>
+        <Suspense fallback={<div>Loading...</div>}>
+          {/* @ts-ignore */}
+          <VehicleCard vehicle={vehicle} />
+        </Suspense>
+      </section>
+      <section className={`${searchParams ? 'shadow__left' : ''} lg:grid h-full lg:place-content-center`}>
+        <Form searchParams={searchParams} />
+      </section>
+    </main>
   )
 }

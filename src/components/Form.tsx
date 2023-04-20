@@ -54,11 +54,9 @@ export default function Form({ searchParams }: { searchParams?: any }) {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className={`${
-          searchParams ? 'shadow__left' : ''
-        } max-w-[640px] select-none py-8 px-4 sm:p-8`}>
+        className='h-full max-w-[640px] select-none py-8 px-4 sm:pl-10 sm:pr-8 lg:min-h-[700px]'>
         <h1 className='mb-5 text-xl font-bold text-skin-base'>Get Pre-approved</h1>
-        <div className='grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6'>
+        <div className='grid max-w-2xl grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-6'>
           <InputField
             {...register('firstName', {
               required: 'Required',
