@@ -5,12 +5,12 @@ import Image from 'next/image'
 import { VehicleInfoProps } from '../../typings'
 import Footer from './Footer'
 
-interface VehicleCardProps {
+interface Props {
   vehicle: VehicleInfoProps
   havsVin?: boolean
 }
 
-export default function VehicleCard({ hasVin, vehicle }: VehicleCardProps) {
+export default function VehicleCard({ hasVin, vehicle }: Props) {
   if (!vehicle) return null
   const price = formatMoney(vehicle.price) || 'N / A'
 

@@ -23,10 +23,7 @@ export default async function VinPage({
   return (
     <main className='mx-auto grid min-h-screen max-w-7xl grid-cols-1 gap-y-8 gap-x-4 lg:grid-cols-2'>
       <section className='flex h-full w-full flex-col justify-center lg:min-h-[691px]'>
-        <Suspense fallback={<div>Loading...</div>}>
-          {/* @ts-ignore */}
-          <VehicleCard vehicle={vehicle} hasVin={hasVin} />
-        </Suspense>
+        <VehicleCard vehicle={vehicle} hasVin={hasVin} />
       </section>
       <section className={`${vin ? 'shadow__left' : ''} h-full lg:grid lg:place-content-center`}>
         <Form hasVin={hasVin} searchParams={searchParams} />
