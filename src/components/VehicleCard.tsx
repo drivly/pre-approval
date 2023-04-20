@@ -14,7 +14,7 @@ export default function VehicleCard({ vehicle }: VehicleCardProps) {
   const price = formatMoney(vehicle.price) || 'N / A'
 
   return (
-    <div className='lg:min-h-[700px] flex max-w-[640px] flex-col justify-between py-8 px-4 sm:pl-8 sm:pr-0'>
+    <div className='lg:min-h-[700px] flex max-w-[640px] flex-col justify-between py-8 px-4 sm:px-8 '>
       <header className='space-y-0.5'>
         <h1 className='text-xl font-bold capitalize text-skin-base'>
           {vehicle?.year} {vehicle?.make} {vehicle?.model}
