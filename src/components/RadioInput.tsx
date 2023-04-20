@@ -10,8 +10,6 @@ export default function RadioInput(props: any) {
     control
   })
 
-  console.log('isValid', isValid)
-
   return (
     <RadioGroup
       {...field}

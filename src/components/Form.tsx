@@ -13,7 +13,7 @@ import RadioInput from './RadioInput'
 import RequiredPhone from './RequiredPhone'
 import SelectMenu from './SelectMenu'
 
-export default function Form({ searchParams }: { searchParams?: any }) {
+export default function Form({ searchParams, hasVin }: { searchParams: any; hasVin?: boolean }) {
   const methods = useForm<RequestInput>({ mode: 'all' })
   const {
     register,
@@ -25,8 +25,7 @@ export default function Form({ searchParams }: { searchParams?: any }) {
   } = methods
 
   const watchAgree = watch('agree', false)
-  console.log('isValid', isValid)
-
+  
   async function handlePreApproval(post: RequestInput) {
     const request = { ...post, message: searchParams }
     const res = await fetch('/api/pre-approval', {
@@ -176,12 +175,7 @@ export default function Form({ searchParams }: { searchParams?: any }) {
         <hr className='border-px mx-1 my-9 border-baseAlt2Color' />
         <AgreementText dealer='Cloud Motors' />
         <div className='flex w-full items-center justify-between'>
-          <RadioInput
-            label='I Agree *'
-            name='agree'
-            control={control}
-            isValid={isValid}
-          />
+          <RadioInput label='I Agree *' name='agree' control={control} isValid={isValid} />
           <button
             disabled={!watchAgree}
             className='h-12 min-w-[174px] rounded-[4px]  border bg-skin-button-inverted text-skin-inverted hover:border-DRIVLY'
@@ -189,8 +183,8 @@ export default function Form({ searchParams }: { searchParams?: any }) {
             Submit
           </button>
         </div>
-        <div className={`${searchParams ? 'pt-16 pb-8 lg:hidden' : 'pt-16'}  block `}>
-          <Footer />
+        <div className={`${hasVin ? 'pt-16 pb-8 lg:hidden' : 'pt-16'}  block `}>
+          <Footer hasVin={hasVin} />
         </div>
       </form>
     </>

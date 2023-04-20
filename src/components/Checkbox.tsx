@@ -20,8 +20,6 @@ const Checkbox = React.forwardRef<HTMLInputElement, InputProps & CheckboxProps>(
     control,
   })
 
-  console.log('isValid', isValid)
-
   return (
     <label htmlFor={name} className='relative flex h-8 cursor-pointer items-center flex-shrink-0 mr-8'>
       <div className='mr-4 flex items-center'>

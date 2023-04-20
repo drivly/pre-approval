@@ -7,14 +7,15 @@ import Footer from './Footer'
 
 interface VehicleCardProps {
   vehicle: VehicleInfoProps
+  havsVin?: boolean
 }
 
-export default function VehicleCard({ vehicle }: VehicleCardProps) {
+export default function VehicleCard({ hasVin, vehicle }: VehicleCardProps) {
   if (!vehicle) return null
   const price = formatMoney(vehicle.price) || 'N / A'
 
   return (
-    <div className='lg:min-h-[700px] flex max-w-[640px] flex-col justify-between py-8 px-4 sm:px-8 '>
+    <div className='flex max-w-[640px] flex-col justify-between py-8 px-4 sm:px-8 lg:min-h-[700px] '>
       <header className='space-y-0.5'>
         <h1 className='text-xl font-bold capitalize text-skin-base'>
           {vehicle?.year} {vehicle?.make} {vehicle?.model}
@@ -35,8 +36,8 @@ export default function VehicleCard({ vehicle }: VehicleCardProps) {
           className='absolute h-full w-full object-cover'
         />
       </div>
-      <div className='hidden lg:block pr-8'>
-        <Footer />
+      <div className='hidden pr-8 lg:block'>
+        <Footer hasVin={hasVin} />
       </div>
     </div>
   )
