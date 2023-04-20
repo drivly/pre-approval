@@ -13,7 +13,7 @@ import RadioInput from './RadioInput'
 import RequiredPhone from './RequiredPhone'
 import SelectMenu from './SelectMenu'
 
-export default function Form({ searchParams, hasVin }: { searchParams: any; hasVin?: boolean }) {
+export default function Form({ searchParams, hasVin }: { searchParams?: any; hasVin?: boolean }) {
   const methods = useForm<RequestInput>({ mode: 'all' })
   const {
     register,
