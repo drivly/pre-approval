@@ -170,7 +170,7 @@ export default function Form({ searchParams }: { searchParams?: any }) {
           />
         </div>
 
-        <hr className='border-px mx-1 my-8 border-baseAlt2Color' />
+        <hr className='border-px mx-1 my-9 border-baseAlt2Color' />
         <AgreementText dealer='Cloud Motors' />
         <div className='flex w-full items-center justify-between'>
           <Checkbox control={control} name='agree' label='I Agree *' isValid={isValid} />
@@ -181,10 +181,10 @@ export default function Form({ searchParams }: { searchParams?: any }) {
             Submit
           </button>
         </div>
-      </form>
-      <div className='mt-4 block lg:hidden'>
+      <div className='pt-16 pb-8 block lg:hidden'>
         <Footer />
       </div>
+      </form>
     </>
   )
 }
