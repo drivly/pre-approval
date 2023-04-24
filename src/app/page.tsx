@@ -15,7 +15,7 @@ export default function Home({ searchParams }: { searchParams: any }) {
           </span>
         </Link>
         <Suspense>
-          {cancelUrl && <Backarrow variants='top-0 left-28 my-2 mx-2' />}
+          <Backarrow />
         </Suspense>
       </div>
       <main className='relative mx-auto  mb-0 flex  min-h-screen max-w-[640px] items-center py-8'>
