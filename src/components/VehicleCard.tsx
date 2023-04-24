@@ -30,12 +30,7 @@ export default function VehicleCard({ hasVin, vehicle, cancelUrl }: Props) {
           <span>VIN:</span>
           <span className='tracking-[0.2em]'> {vehicle?.vin}</span>{' '}
         </p>
-        {cancelUrl && (
-          <Backarrow
-            cancelUrl={cancelUrl}
-            variants='right-0 sm:-right-4 lg:right-0 top-0 bg-[#8792A2]/10'
-          />
-        )}
+        {cancelUrl && <Backarrow variants='right-0 sm:-right-4 lg:right-0 top-0 bg-[#8792A2]/10' />}
       </header>
       <div className='relative pb-[66%]'>
         <img

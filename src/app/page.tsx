@@ -1,6 +1,7 @@
 import Backarrow from '@components/Backarrow'
 import Form from '@components/Form'
 import Link from 'next/link'
+import { Suspense } from 'react'
 
 export default function Home({ searchParams }: { searchParams: any }) {
   console.log('searchParams', searchParams)
@@ -13,9 +14,9 @@ export default function Home({ searchParams }: { searchParams: any }) {
             VIN page
           </span>
         </Link>
-        {cancelUrl && (
-          <Backarrow cancelUrl={cancelUrl} variants='top-0 left-28 my-2 mx-2' />
-        )}
+        <Suspense>
+          {cancelUrl && <Backarrow variants='top-0 left-28 my-2 mx-2' />}
+        </Suspense>
       </div>
       <main className='relative mx-auto  mb-0 flex  min-h-screen max-w-[640px] items-center py-8'>
         <section className='relative lg:my-0'>
