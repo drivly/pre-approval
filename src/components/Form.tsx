@@ -53,7 +53,7 @@ export default function Form({ searchParams, hasVin }: { searchParams?: any; has
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className='h-full max-w-[640px] select-none py-8 px-4 sm:pl-12 sm:pr-8 lg:min-h-[700px]'>
+        className='h-full max-w-[640px] select-none py-8 px-4 sm:pl-12 mt-8 sm:mt-0 sm:pr-8 lg:min-h-[700px]'>
         <div className='w-fit'>
           <h1 className='mb-5 text-xl font-bold text-skin-base'>Get Pre-approved</h1>
         </div>

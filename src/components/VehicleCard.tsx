@@ -3,20 +3,22 @@
 import { formatMiles, formatMoney } from '@utils'
 import Image from 'next/image'
 import { VehicleInfoProps } from '../../typings'
+import Backarrow from './Backarrow'
 import Footer from './Footer'
 
 interface Props {
   vehicle: VehicleInfoProps
   hasVin?: boolean
+  cancelUrl?: string
 }
 
-export default function VehicleCard({ hasVin, vehicle }: Props) {
+export default function VehicleCard({ hasVin, vehicle, cancelUrl }: Props) {
   if (!vehicle) return null
   const price = formatMoney(vehicle.price) || 'N / A'
 
   return (
-    <div className='flex max-w-[640px] flex-col justify-between py-8 px-4 sm:px-8 lg:min-h-[700px] '>
-      <header className='space-y-0.5'>
+    <div className='flex max-w-[640px] flex-col justify-between px-4 py-8 sm:px-8 lg:min-h-[700px]'>
+      <header className='relative space-y-0.5'>
         <h1 className='text-xl font-bold capitalize text-skin-base'>
           {vehicle?.year} {vehicle?.make} {vehicle?.model}
         </h1>
@@ -28,6 +30,12 @@ export default function VehicleCard({ hasVin, vehicle }: Props) {
           <span>VIN:</span>
           <span className='tracking-[0.2em]'> {vehicle?.vin}</span>{' '}
         </p>
+        {cancelUrl && (
+          <Backarrow
+            cancelUrl={cancelUrl}
+            variants='right-0 sm:-right-4 lg:right-0 top-0 bg-[#8792A2]/10'
+          />
+        )}
       </header>
       <div className='relative pb-[66%]'>
         <img
