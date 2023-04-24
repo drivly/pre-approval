@@ -1,6 +1,8 @@
+import Backarrow from '@components/Backarrow'
 import VehicleCard from '@components/VehicleCard'
 import { fetchVehicleDetails } from '@utils'
 import { redirect } from 'next/navigation'
+import { Suspense } from 'react'
 import Form from '../../components/Form'
 
 export default async function VinPage({
@@ -22,8 +24,10 @@ export default async function VinPage({
 
   return (
     <main className='mx-auto grid min-h-screen max-w-7xl grid-cols-1 gap-x-4 gap-y-8 lg:grid-cols-2'>
-      
-      <section className='flex h-full w-full flex-col justify-center lg:min-h-[691px]'>
+      <section className='flex h-full w-full flex-col justify-center lg:min-h-[691px] relative'>
+        <Suspense>
+          <Backarrow />
+        </Suspense>
         <VehicleCard vehicle={vehicle} hasVin={hasVin} cancelUrl={cancelUrl} />
       </section>
       <section className={`${vin ? 'shadow__left' : ''} h-full lg:grid lg:place-content-center`}>
