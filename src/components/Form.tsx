@@ -53,7 +53,7 @@ export default function Form({ search, hasVin }: { search?: any; hasVin?: boolea
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className='h-full max-w-[640px] select-none py-8 px-4 sm:pl-[72px] mt-8 lg:mt-0 sm:pr-8 lg:min-h-[700px]'>
+        className='h-full max-w-[640px] select-none py-8 px-4 sm:pl-[72px] mt-8 lg:mt-0 sm:pr-8 lg:min-h-[750px]'>
         <div className='w-fit mb-[32px]'>
           <h1 className='mb- text-xl font-bold text-skin-base'>Get Pre-approved</h1>
         </div>
