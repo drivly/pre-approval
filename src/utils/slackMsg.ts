@@ -3,7 +3,7 @@ import { formatDate } from '.'
 
 interface SlackMsgRequest {
   url: string | undefined
-  data: any
+  data: RequestInput
 }
 
 export async function slackMsgRequest({ url, data }: SlackMsgRequest) {

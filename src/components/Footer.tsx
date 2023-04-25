@@ -1,11 +1,11 @@
-import Image from 'next/image'
-import React from 'react'
 import PoweredByDrivly from './PoweredByDrivly'
 
 export default function Footer({ hasVin }: { hasVin?: any }) {
-
   return (
-    <div className={`${hasVin === true ? 'lg:justify-between justify-center space-x-8' : 'justify-center space-x-8'} flex h-[50px] w-full items-center `}>
+    <div
+      className={`${
+        hasVin === true ? 'justify-center space-x-8 lg:justify-between' : 'justify-center space-x-8'
+      } flex h-[50px] w-full items-center `}>
       <div className='flex items-center space-x-[6px]'>
         <PoweredByDrivly />
       </div>

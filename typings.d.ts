@@ -10,8 +10,8 @@ export interface RequestInput {
   phone: string
   state: string
   agree: boolean
+  message: { [s: string]: string | string[] | undefined } | ArrayLike<string | string[] | undefined>
 }
-
 
 export type VehicleInfoProps = {
   price: number

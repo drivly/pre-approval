@@ -16,22 +16,25 @@ export default async function VinPage({
   const vehicleInfo = await fetchVehicleDetails(vin)
   const vehicle = { vin, ...vehicleInfo }
   const hasVin = vin?.length > 0 ? true : false
+
   const cancelUrl = searchParams?.cancelUrl
-  console.log('searchParams', searchParams)
+  const search = searchParams
+  delete search['cancelUrl']
+
   if (!vehicleInfo) {
     redirect('/')
   }
 
   return (
     <main className='mx-auto grid min-h-screen max-w-7xl grid-cols-1 gap-x-4 gap-y-8 lg:grid-cols-2'>
-      <section className='flex h-full w-full flex-col justify-center lg:min-h-[691px] relative'>
+      <section className='relative flex h-full w-full flex-col justify-center lg:min-h-[691px]'>
         <Suspense>
           <Backarrow />
         </Suspense>
         <VehicleCard vehicle={vehicle} hasVin={hasVin} cancelUrl={cancelUrl} />
       </section>
       <section className={`${vin ? 'shadow__left' : ''} h-full lg:grid lg:place-content-center`}>
-        <Form hasVin={hasVin} searchParams={searchParams} />
+        <Form hasVin={hasVin} search={search} />
       </section>
     </main>
   )

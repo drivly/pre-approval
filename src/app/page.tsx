@@ -3,9 +3,7 @@ import Form from '@components/Form'
 import Link from 'next/link'
 import { Suspense } from 'react'
 
-export default function Home({ searchParams }: { searchParams: any }) {
-  console.log('searchParams', searchParams)
-  const cancelUrl = searchParams?.cancelUrl
+export default function Home() {
   return (
     <div className='mx-auto flex h-full w-full max-w-5xl flex-1 flex-col'>
       <div className='flex'>
@@ -17,9 +15,9 @@ export default function Home({ searchParams }: { searchParams: any }) {
       </div>
       <main className='relative mx-auto mb-0 flex min-h-screen max-w-[640px] items-center py-8'>
         <section className='relative lg:my-0'>
-        <Suspense>
-          <Backarrow />
-        </Suspense>
+          <Suspense>
+            <Backarrow />
+          </Suspense>
           <Form />
         </section>
       </main>

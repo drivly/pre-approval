@@ -1,9 +1,7 @@
 'use client'
 /* eslint-disable @next/next/no-img-element */
 import { formatMiles, formatMoney } from '@utils'
-import Image from 'next/image'
 import { VehicleInfoProps } from '../../typings'
-import Backarrow from './Backarrow'
 import Footer from './Footer'
 
 interface Props {
@@ -38,7 +36,7 @@ export default function VehicleCard({ hasVin, vehicle, cancelUrl }: Props) {
           className='absolute h-full w-full object-cover'
         />
       </div>
-      <div className='hidden  lg:pl-8 lg:pr-16 lg:block'>
+      <div className='hidden  lg:block lg:pl-8 lg:pr-16'>
         <Footer hasVin={hasVin} />
       </div>
     </div>

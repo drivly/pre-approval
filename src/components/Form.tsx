@@ -12,7 +12,7 @@ import { emailReg, zipReg } from '../lib/regex'
 import AgreementText from './AgreementText'
 import Footer from './Footer'
 
-export default function Form({ searchParams, hasVin }: { searchParams?: any; hasVin?: boolean }) {
+export default function Form({ search, hasVin }: { search?: any; hasVin?: boolean }) {
   const methods = useForm<RequestInput>({ mode: 'all' })
   const {
     register,
@@ -26,7 +26,7 @@ export default function Form({ searchParams, hasVin }: { searchParams?: any; has
   const watchAgree = watch('agree', false)
 
   async function handlePreApproval(post: RequestInput) {
-    const request = { ...post, message: searchParams }
+    const request = { ...post, message: search }
     const res = await fetch('/api/pre-approval', {
       method: 'POST',
       headers: {
@@ -182,7 +182,7 @@ export default function Form({ searchParams, hasVin }: { searchParams?: any; has
             Submit
           </button>
         </div>
-        <div className={`${hasVin ? 'pt-16 pb-8 lg:hidden' : 'pt-16'}  block `}>
+        <div className={`${hasVin ? 'pb-8 pt-16 lg:hidden' : 'pt-16'}  block `}>
           <Footer hasVin={hasVin} />
         </div>
       </form>
