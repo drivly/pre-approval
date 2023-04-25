@@ -53,8 +53,8 @@ export default function Form({ search, hasVin }: { search?: any; hasVin?: boolea
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className='h-full max-w-[640px] select-none py-8 px-4 sm:pl-[72px] mt-8 lg:mt-0 sm:pr-8 lg:min-h-[750px]'>
-        <div className='w-fit mb-[32px]'>
+        className='h-full max-w-[640px] select-none px-4 py-8 sm:pl-[72px] sm:pr-8 lg:mt-0 lg:min-h-[750px] max-h-[750px]'>
+        <div className='mb-[32px] w-fit'>
           <h1 className='mb- text-xl font-bold text-skin-base'>Get Pre-approved</h1>
         </div>
         <div className='grid max-w-2xl grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-6'>
@@ -177,7 +177,7 @@ export default function Form({ search, hasVin }: { search?: any; hasVin?: boolea
           <RadioInput label='I Agree *' name='agree' control={control} isValid={isValid} />
           <button
             disabled={!watchAgree}
-            className='h-12 min-w-[174px] rounded-[6px] text-[16px] border bg-skin-button-inverted text-skin-inverted hover:border-DRIVLY'
+            className='h-12 min-w-[174px] rounded-[6px] border bg-skin-button-inverted text-[16px] text-skin-inverted hover:border-DRIVLY'
             type='submit'>
             Submit
           </button>
