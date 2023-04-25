@@ -18,7 +18,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      sans: ['var(--font-inter)', ...fontFamily.sans],
+      inter: ['var(--font-inter)', ...fontFamily.sans],
       lato: [`var(--font-lato)`, ...fontFamily.sans],
     },
     extend: {
