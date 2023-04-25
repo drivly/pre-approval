@@ -24,8 +24,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang='en' className={`${inter.variable} ${lato.variable}`}>
       <body>
-        <div className='min-h-screen bg-white font-sans'>
-          <div className='flex flex-1 flex-col sm:px-4 md:px-8'>
+        <div className='min-h-screen bg-white font-inter'>
+          <div className='flex flex-1 flex-col sm:px-4 md:px-6'>
             {children}
             <ToastWrapper />
           </div>

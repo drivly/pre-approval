@@ -15,7 +15,7 @@ export default function Home({ searchParams }: { searchParams: any }) {
           </span>
         </Link>
       </div>
-      <main className='relative mx-auto  mb-0 flex  min-h-screen max-w-[640px] items-center py-8'>
+      <main className='relative mx-auto mb-0 flex min-h-screen max-w-[640px] items-center py-8'>
         <section className='relative lg:my-0'>
         <Suspense>
           <Backarrow />

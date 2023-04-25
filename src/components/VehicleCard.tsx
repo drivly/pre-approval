@@ -17,7 +17,7 @@ export default function VehicleCard({ hasVin, vehicle, cancelUrl }: Props) {
   const price = formatMoney(vehicle.price) || 'N / A'
 
   return (
-    <div className='flex max-w-[640px] flex-col justify-between py-8 mt-8 lg:mt-0 lg:min-h-[700px]'>
+    <div className='flex max-w-[640px] flex-col justify-between py-8 mt-8 lg:mt-0 lg:min-h-[750px]'>
       <header className='relative space-y-0.5 px-4 sm:px-8'>
         <h1 className='text-xl font-bold capitalize text-skin-base'>
           {vehicle?.year} {vehicle?.make} {vehicle?.model}
@@ -28,7 +28,7 @@ export default function VehicleCard({ hasVin, vehicle, cancelUrl }: Props) {
         </div>
         <p className='pt-0.5 text-xs tracking-[0.02em]'>
           <span>VIN:</span>
-          <span className='tracking-[0.2em]'> {vehicle?.vin}</span>{' '}
+          <span className='tracking-[0.25em]'> {vehicle?.vin}</span>{' '}
         </p>
       </header>
       <div className='relative pb-[66%]'>

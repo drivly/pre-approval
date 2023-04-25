@@ -53,9 +53,9 @@ export default function Form({ searchParams, hasVin }: { searchParams?: any; has
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className='h-full max-w-[640px] select-none py-8 px-4 sm:pl-12 mt-8 lg:mt-0 sm:pr-8 lg:min-h-[700px]'>
-        <div className='w-fit'>
-          <h1 className='mb-5 text-xl font-bold text-skin-base'>Get Pre-approved</h1>
+        className='h-full max-w-[640px] select-none py-8 px-4 sm:pl-[72px] mt-8 lg:mt-0 sm:pr-8 lg:min-h-[700px]'>
+        <div className='w-fit mb-[32px]'>
+          <h1 className='mb- text-xl font-bold text-skin-base'>Get Pre-approved</h1>
         </div>
         <div className='grid max-w-2xl grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-6'>
           <InputField
@@ -171,13 +171,13 @@ export default function Form({ searchParams, hasVin }: { searchParams?: any; has
           />
         </div>
 
-        <hr className='border-px mx-1 my-9 border-baseAlt2Color' />
+        <hr className='border-px mx-1 my-8 border-baseAlt2Color' />
         <AgreementText dealer='Cloud Motors' />
-        <div className='flex w-full items-center justify-between'>
+        <div className='flex w-full items-center justify-between '>
           <RadioInput label='I Agree *' name='agree' control={control} isValid={isValid} />
           <button
             disabled={!watchAgree}
-            className='h-12 min-w-[174px] rounded-[4px]  border bg-skin-button-inverted text-skin-inverted hover:border-DRIVLY'
+            className='h-12 min-w-[174px] rounded-[6px] text-[16px] border bg-skin-button-inverted text-skin-inverted hover:border-DRIVLY'
             type='submit'>
             Submit
           </button>
