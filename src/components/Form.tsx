@@ -178,7 +178,7 @@ export default function Form({ search, hasVin }: { search?: any; hasVin?: boolea
 
         <hr className={`${hasVin ? 'my-6' : 'my-8 lg:my-0'} border-px mx-1 border-baseAlt2Color'`} />
         <AgreementText dealer='Cloud Motors' />
-        <div className={`${hasVin ? 'mt-2' : 'mt-8 lg:mt-0'} flex w-full items-center justify-between `}>
+        <div className={`${hasVin ? 'mt-8 lg:mt-2' : 'mt-8 lg:mt-0'} flex w-full items-center justify-between `}>
           <RadioInput label='I Agree *' name='agree' control={control} isValid={isValid} />
           <button
             disabled={!watchAgree}
