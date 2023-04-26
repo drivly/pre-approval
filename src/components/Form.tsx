@@ -58,8 +58,8 @@ export default function Form({ search, hasVin }: { search?: any; hasVin?: boolea
         onSubmit={handleSubmit(onSubmit)}
         className={`${
           isHome ? '' : 'lg:pl-[72px] lg:pr-8'
-        } lg:flex h-full max-w-[640px] select-none flex-col sm:px-8 justify-evenly px-4 py-8 lg:mt-0 lg:min-h-[760px]`}>
-        <div className='mb-[32px] w-fit'>
+        } lg:flex h-full max-w-[640px] select-none flex-col sm:px-8 justify-between px-4 py-8 lg:mt-0 lg:min-h-[750px]`}>
+        <div className='mb-[32px] lg:mb-[16px] w-fit'>
           <h1 className='mb- text-xl font-bold text-skin-base'>Get Pre-approved</h1>
         </div>
         <div className='grid max-w-2xl grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-6'>
@@ -176,9 +176,9 @@ export default function Form({ search, hasVin }: { search?: any; hasVin?: boolea
           />
         </div>
 
-        <hr className='border-px mx-1 my-8 border-baseAlt2Color' />
+        <hr className={`${hasVin ? 'my-6' : 'my-8 lg:my-0'} border-px mx-1 border-baseAlt2Color'`} />
         <AgreementText dealer='Cloud Motors' />
-        <div className='flex w-full items-center justify-between'>
+        <div className={`${hasVin ? 'mt-2' : 'mt-8 lg:mt-0'} flex w-full items-center justify-between `}>
           <RadioInput label='I Agree *' name='agree' control={control} isValid={isValid} />
           <button
             disabled={!watchAgree}
