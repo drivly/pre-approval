@@ -31,7 +31,7 @@ export default async function VinPage({
         <Suspense>
           <Backarrow />
         </Suspense>
-        <VehicleCard vehicle={vehicle} hasVin={hasVin} cancelUrl={cancelUrl} />
+        <VehicleCard vehicle={vehicle} hasVin={hasVin} />
       </section>
       <section className={`${vin ? 'shadow__left' : ''} h-full lg:grid lg:place-content-center pt-8 lg:pt-0`}>
         <Form hasVin={hasVin} search={search} />

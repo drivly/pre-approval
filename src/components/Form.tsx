@@ -6,11 +6,12 @@ import { toast } from 'sonner'
 import { RequestInput } from '../../typings'
 import InputField from '../form-inputs/InputField'
 import RadioInput from '../form-inputs/RadioInput'
-import RequiredPhone from '../form-inputs/RequiredPhone'
-import SelectMenu from '../form-inputs/SelectMenu'
+import RequiredPhone from '../form-inputs/PhoneField'
+import SelectMenu from '../form-inputs/SelectField'
 import { emailReg, zipReg } from '../lib/regex'
 import AgreementText from './AgreementText'
 import Footer from './Footer'
+import { usePathname } from 'next/navigation'
 
 export default function Form({ search, hasVin }: { search?: any; hasVin?: boolean }) {
   const methods = useForm<RequestInput>({ mode: 'all' })
@@ -22,6 +23,8 @@ export default function Form({ search, hasVin }: { search?: any; hasVin?: boolea
     watch,
     formState: { errors, isValid },
   } = methods
+  const pathname = usePathname()
+  const isHome = pathname === '/'
 
   const watchAgree = watch('agree', false)
 
@@ -53,7 +56,9 @@ export default function Form({ search, hasVin }: { search?: any; hasVin?: boolea
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className='h-full max-w-[640px] select-none px-4 py-8 sm:pl-[72px] sm:pr-8 lg:mt-0 lg:min-h-[750px] max-h-[750px]'>
+        className={`${
+          isHome ? '' : 'lg:pl-[72px] lg:pr-8'
+        } lg:flex h-full max-w-[640px] select-none flex-col sm:px-8 justify-evenly px-4 py-8 lg:mt-0 lg:min-h-[760px]`}>
         <div className='mb-[32px] w-fit'>
           <h1 className='mb- text-xl font-bold text-skin-base'>Get Pre-approved</h1>
         </div>
@@ -173,19 +178,26 @@ export default function Form({ search, hasVin }: { search?: any; hasVin?: boolea
 
         <hr className='border-px mx-1 my-8 border-baseAlt2Color' />
         <AgreementText dealer='Cloud Motors' />
-        <div className='flex w-full items-center justify-between '>
+        <div className='flex w-full items-center justify-between'>
           <RadioInput label='I Agree *' name='agree' control={control} isValid={isValid} />
           <button
             disabled={!watchAgree}
-            className='h-12 min-w-[174px] rounded-[6px] border bg-skin-button-inverted text-[16px] text-skin-inverted hover:border-DRIVLY'
+            className='inline-flex w-full min-w-[174px] justify-center rounded-md border border-transparent bg-skin-button-inverted py-4 text-[16px] font-medium text-skin-inverted shadow-sm hover:border-DRIVLY focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 sm:w-48 sm:px-4 sm:py-2 sm:text-sm'
             type='submit'>
             Submit
           </button>
         </div>
+        {hasVin && (
+          <div className={`${hasVin ? 'pb-8 pt-16 lg:hidden' : 'pt-16'}  block `}>
+            <Footer hasVin={hasVin} />
+          </div>
+        )}
+      </form>
+      {!hasVin && (
         <div className={`${hasVin ? 'pb-8 pt-16 lg:hidden' : 'pt-16'}  block `}>
           <Footer hasVin={hasVin} />
         </div>
-      </form>
+      )}
     </>
   )
 }

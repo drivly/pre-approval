@@ -5,7 +5,7 @@ export default function Footer({ hasVin }: { hasVin?: any }) {
     <div
       className={`${
         hasVin === true ? 'justify-center space-x-8 lg:justify-between' : 'justify-center space-x-8'
-      } flex h-[50px] w-full items-center `}>
+      } flex h-[38px] w-full items-center `}>
       <div className='flex items-center space-x-[6px]'>
         <PoweredByDrivly />
       </div>

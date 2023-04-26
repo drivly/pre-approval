@@ -8,7 +8,7 @@ export default function Home() {
     <div className='mx-auto flex h-full w-full max-w-5xl flex-1 flex-col'>
       <div className='flex'>
         <Link href='/1C4RJFBG2MC686287' className='absolute right-0 top-0 z-50'>
-          <span className='mx-4 my-2 flex h-12 items-center rounded-[5px] bg-FADE_BLACK px-3 text-sm text-white'>
+          <span className='inline-flex w-full justify-center rounded-bl-md border border-transparent bg-skin-button-inverted font-medium text-skin-inverted shadow-sm hover:border-DRIVLY focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 px-4 py-2 text-sm'>
             VIN page
           </span>
         </Link>
