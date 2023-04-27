@@ -68,7 +68,7 @@ export default function Form({ search, hasVin }: { search?: any; hasVin?: boolea
               required: 'Required',
               maxLength: { value: 30, message: 'Max 30 chars' },
             })}
-            label='First Name *'
+            label='First Name*'
             type='text'
             name='firstName'
             variant='w-full sm:col-span-2'
@@ -95,7 +95,7 @@ export default function Form({ search, hasVin }: { search?: any; hasVin?: boolea
               required: 'Required',
               maxLength: { value: 30, message: 'Max 30 chars' },
             })}
-            label='Last Name *'
+            label='Last Name*'
             type='text'
             name='lastName'
             variant='w-full sm:col-span-2'
@@ -114,7 +114,7 @@ export default function Form({ search, hasVin }: { search?: any; hasVin?: boolea
               required: 'Required',
               pattern: { value: emailReg, message: 'Invalid' },
             })}
-            label='Email *'
+            label='Email*'
             type='text'
             name='email'
             errormsg={errors.email?.message!}
@@ -123,7 +123,7 @@ export default function Form({ search, hasVin }: { search?: any; hasVin?: boolea
           />
           <RequiredPhone
             name='phone'
-            label='Phone *'
+            label='Phone*'
             placeholder='575-555-1212'
             variant='sm:col-span-3 col-span-6'
             control={control}
@@ -134,7 +134,7 @@ export default function Form({ search, hasVin }: { search?: any; hasVin?: boolea
               required: 'Required',
               maxLength: { value: 200, message: 'Max 200 chars' },
             })}
-            label='Street address *'
+            label='Street address*'
             type='text'
             name='streetAddress'
             variant=''
@@ -146,7 +146,7 @@ export default function Form({ search, hasVin }: { search?: any; hasVin?: boolea
               required: 'Required',
               maxLength: { value: 30, message: 'Max 30 chars' },
             })}
-            label='City *'
+            label='City*'
             type='text'
             name='city'
             variant='sm:col-span-3'
@@ -154,7 +154,7 @@ export default function Form({ search, hasVin }: { search?: any; hasVin?: boolea
             placeholder='Sante Fe'
           />
           <SelectMenu
-            label='State *'
+            label='State*'
             name='state'
             control={control}
             cats={states}
@@ -167,7 +167,7 @@ export default function Form({ search, hasVin }: { search?: any; hasVin?: boolea
               required: 'Required',
               pattern: { value: zipReg, message: 'Invalid' },
             })}
-            label='Zipcode *'
+            label='Zipcode*'
             type='text'
             name='zipcode'
             errormsg={errors.zipcode?.message!}
@@ -182,7 +182,7 @@ export default function Form({ search, hasVin }: { search?: any; hasVin?: boolea
           className={`${
             hasVin ? 'mt-8 lg:mt-2' : 'mt-8'
           } flex w-full items-center justify-between `}>
-          <RadioInput label='I Agree *' name='agree' control={control} isValid={isValid} />
+          <RadioInput label='I Agree*' name='agree' control={control} isValid={isValid} />
           <button
             disabled={!watchAgree}
             className='inline-flex w-full min-w-[174px] justify-center rounded-md border border-transparent bg-skin-button-inverted py-4 text-[16px] font-medium text-skin-inverted shadow-sm hover:border-DRIVLY focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 sm:w-48 sm:px-4 sm:py-2 sm:text-sm'
