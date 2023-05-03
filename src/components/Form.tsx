@@ -13,7 +13,13 @@ import AgreementText from './AgreementText'
 import Footer from './Footer'
 import { usePathname } from 'next/navigation'
 
-export default function Form({ search, hasVin }: { search?: any; hasVin?: boolean }) {
+type FormProps = {
+  search?: any
+  hasVin?: boolean
+  brand?: string
+}
+
+export default function Form({ search, hasVin, brand }: FormProps) {
   const methods = useForm<RequestInput>({ mode: 'all' })
   const {
     register,
@@ -177,7 +183,7 @@ export default function Form({ search, hasVin }: { search?: any; hasVin?: boolea
         </div>
 
         <hr className={`${hasVin ? 'my-4' : 'my-8'} border-px border-baseAlt2Color' mx-1`} />
-        <AgreementText dealer='Cloud Motors' />
+        <AgreementText dealer={brand} />
         <div
           className={`${
             hasVin ? 'mt-8 lg:mt-2' : 'mt-8'
