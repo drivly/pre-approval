@@ -19,9 +19,9 @@ export default async function VinPage({
   const search = searchParams
 
 
-  // if (!vehicleInfo) {
-  //   redirect('/')
-  // }
+  if (!vehicleInfo) {
+    redirect('/')
+  }
 
   return (
     <main className='mx-auto grid min-h-screen max-w-6xl grid-cols-1 gap-x-4 gap-y-8 lg:grid-cols-2'>

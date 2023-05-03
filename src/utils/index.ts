@@ -1,10 +1,10 @@
 export async function fetchVehicleDetails(vin: string) {
-  const res = await fetch(`https://listings.vin/${vin}`).then((res) => res.json())
-  const { data } = res
-  let price = Math.max(data?.retailListing?.price || 0, data?.wholesaleListing?.price || 0)
-  let mileage = Math.max(data?.retailListing?.miles || 0, data?.wholesaleListing?.miles || 0)
+  const res = await fetch(`https://listing.vin/${vin}`).then((res) => res.json())
+  const { vehicle } = res
+  let price = Math.max(vehicle?.retailListing?.price || 0, vehicle?.wholesaleListing?.price || 0)
+  let mileage = Math.max(vehicle?.retailListing?.miles || 0, vehicle?.wholesaleListing?.miles || 0)
 
-  const { exteriorColor, year, make, model } = data?.vehicle
+  const { exteriorColor, year, make, model } = vehicle
   return { price, mileage, color: exteriorColor, year, make, model }
 }
 
