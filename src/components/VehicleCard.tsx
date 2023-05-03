@@ -35,7 +35,7 @@ export default function VehicleCard({ hasVin, vehicle }: Props) {
           className='absolute h-full w-full object-cover'
         />
       </div>
-      <div className='hidden  lg:block lg:pl-8 lg:pr-16'>
+      <div className='hidden  lg:block lg:pl-[29px] lg:pr-16'>
         <Footer hasVin={hasVin} />
       </div>
     </div>

@@ -74,10 +74,7 @@ export default function RadioInput(props: any) {
               </motion.div>
             </motion.div>
             <RadioGroup.Label as='label' className='text-sm leading-6'>
-              <span
-                className={`${
-                  field.value ? 'text-skin-base' : 'text-[#8E8EA3]'
-                } font-medium transition-all duration-150 ease-out`}>
+              <span className='font-medium text-DRIVLY transition-all duration-150 ease-out'>
                 {label}
               </span>
             </RadioGroup.Label>
