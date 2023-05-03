@@ -26,15 +26,15 @@ export default async function VinPage({
 
   // TODO do something with the brand
   return (
-    <main className='mx-auto grid min-h-screen max-w-6xl grid-cols-1 gap-x-4 gap-y-8 lg:grid-cols-2'>
+    <main className='mx-auto grid min-h-screen max-w-7xl grid-cols-1 gap-x-4 gap-y-8 lg:grid-cols-2'>
       <section className='relative flex h-full w-full flex-col justify-center'>
         <Backarrow />
         <VehicleCard vehicle={vehicle} hasVin={hasVin} />
       </section>
       <section
         className={`${
-          vin ? 'shadow__left' : ''
-        } h-full pt-8 lg:grid lg:place-content-center lg:pt-0`}>
+          vin ? 'shadow__left shadow__horizontal' : ''
+        } h-full w-full pt-8 lg:grid lg:place-content-center lg:pt-0`}>
         <Form hasVin={hasVin} search={search} brand={brand} />
       </section>
     </main>

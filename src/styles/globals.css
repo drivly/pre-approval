@@ -22,7 +22,7 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .shadow__left {
+  .shadow__horizontal {
     height: 100vw;
     box-shadow: 0px -15px 15px -11px rgba(0, 0, 0, 0.08);
   }
