@@ -2,7 +2,6 @@ import Backarrow from '@components/Backarrow'
 import VehicleCard from '@components/VehicleCard'
 import { fetchVehicleDetails } from '@utils'
 import { redirect } from 'next/navigation'
-import { Suspense } from 'react'
 import Form from '../../components/Form'
 
 export default async function VinPage({
@@ -14,6 +13,7 @@ export default async function VinPage({
 }) {
   const vin = params?.vin
   const vehicleInfo = await fetchVehicleDetails(vin)
+  console.log(vehicleInfo)
   const vehicle = { vin, ...vehicleInfo }
   const hasVin = vin?.length > 0 ? true : false
   const search = searchParams
