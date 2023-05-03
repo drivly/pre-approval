@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className='min-h-screen bg-white font-inter'>
           <div className='flex flex-1 flex-col sm:px-4 md:px-6'>
             {children}
-            <ToastWrapper />
+            {/* <ToastWrapper /> */}
           </div>
         </div>
       </body>
