@@ -1,9 +1,13 @@
 'use client'
 
 import { ChevronLeftIcon } from '@heroicons/react/20/solid'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { cn } from '@utils'
+import { usePathname, useRouter } from 'next/navigation'
+import { FC, HTMLAttributes } from 'react'
 
-const Backarrow = () => {
+interface BackArrowProps extends HTMLAttributes<HTMLButtonElement> {}
+
+const Backarrow: FC<BackArrowProps> = () => {
   const pathname = usePathname()
   const isHome = pathname === '/'
   const router = useRouter()
@@ -11,9 +15,10 @@ const Backarrow = () => {
   return (
     <button
       onClick={() => router.back()}
-      className={`${
-        isHome ? '-top-6 left-4 my-2 sm:left-8' : 'left-4 top-4 sm:left-8 lg:top-[225px]'
-      } absolute z-50 grid h-8 w-8 place-content-center place-items-center rounded-[5px] border-none outline-none ring-0 drop-shadow-sm bg-[#8792A2]/10 active:outline-none`}>
+      className={cn(
+        'absolute left-4 top-4 z-50 grid h-8 w-8 place-content-center place-items-center rounded-[5px] border-none bg-[#8792A2]/10 outline-none ring-0 drop-shadow-sm active:outline-none sm:left-8 lg:top-40',
+        { '-top-6 left-4 my-2 sm:left-8 lg:-top-6': isHome }
+      )}>
       <ChevronLeftIcon className='h-7 w-7 text-DETAIL__BLACK/50' />
     </button>
   )
