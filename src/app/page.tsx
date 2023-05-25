@@ -14,7 +14,7 @@ export default function Home({ searchParams: { brand } }: { searchParams: { bran
       </div>
       <main className='relative mx-auto mb-0 flex min-h-screen max-w-[640px] items-center py-8'>
         <section className='relative lg:my-0'>
-          <Backarrow />
+          <Backarrow className='-top-6 left-4 my-2 sm:left-8 lg:-top-6' />
           <Form brand={brand} />
         </section>
       </main>

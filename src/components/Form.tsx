@@ -66,7 +66,7 @@ export default function Form({ search, hasVin, brand }: FormProps) {
           isHome ? 'flex min-h-[700px]' : 'lg:mt-0 lg:flex lg:min-h-[750px] lg:pl-[72px] lg:pr-8'
         }  h-full max-w-[640px] select-none flex-col justify-between px-4 py-8 sm:px-8 `}>
         <div className={`${isHome ? 'mb-[32px]' : 'mb-[32px] lg:mb-[8px]'}  w-fit`}>
-          <h1 className='mb- text-xl font-bold text-skin-base'>Get Pre-approved</h1>
+          <h1 className='text-xl font-bold text-skin-base pt-[2px]'>Get Pre-approved</h1>
         </div>
         <div className='grid max-w-2xl grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-6'>
           <InputField
