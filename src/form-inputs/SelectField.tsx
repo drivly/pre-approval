@@ -1,6 +1,7 @@
 import { CategoryType } from '@/lib/categories'
 import { Listbox } from '@headlessui/react'
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid'
+import { cn } from '@utils'
 import { FieldError, FieldErrorsImpl, Merge, useController } from 'react-hook-form'
 
 interface SelectFieldProps {
@@ -26,20 +27,21 @@ export default function SelectField(props: any) {
         {({ open }) => (
           <>
             <Listbox.Label
-              className={`${
-                errormsg ? 'text-red-400' : 'text-gray-900'
-              } block text-sm font-medium leading-6 `}
+              className={cn('block text-sm font-medium leading-6 text-gray-900', {
+                'text-red-400': errormsg,
+              })}
               htmlFor={name}>
               {label}
             </Listbox.Label>
 
             <div className='relative mt-2 h-full w-full'>
               <Listbox.Button
-                className={`${
-                  errormsg
-                    ? 'text-red-400 outline-none ring-1 ring-inset ring-red-400 focus:ring-2 focus:ring-inset focus:ring-red-400'
-                    : 'outline-none ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-DRIVLY'
-                } block h-[36px] w-full rounded-md border-0 px-3 text-left text-gray-900  ring-1 ring-inset  sm:max-w-xs sm:text-sm sm:leading-6`}>
+                className={cn(
+                  'block h-[40px] w-full rounded-md border-[2px] px-3 text-gray-900 outline-none placeholder:text-[#8E8EA3]/50 focus:border-[2px] focus:border-DRIVLY sm:text-sm sm:leading-6',
+                  {
+                    'border-red-400 text-red-400 focus:border-red-400': errormsg,
+                  }
+                )}>
                 <div className='flex h-full w-full cursor-pointer items-center justify-between'>
                   <span
                     className={`${

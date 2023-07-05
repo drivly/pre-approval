@@ -1,3 +1,4 @@
+import { cn } from '@utils'
 import React from 'react'
 import { FieldError, FieldErrorsImpl, Merge } from 'react-hook-form'
 
@@ -28,11 +29,12 @@ const InputField = React.forwardRef<HTMLInputElement, InputProps & IProps>((prop
       <div className='mt-2'>
         <input
           ref={ref}
-          className={`${
-            errormsg
-              ? 'text-red-400 outline-none ring-1 ring-inset ring-red-400 focus:ring-2 focus:ring-inset focus:ring-red-400'
-              : 'text-gray-900 outline-none ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-DRIVLY'
-          } block w-full rounded-md border-0 py-1.5 px-3 placeholder:text-[#8E8EA3]/50 sm:text-sm sm:leading-6`}
+          className={cn(
+            'block w-full rounded-md border-[2px] px-3 py-1.5 text-gray-900 outline-none placeholder:text-[#8E8EA3]/50 focus:border-[2px] focus:border-DRIVLY sm:text-sm sm:leading-6',
+            {
+              'border-red-400 text-red-400 focus:border-red-400': errormsg,
+            }
+          )}
           type={type}
           // autoComplete='on'
           placeholder={placeholder}
@@ -40,7 +42,7 @@ const InputField = React.forwardRef<HTMLInputElement, InputProps & IProps>((prop
         />
       </div>
       {errormsg && (
-        <span className='absolute top-[1px] right-0 text-xs font-medium leading-6 text-red-400'>
+        <span className='absolute right-0 top-[1px] text-xs font-medium leading-6 tracking-tight text-red-400'>
           {errormsg.toString()}
         </span>
       )}

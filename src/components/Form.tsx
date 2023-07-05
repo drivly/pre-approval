@@ -109,7 +109,7 @@ export default function Form({ search, hasVin, brand }: FormProps) {
             placeholder='Jones'
           />
           <SelectMenu
-            variant='col-span-6 sm:col-span-1'
+            variant='col-span-6 sm:col-span-1 h-full'
             label='Suffix'
             name='suffix'
             control={control}
