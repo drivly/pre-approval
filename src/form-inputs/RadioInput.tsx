@@ -15,7 +15,7 @@ export default function RadioInput(props: any) {
       {...field}
       onChange={field.onChange}
       disabled={!isValid}
-      value={value}
+      value={field.value ? field.value : false}
       as='div'
       className='flex w-full flex-col'>
       <RadioGroup.Label className='sr-only'>I agree</RadioGroup.Label>
