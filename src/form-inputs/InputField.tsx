@@ -30,7 +30,7 @@ const InputField = React.forwardRef<HTMLInputElement, InputProps & IProps>((prop
         <input
           ref={ref}
           className={cn(
-            'block w-full rounded-md border-[2px] px-3 py-1.5 text-gray-900 outline-none placeholder:text-[#8E8EA3]/50 focus:border-[2px] focus:border-DRIVLY sm:text-sm sm:leading-6',
+            'block h-[42px] w-full rounded-md border border-gray-300  px-3 text-gray-900 outline-none placeholder:text-[#8E8EA3]/50 focus:border-[2px] focus:border-DRIVLY sm:h-[38px] sm:text-sm',
             {
               'border-red-400 text-red-400 focus:border-red-400': errormsg,
             }

@@ -37,7 +37,7 @@ export default function SelectField(props: any) {
             <div className='relative mt-2 h-full w-full'>
               <Listbox.Button
                 className={cn(
-                  'block h-[40px] w-full rounded-md border-[2px] px-3 text-gray-900 outline-none placeholder:text-[#8E8EA3]/50 focus:border-[2px] focus:border-DRIVLY sm:text-sm sm:leading-6',
+                  'block h-[42px] w-full rounded-md border border-gray-300 px-3 text-gray-900 outline-none placeholder:text-[#8E8EA3]/50 focus:border-[2px] focus:border-DRIVLY sm:h-[38px] sm:text-sm sm:leading-6',
                   {
                     'border-red-400 text-red-400 focus:border-red-400': errormsg,
                   }
@@ -46,7 +46,7 @@ export default function SelectField(props: any) {
                   <span
                     className={`${
                       method.field.value !== undefined ? 'text-gray-900' : 'text-[#8E8EA3]/50'
-                    }  w-full flex-1 text-sm font-normal`}>
+                    }  w-full flex-1 text-left text-sm font-normal`}>
                     {method.field.value ? method.field.value : cats[0].optionName}
                   </span>
                   <span className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2'>
@@ -61,11 +61,11 @@ export default function SelectField(props: any) {
                       key={i}
                       value={cat.value}
                       className={({ active }) =>
-                        `relative mx-1 cursor-default select-none py-1 pl-6 pr-4 text-sm ${
-                          active ? 'bg-blue-400 text-white' : 'text-gray-900'
+                        `relative mx-1 flex h-[32px] cursor-default select-none items-center pl-6 pr-4 sm:h-[24px] sm:text-sm ${
+                          active ? 'rounded-sm bg-blue-400 text-white' : 'text-gray-900'
                         }`
                       }>
-                      {({ selected }) => (
+                      {({ selected, active }) => (
                         <>
                           <span
                             className={`block truncate ${
@@ -74,7 +74,13 @@ export default function SelectField(props: any) {
                             {cat.value}
                           </span>
                           {selected ? (
-                            <span className='absolute inset-y-0 left-0 flex items-center pl-1.5 text-white'>
+                            <span
+                              className={cn(
+                                'absolute inset-y-0 left-0 flex items-center pl-1.5 text-skin-base',
+                                {
+                                  'text-white': active,
+                                }
+                              )}>
                               <CheckIcon className='h-3 w-4' aria-hidden='true' />
                             </span>
                           ) : null}

@@ -22,10 +22,7 @@ export default function VehicleCard({ hasVin, vehicle, source }: Props) {
         <h1 className='text-xl font-bold capitalize text-skin-base'>
           {vehicle?.year} {vehicle?.make} {vehicle?.model}
         </h1>
-        <div className='flex items-center text-base font-medium text-skin-base'>
-          <span>{price}</span> <hr className='w-4 rotate-90 border-b-0 border-DRIVLY' />{' '}
-          <span>{formatMiles(vehicle?.mileage)} miles</span>
-        </div>
+        
         <p className='pt-0.5 text-xs tracking-[0.02em]'>
           <span>VIN:</span>
           <span className='tracking-[0.25em]'> {vehicle?.vin}</span>{' '}
