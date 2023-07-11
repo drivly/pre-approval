@@ -189,10 +189,11 @@ export default function Form({ search, hasVin, brand }: FormProps) {
           })}
         />
         <AgreementText dealer={brand} />
+        {/* <div className='mt-8 flex flex-col space-y-10 sm:space-y-0 sm:flex-row w-full items-center sm:justify-between'></div> */}
         <div
-          className={`${
-            hasVin ? 'mt-8 lg:mt-2' : 'mt-8'
-          } flex w-full items-center justify-between `}>
+          className={cn('mt-8 flex flex-col space-y-10 sm:space-y-0 sm:flex-row w-full items-center sm:justify-between', {
+            'lg:mt-2': hasVin,
+          })}>
           <RadioInput label='I Agree*' name='agree' control={control} isValid={isValid} />
           <button
             disabled={!watchAgree}
