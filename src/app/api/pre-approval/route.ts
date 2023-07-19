@@ -2,6 +2,8 @@ import { emailReg, zipReg } from '@lib/regex'
 import { slackMsgRequest } from '@utils/slackMsg'
 import { NextResponse } from 'next/server'
 
+// TODO - add api call to 700Credit.apis.do and possibly tie into Commerce base - Pre-Approvals table as well
+
 const slackUrl = process.env.SLACK_WEBHOOK_URL
 
 export async function POST(request: Request) {
