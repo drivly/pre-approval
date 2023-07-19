@@ -1,62 +1,62 @@
+import { ExclamationCircleIcon } from '@heroicons/react/20/solid'
 import { cn } from '@utils'
 import { Control, FieldError, FieldErrorsImpl, Merge } from 'react-hook-form'
 import { isPossiblePhoneNumber } from 'react-phone-number-input'
 import PhoneInput from 'react-phone-number-input/react-hook-form-input'
-import { RequestInput } from '../../typings'
 
 type PhoneFieldProps = {
   label: string
   name: string
-  placeholder: string
   control: Control<RequestInput, any>
   errormsg?: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined
-  variant: string
-  message?: string
+  className: string
+  placeholder?: string
 }
 
 export default function PhoneField({
   label,
   name,
-  placeholder,
   control,
   errormsg,
-  variant,
-  message,
+  className,
+  placeholder,
 }: PhoneFieldProps) {
   return (
-    <div className={`${variant} relative flex w-full flex-col`}>
+    <div className={cn('relative col-span-6 h-fit w-full', className)}>
       <label
-        className={cn('block text-sm font-medium leading-6 text-gray-900', {
-          'text-red-400': errormsg,
-        })}
-        htmlFor={label}>
+        htmlFor={name}
+        className={cn('block text-base font-medium leading-6 text-gray-900 sm:text-sm')}>
         {label}
       </label>
-      <PhoneInput
-        className={cn(
-          'mt-2 block h-[42px] w-full rounded-md border border-gray-300 px-3 text-gray-900  outline-none placeholder:text-[#8E8EA3]/50 focus:border-[2px] focus:border-DRIVLY sm:h-[38px] sm:text-sm',
-          {
-            'border-red-400 text-red-400 focus:border-red-400': errormsg,
-          }
-        )}
-        name={name}
-        placeholder={placeholder}
-        control={control}
-        rules={{
-          required: `Required`,
-          validate: (value: any) => isPossiblePhoneNumber(value) || `Invalid`,
-        }}
-        country='US'
-      />
+      <div className='relative mt-2 rounded-md shadow-sm'>
+        <PhoneInput
+          className={cn(
+            'block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-placeholder/50 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm',
+            {
+              'text-red-900 ring-red-300 placeholder:text-red-300 focus:ring-2 focus:ring-inset focus:ring-red-500':
+                errormsg,
+            }
+          )}
+          name={name}
+          aria-describedby={errormsg ? `${name}-error` : name}
+          control={control}
+          placeholder={placeholder}
+          rules={{
+            required: `Required`,
+            validate: (value: any) => isPossiblePhoneNumber(value) || `Invalid`,
+          }}
+          country='US'
+        />
+        <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3'>
+          {errormsg && (
+            <ExclamationCircleIcon className='h-5 w-5 text-red-500' aria-hidden='true' />
+          )}
+        </div>
+      </div>
       {errormsg && (
-        <span className='absolute right-0 top-[1px] text-xs font-medium leading-6 text-red-400'>
+        <p className='absolute mt-2 text-sm text-red-600' id={errormsg ? `${name}-error` : name}>
           {errormsg.toString()}
-        </span>
-      )}
-      {message && (
-        <span className='absolute -bottom-4 left-0.5 text-[9px] font-medium text-gray-800'>
-          <span className='whitespace-nowrap'>{message}</span>
-        </span>
+        </p>
       )}
     </div>
   )

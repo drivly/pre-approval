@@ -3,7 +3,6 @@
 import { states, suffixes } from '@lib/categories'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
-import { RequestInput } from '../../typings'
 import InputField from '../form-inputs/InputField'
 import RadioInput from '../form-inputs/RadioInput'
 import RequiredPhone from '../form-inputs/PhoneField'
@@ -13,6 +12,7 @@ import AgreementText from './AgreementText'
 import Footer from './Footer'
 import { usePathname } from 'next/navigation'
 import { cn } from '@utils'
+import { useState } from 'react'
 
 type FormProps = {
   search?: any
@@ -21,14 +21,15 @@ type FormProps = {
 }
 
 export default function Form({ search, hasVin, brand }: FormProps) {
-  const methods = useForm<RequestInput>({ mode: 'all' })
+  const [isError, setError] = useState(false)
+  const methods = useForm<RequestInput>({ mode: 'onBlur' })
   const {
     register,
     control,
     handleSubmit,
     reset,
     watch,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isDirty, isSubmitting },
   } = methods
   const pathname = usePathname()
   const isHome = pathname === '/'
@@ -50,6 +51,11 @@ export default function Form({ search, hasVin, brand }: FormProps) {
   }
 
   const onSubmit: SubmitHandler<RequestInput> = async (data: any) => {
+    if (!data?.agree) {
+      toast.error('Please agree to the terms and conditions')
+      setError(true)
+      return
+    }
     try {
       await handlePreApproval(data)
       reset()
@@ -63,13 +69,19 @@ export default function Form({ search, hasVin, brand }: FormProps) {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className={`${
-          isHome ? 'flex min-h-[700px]' : 'lg:mt-0 lg:flex lg:min-h-[750px] lg:pl-[72px] lg:pr-8'
-        }  h-full max-w-[640px] select-none flex-col justify-between px-4 py-8 sm:px-8 `}>
-        <div className={`${isHome ? 'mb-[32px]' : 'mb-[32px] lg:mb-[8px]'}  w-fit`}>
-          <h1 className='pt-[2px] text-xl font-bold text-skin-base'>Get Pre-approved</h1>
+        className={cn(
+          'flex h-fit min-h-[800px] max-w-[640px] select-none flex-col justify-between px-4 py-8 sm:px-8',
+          {
+            'lg:mt-0 lg:flex lg:max-h-[800px] lg:pl-[72px] lg:pr-8': !isHome,
+          }
+        )}>
+        <div className={cn('primary mb-[48px] pt-[2px] text-center text-2xl font-bold')}>
+          <h1>Get Pre-approved</h1>
+          <p className='pt-2 text-lg font-normal sm:text-base'>
+            No SSN required, no impact to your credit score!
+          </p>
         </div>
-        <div className='grid max-w-2xl grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-6'>
+        <div className='grid max-w-2xl grid-cols-1 gap-x-4 gap-y-10 sm:grid-cols-6'>
           <InputField
             {...register('firstName', {
               required: 'Required',
@@ -107,10 +119,10 @@ export default function Form({ search, hasVin, brand }: FormProps) {
             name='lastName'
             variant='w-full sm:col-span-2'
             errormsg={errors.lastName?.message!}
-            placeholder='Jones'
+            placeholder='Smith'
           />
           <SelectMenu
-            variant='col-span-6 sm:col-span-1 h-full'
+            variant='col-span-6 sm:col-span-1'
             label='Suffix'
             name='suffix'
             control={control}
@@ -126,13 +138,13 @@ export default function Form({ search, hasVin, brand }: FormProps) {
             name='email'
             errormsg={errors.email?.message!}
             variant='sm:col-span-3'
-            placeholder='jonjones@gmail.com'
+            placeholder='jonsmith@gmail.com'
           />
           <RequiredPhone
             name='phone'
             label='Phone*'
-            placeholder='575-555-1212'
-            variant='sm:col-span-3 col-span-6'
+            placeholder='561-555-1212'
+            className='col-span-6 sm:col-span-3'
             control={control}
             errormsg={errors.phone?.message!}
           />
@@ -158,7 +170,7 @@ export default function Form({ search, hasVin, brand }: FormProps) {
             name='city'
             variant='sm:col-span-3'
             errormsg={errors.city?.message!}
-            placeholder='Sante Fe'
+            placeholder='Juno Beach'
           />
           <SelectMenu
             label='State*'
@@ -179,40 +191,36 @@ export default function Form({ search, hasVin, brand }: FormProps) {
             name='zipcode'
             errormsg={errors.zipcode?.message!}
             variant='sm:col-span-2'
-            placeholder='55874'
+            placeholder='33408'
           />
         </div>
 
-        <hr
-          className={cn('border-px mx-1 my-8 border-baseAlt2Color', {
-            'lg:my-4': hasVin,
-          })}
-        />
+        <hr className={cn('border-px border-border mx-1 my-10')} />
         <AgreementText dealer={brand} />
-        {/* <div className='mt-8 flex flex-col space-y-10 sm:space-y-0 sm:flex-row w-full items-center sm:justify-between'></div> */}
+
         <div
-          className={cn('mt-8 flex flex-col space-y-10 sm:space-y-0 sm:flex-row w-full items-center sm:justify-between', {
-            'lg:mt-2': hasVin,
-          })}>
-          <RadioInput label='I Agree*' name='agree' control={control} isValid={isValid} />
+          className={cn(
+            'mt-10 flex w-full flex-col items-start space-y-10 sm:flex-row sm:items-center sm:justify-between sm:space-y-0 lg:mt-auto'
+          )}>
+          <RadioInput
+            {...methods.register('agree')}
+            label='I Agree*'
+            id='agree'
+            value='YES'
+            errormsg={isError ? 'Required' : ''}
+            onClick={() => setError(false)}
+          />
           <button
-            disabled={!watchAgree}
-            className='inline-flex w-full min-w-[174px] justify-center rounded-md border border-transparent bg-skin-button-inverted py-4 text-[16px] font-medium text-skin-inverted shadow-sm hover:border-DRIVLY focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 sm:w-48 sm:px-4 sm:py-2 sm:text-sm'
+            disabled={!isValid || !isDirty || isSubmitting}
+            className='inline-flex w-full min-w-[174px] justify-center rounded-md border border-transparent bg-primary py-4 text-[16px] font-medium text-white shadow-sm hover:border-primary focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 sm:w-48 sm:px-4 sm:py-2 sm:text-sm'
             type='submit'>
             Submit
           </button>
         </div>
-        {hasVin && (
-          <div className={`${hasVin ? 'pb-8 pt-16 lg:hidden' : 'pt-16'}  block `}>
-            <Footer hasVin={hasVin} />
-          </div>
-        )}
+        {/* `${hasVin ? 'pb-8 pt-16 lg:hidden' : 'pt-16'}  block ` */}
+        {hasVin && <Footer hasVin={hasVin} className='pb-8 pt-16 lg:hidden' />}
       </form>
-      {!hasVin && (
-        <div className={`${hasVin ? 'pb-8 pt-16 lg:hidden' : 'pt-16'}  block `}>
-          <Footer hasVin={hasVin} />
-        </div>
-      )}
+      {!hasVin && <Footer hasVin={hasVin} className='pt-16' />}
     </>
   )
 }

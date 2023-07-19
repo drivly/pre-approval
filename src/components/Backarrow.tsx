@@ -20,7 +20,7 @@ const Backarrow: FC<BackArrowProps> = ({ className, ...props }) => {
         className
       )}
       {...props}>
-      <ChevronLeftIcon className='h-7 w-7 text-DETAIL__BLACK/50' />
+      <ChevronLeftIcon className='text-primary-detail/50 h-7 w-7' />
     </button>
   )
 }

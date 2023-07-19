@@ -6,7 +6,7 @@ export interface CategoryType {
 export const states = [
   {
     value: '',
-    optionName: 'NM',
+    optionName: '',
   },
   {
     value: 'AK',
@@ -213,7 +213,7 @@ export const states = [
 export const suffixes = [
   {
     value: '',
-    optionName: 'JR',
+    optionName: '',
   },
   {
     value: 'JR',

@@ -1,4 +1,4 @@
-export interface RequestInput {
+interface RequestInput {
   firstName: string
   middleInitial?: string
   lastName: string
@@ -13,7 +13,7 @@ export interface RequestInput {
   message: { [s: string]: string | string[] | undefined } | ArrayLike<string | string[] | undefined>
 }
 
-export type VehicleInfoProps = {
+type VehicleInfoProps = {
   price: number
   mileage: number
   color: any

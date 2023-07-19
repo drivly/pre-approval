@@ -1,4 +1,3 @@
-import { RequestInput } from '../../typings'
 import { formatDate } from '.'
 
 interface SlackMsgRequest {

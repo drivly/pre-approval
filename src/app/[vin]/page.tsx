@@ -27,7 +27,7 @@ export default async function VinPage({
   // TODO do something with the brand
   return (
     <main className='mx-auto grid min-h-screen max-w-7xl grid-cols-1 gap-x-4 gap-y-8 lg:grid-cols-2'>
-      <section className='flex h-full w-full flex-col justify-center lg:pt-4'>
+      <section className='flex h-full w-full flex-col justify-center lg:pt-1'>
         <VehicleCard vehicle={vehicle} hasVin={hasVin} source={source} />
       </section>
       <section

@@ -1,3 +1,4 @@
+import { ExclamationCircleIcon } from '@heroicons/react/20/solid'
 import { cn } from '@utils'
 import React from 'react'
 import { FieldError, FieldErrorsImpl, Merge } from 'react-hook-form'
@@ -12,44 +13,44 @@ interface IProps {
   label: string
   errormsg?: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>>
   variant: string
-  message?: string
 }
 
 const InputField = React.forwardRef<HTMLInputElement, InputProps & IProps>((props, ref) => {
-  const { label, name, placeholder, type, errormsg, variant, message } = props
+  const { label, name, placeholder, type, errormsg, variant } = props
+
   return (
-    <div className={`${variant} relative col-span-6 w-full`}>
+    <div className={cn('relative col-span-6 h-fit w-full', variant)}>
       <label
-        className={`${
-          errormsg ? 'text-red-400' : 'text-gray-900'
-        } block text-sm font-medium leading-6 `}
-        htmlFor={name}>
+        htmlFor={name}
+        className={cn('block text-base font-medium leading-6 text-gray-900 sm:text-sm')}>
         {label}
       </label>
-      <div className='mt-2'>
+      <div className='relative mt-2 rounded-md shadow-sm'>
         <input
           ref={ref}
+          type={type}
           className={cn(
-            'block h-[42px] w-full rounded-md border border-gray-300  px-3 text-gray-900 outline-none placeholder:text-[#8E8EA3]/50 focus:border-[2px] focus:border-DRIVLY sm:h-[38px] sm:text-sm',
+            'block w-full rounded-md border-0 text-base text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-placeholder/50 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm',
             {
-              'border-red-400 text-red-400 focus:border-red-400': errormsg,
+              'text-red-900 ring-red-300 placeholder:text-red-300 focus:ring-2 focus:ring-inset focus:ring-red-500':
+                errormsg,
             }
           )}
-          type={type}
-          // autoComplete='on'
+          aria-describedby={errormsg ? `${name}-error` : name}
           placeholder={placeholder}
           {...props}
         />
+        <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3'>
+          {errormsg && (
+            <ExclamationCircleIcon className='h-5 w-5 text-red-500' aria-hidden='true' />
+          )}
+        </div>
       </div>
+
       {errormsg && (
-        <span className='absolute right-0 top-[1px] text-xs font-medium leading-6 tracking-tight text-red-400'>
+        <p className='absolute mt-2 text-sm text-red-600' id={errormsg ? `${name}-error` : name}>
           {errormsg.toString()}
-        </span>
-      )}
-      {message && (
-        <span className='absolute -bottom-4 left-0.5 text-[9px] font-medium text-gray-800'>
-          <span className='whitespace-nowrap'>{message}</span>
-        </span>
+        </p>
       )}
     </div>
   )
