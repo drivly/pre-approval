@@ -10,7 +10,7 @@ import SelectMenu from '../form-inputs/SelectField'
 import { emailReg, zipReg } from '../lib/regex'
 import AgreementText from './AgreementText'
 import Footer from './Footer'
-import { usePathname } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 import { cn } from '@utils'
 import { useState } from 'react'
 
@@ -21,6 +21,8 @@ type FormProps = {
 }
 
 export default function Form({ search, hasVin, brand }: FormProps) {
+  const searchParams = useSearchParams()
+  const source = searchParams.get('utm_source')
   const [isError, setError] = useState(false)
   const methods = useForm<RequestInput>({ mode: 'onBlur' })
   const {
@@ -28,13 +30,10 @@ export default function Form({ search, hasVin, brand }: FormProps) {
     control,
     handleSubmit,
     reset,
-    watch,
     formState: { errors, isValid, isDirty, isSubmitting },
   } = methods
   const pathname = usePathname()
   const isHome = pathname === '/'
-
-  const watchAgree = watch('agree', false)
 
   async function handlePreApproval(post: RequestInput) {
     const request = { ...post, message: search }
@@ -195,7 +194,7 @@ export default function Form({ search, hasVin, brand }: FormProps) {
           />
         </div>
 
-        <hr className={cn('border-px border-border mx-1 my-10')} />
+        <hr className={cn('border-px mx-1 my-10 border-border')} />
         <AgreementText dealer={brand} />
 
         <div
@@ -212,7 +211,12 @@ export default function Form({ search, hasVin, brand }: FormProps) {
           />
           <button
             disabled={!isValid || !isDirty || isSubmitting}
-            className='inline-flex w-full min-w-[174px] justify-center rounded-md border border-transparent bg-primary py-4 text-[16px] font-medium text-white shadow-sm hover:border-primary focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 sm:w-48 sm:px-4 sm:py-2 sm:text-sm'
+            className={cn(
+              'inline-flex w-full min-w-[174px] justify-center rounded-md border border-transparent bg-primary py-4 text-[16px] font-medium text-white shadow-sm hover:border-primary focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 sm:w-48 sm:px-4 sm:py-2 sm:text-sm',
+              {
+                'bg-[#910D22] hover:bg-[#7D0C1E]': source === 'cloudmotors',
+              }
+            )}
             type='submit'>
             Submit
           </button>

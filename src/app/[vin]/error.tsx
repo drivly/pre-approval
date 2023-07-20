@@ -8,13 +8,13 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
   }, [error])
 
   return (
-    <div className='flex h-screen items-center justify-center'>
-      <h2 className='font-inter text-2xl font-semibold text-danger'>Oops, Something went wrong!</h2>
+    <div className='flex h-screen flex-col items-center justify-center'>
+      <h2 className='font-inter text-4xl font-semibold tracking-[0.02em] text-danger'>
+        Oops, Something went wrong!
+      </h2>
       <button
-        onClick={
-          // Attempt to recover by trying to re-render the segment
-          () => reset()
-        }>
+        className='mt-6 rounded-md bg-primary px-6 py-3 font-medium tracking-wide text-white'
+        onClick={() => reset()}>
         Try again
       </button>
     </div>
