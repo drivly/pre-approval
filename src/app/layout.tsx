@@ -1,6 +1,7 @@
-import ToastWrapper from '@components/ToastWrapper'
 import '@styles/globals.css'
 import { Inter, Lato } from 'next/font/google'
+import { Toaster } from '@drivly/ui'
+import { toastStyle } from './success/toastStyle'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -25,13 +26,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang='en'>
       <body className={`${inter.variable} ${lato.variable}`}>
         <main className='min-h-screen bg-white font-inter'>
-          <div className='flex flex-1 flex-col sm:px-4 md:px-6'>
+          <div className='flex flex-1 flex-col'>
             {children}
-            <ToastWrapper />
+            <Toaster options={toastStyle} />
           </div>
         </main>
       </body>
     </html>
   )
 }
-

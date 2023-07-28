@@ -1,18 +1,19 @@
 'use client'
 
+import useCustomer from '@app/store'
 import { states, suffixes } from '@lib/categories'
+import { cn } from '@utils'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { toast } from 'sonner'
+import { toast } from 'react-hot-toast'
 import InputField from '../form-inputs/InputField'
-import RadioInput from '../form-inputs/RadioInput'
 import RequiredPhone from '../form-inputs/PhoneField'
+import RadioInput from '../form-inputs/RadioInput'
 import SelectMenu from '../form-inputs/SelectField'
 import { emailReg, zipReg } from '../lib/regex'
-import AgreementText from './AgreementText'
+import Agreement from './Agreement'
 import Footer from './Footer'
-import { usePathname, useSearchParams } from 'next/navigation'
-import { cn } from '@utils'
-import { useState } from 'react'
 
 type FormProps = {
   search?: any
@@ -20,10 +21,14 @@ type FormProps = {
   brand?: string
 }
 
+// TODO: add utm_source = rocket for submit button
+
 export default function Form({ search, hasVin, brand }: FormProps) {
+  const setCustomer = useCustomer((s) => s.setCustomer)
+  const [isError, setError] = useState(false)
+  const router = useRouter()
   const searchParams = useSearchParams()
   const source = searchParams.get('utm_source')
-  const [isError, setError] = useState(false)
   const methods = useForm<RequestInput>({ mode: 'onBlur' })
   const {
     register,
@@ -35,17 +40,18 @@ export default function Form({ search, hasVin, brand }: FormProps) {
   const pathname = usePathname()
   const isHome = pathname === '/'
 
-  async function handlePreApproval(post: RequestInput) {
+  async function handlePreApproval(post: RequestInput, toastId: string) {
     const request = { ...post, message: search }
     const res = await fetch('/api/pre-approval', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
       body: JSON.stringify(request),
-    }).then((res) => res.json())
-    if (res.status === 200) {
-      toast.success('Success! We will be in touch shortly.')
+    })
+    const approval = await res.json()
+
+    if (approval.status === 200) {
+      toast.success('Success! We will be in touch shortly.', { id: toastId })
+      setCustomer({ name: post.firstName, applicationId: approval.data.preAppId })
+      router.push('/success')
     }
   }
 
@@ -55,12 +61,15 @@ export default function Form({ search, hasVin, brand }: FormProps) {
       setError(true)
       return
     }
+    const toastId = toast.loading('Processing your Pre-Approval Request...')
     try {
-      await handlePreApproval(data)
+      await handlePreApproval(data, toastId)
       reset()
     } catch (error) {
       console.error(error)
-      toast.error('Something went wrong. Please try again later.')
+      toast.error('Something went wrong. Please try again later.', {
+        id: toastId,
+      })
     }
   }
 
@@ -74,13 +83,18 @@ export default function Form({ search, hasVin, brand }: FormProps) {
             'lg:mt-0 lg:flex lg:max-h-[800px] lg:pl-[72px] lg:pr-8': !isHome,
           }
         )}>
-        <div className={cn('primary mb-[48px] pt-[2px] text-center text-2xl font-bold')}>
+        <div
+          className={cn('primary mb-[48px] pt-[2px] text-center text-2xl font-bold', {
+            'opacity-50': isSubmitting,
+          })}>
           <h1>Get Pre-approved</h1>
           <p className='pt-2 text-lg font-normal sm:text-base'>
             No SSN required, no impact to your credit score!
           </p>
         </div>
-        <div className='grid max-w-2xl grid-cols-1 gap-x-4 gap-y-10 sm:grid-cols-6'>
+        <fieldset
+          disabled={isSubmitting}
+          className='group grid max-w-2xl grid-cols-1 gap-x-4 gap-y-10 disabled:opacity-50 peer-disabled:cursor-not-allowed sm:grid-cols-6'>
           <InputField
             {...register('firstName', {
               required: 'Required',
@@ -107,7 +121,6 @@ export default function Form({ search, hasVin, brand }: FormProps) {
             variant='sm:col-span-1'
             placeholder='B'
           />
-
           <InputField
             {...register('lastName', {
               required: 'Required',
@@ -192,14 +205,18 @@ export default function Form({ search, hasVin, brand }: FormProps) {
             variant='sm:col-span-2'
             placeholder='33408'
           />
-        </div>
-
+        </fieldset>
         <hr className={cn('border-px mx-1 my-10 border-border')} />
-        <AgreementText dealer={brand} />
-
-        <div
+        <Agreement
+          dealer={brand}
+          className={cn({
+            'disabled:opacity-50': isSubmitting,
+          })}
+        />
+        <fieldset
+          disabled={isSubmitting}
           className={cn(
-            'mt-10 flex w-full flex-col items-start space-y-10 sm:flex-row sm:items-center sm:justify-between sm:space-y-0 lg:mt-auto'
+            'mt-10 flex w-full flex-col items-start space-y-10 disabled:opacity-50 peer-disabled:cursor-not-allowed sm:flex-row sm:items-center sm:justify-between sm:space-y-0 lg:mt-auto'
           )}>
           <RadioInput
             {...methods.register('agree')}
@@ -214,14 +231,15 @@ export default function Form({ search, hasVin, brand }: FormProps) {
             className={cn(
               'inline-flex w-full min-w-[174px] justify-center rounded-md border border-transparent bg-primary py-4 text-[16px] font-medium text-white shadow-sm hover:border-primary focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 sm:w-48 sm:px-4 sm:py-2 sm:text-sm',
               {
-                'bg-[#910D22] hover:bg-[#7D0C1E]': source === 'cloudmotors',
+                // Add branding for Button
+                'bg-[#910D22] hover:bg-[#7D0C1E]': source || brand === 'rocket',
+                //  === 'cloudmotors'
               }
             )}
             type='submit'>
             Submit
           </button>
-        </div>
-        {/* `${hasVin ? 'pb-8 pt-16 lg:hidden' : 'pt-16'}  block ` */}
+        </fieldset>
         {hasVin && <Footer hasVin={hasVin} className='pb-8 pt-16 lg:hidden' />}
       </form>
       {!hasVin && <Footer hasVin={hasVin} className='pt-16' />}

@@ -1,15 +1,21 @@
-'use client'
 /* eslint-disable @next/next/no-img-element */
+import { fetchVehicleDetails } from '@utils'
+import { redirect } from 'next/navigation'
 import Backarrow from './Backarrow'
 import Footer from './Footer'
 
 interface Props {
-  vehicle: VehicleInfoProps
+  vin: string
 }
 
-export default function VehicleCard({ vehicle }: Props) {
-  if (!vehicle) return null
+export default async function VehicleCard({ vin }: Props) {
+    const vehicleInfo = await fetchVehicleDetails(vin)
+    const vehicle = { vin, ...vehicleInfo }
 
+    if (Object?.keys(vehicle)?.length === 0) {
+      redirect('/')
+    }
+    
   return (
     <div className='relative mt-12 flex max-w-[640px] flex-col justify-between py-8 lg:mt-0 lg:min-h-[800px]'>
       <Backarrow className='-top-6 left-4 my-2 sm:left-8 lg:-top-6' />

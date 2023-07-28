@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --normal-border: hsl(0, 0%, 95.1%);
+    --normal-text: hsl(0, 0%, 9%);
+    --success-bg: hsl(143, 85%, 96%);
+    --success-border: hsl(145, 92%, 91%);
+    --success-text: hsl(140, 100%, 27%);
+    --error-bg: hsl(359, 100%, 97%);
+    --error-border: hsl(359, 100%, 94%);
+    --error-text: hsl(360, 100%, 45%);
+  }
+}
 @media screen and (max-width: 1024px) {
   .shadow__horizontal {
     height: 100vw;
