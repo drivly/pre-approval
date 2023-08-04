@@ -28,7 +28,8 @@ export default function Form({ search, hasVin, brand }: FormProps) {
   const [isError, setError] = useState(false)
   const router = useRouter()
   const searchParams = useSearchParams()
-  const source = searchParams.get('utm_source')
+  const source = searchParams.get('utm_source') || ''
+  const recId = searchParams.get('lead_id') || ''
   const methods = useForm<RequestInput>({ mode: 'onBlur' })
   const {
     register,
@@ -41,7 +42,7 @@ export default function Form({ search, hasVin, brand }: FormProps) {
   const isHome = pathname === '/'
 
   async function handlePreApproval(post: RequestInput, toastId: string) {
-    const request = { ...post, message: search }
+    const request = { ...post, recId, message: search }
     const res = await fetch('/api/pre-approval', {
       method: 'POST',
       body: JSON.stringify(request),

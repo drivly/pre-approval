@@ -30,7 +30,7 @@ export async function slackMsgRequest({ url, data }: SlackMsgRequest) {
             data.phone
           }\n*Address:* ${data.streetAddress} \n*City:* ${data.city}\n*State:* ${
             data.state
-          }\n*Zipcode:* ${data.zipcode}\n *Date:* ${date}\"`,
+          }\n*Zipcode:* ${data.zipcode}\n *Date:* ${date}`,
         },
       },
     ],
