@@ -1,20 +1,11 @@
 const { fontFamily } = require('tailwindcss/defaultTheme')
 
-function withOpacity(variableName) {
-  return ({ opacityValue }) => {
-    if (opacityValue !== undefined) {
-      return `rgba(var(${variableName}), ${opacityValue})`
-    }
-    return `rgb(var(${variableName}))`
-  }
-}
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './src/app/**/*.{js,ts,jsx,tsx}',
+    './node_modules/@drivly/ui/dist/**/*.{js,ts,jsx,tsx}',
     './src/components/**/*.{js,ts,jsx,tsx}',
-    './src/form-inputs/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     fontFamily: {

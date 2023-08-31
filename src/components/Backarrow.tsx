@@ -1,7 +1,7 @@
 'use client'
 
+import { cn } from '@drivly/ui'
 import { ChevronLeftIcon } from '@heroicons/react/20/solid'
-import { cn } from '@utils'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { FC, HTMLAttributes } from 'react'
 

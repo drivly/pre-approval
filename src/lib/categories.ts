@@ -13,6 +13,10 @@ export const states = [
     optionName: 'Alaska',
   },
   {
+    value: 'AL',
+    optionName: 'Alabama',
+  },
+  {
     value: 'AZ',
     optionName: 'Arizona',
   },

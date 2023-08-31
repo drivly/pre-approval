@@ -1,8 +1,6 @@
 'use client'
 
 import useCustomer from '@app/store'
-import React from 'react'
-// import useCustomer from '../store'
 
 const SuccessPage = () => {
   const customer = useCustomer((s) => s.customer)

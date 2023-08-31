@@ -1,6 +1,3 @@
-import { ClassValue, clsx } from 'clsx'
-import { twMerge } from 'tailwind-merge'
-
 export async function fetchVehicleDetails(vin: string) {
   const res = await fetch(`https://listing.vin/${vin}`).then((res) => res.json())
   const { vehicle } = res
@@ -9,10 +6,6 @@ export async function fetchVehicleDetails(vin: string) {
 
   const { exteriorColor, year, make, model } = vehicle
   return { price, mileage, color: exteriorColor, year, make, model }
-}
-
-export function formatDate(date: string | Date | number | any): string {
-  return new Date(date).toLocaleDateString('en-US', { timeZoneName: 'short' })
 }
 
 export function formatMiles(value: number | undefined) {
@@ -40,8 +33,4 @@ export function formatMoney(value: number | undefined) {
   if (moneyLength < 7) return '$' + money.slice(0, 3) + ',' + money.slice(3)
   if (moneyLength < 8)
     return '$' + money.slice(0, 1) + ',' + money.slice(1, 4) + ',' + money.slice(4)
-}
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
 }

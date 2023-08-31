@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { ContactUs } from '@drivly/ui'
 import Image from 'next/image'
 import Link from 'next/link'
 import navLogo from '../../../public/DrivlyLogo.svg'
@@ -13,23 +13,14 @@ const Navbar = () => {
           <Link
             href='/'
             className='ml-4 w-fit cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-100 md:ml-0'>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className='w-fit flex-shrink-0'>
-              <Image
-                className='inline-block h-8 w-auto sm:h-9'
-                src={navLogo}
-                alt='Drivly and Rocket Auto Logo'
-                priority
-              />
-            </motion.div>
+            <Image
+              className='inline-block h-8 w-auto sm:h-9'
+              src={navLogo}
+              alt='Drivly and Rocket Auto Logo'
+              priority
+            />
           </Link>
-          <a
-            href='tel:+18007306420'
-            className='mr-4 inline-flex items-center justify-center rounded-[5px] border border-neutral-300 bg-white px-[10px] py-2 hover:bg-neutral-100'>
-            Contact us
-          </a>
+          <ContactUs className='' />
         </div>
       </div>
     </nav>

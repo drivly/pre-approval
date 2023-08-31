@@ -1,7 +1,7 @@
-import '@styles/globals.css'
-import { Inter, Lato } from 'next/font/google'
 import { Toaster } from '@drivly/ui'
-import { toastStyle } from './success/toastStyle'
+import { Inter, Lato } from 'next/font/google'
+import { toastStyle } from '../lib/toastStyle'
+import './globals.css'
 
 const inter = Inter({
   subsets: ['latin'],

@@ -1,8 +1,10 @@
-import { formatDate } from '.'
-
 interface SlackMsgRequest {
   url: string | undefined
   data: RequestInput
+}
+
+function formatDate(date: string | Date | number | any): string {
+  return new Date(date).toLocaleDateString('en-US', { timeZoneName: 'short' })
 }
 
 export async function slackMsgRequest({ url, data }: SlackMsgRequest) {

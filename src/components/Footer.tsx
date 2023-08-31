@@ -1,4 +1,4 @@
-import { cn } from '@utils'
+import { cn } from '@drivly/ui'
 import React from 'react'
 import PoweredByDrivly from './PoweredByDrivly'
 
@@ -10,7 +10,7 @@ export default function Footer({ className, hasVin, ...props }: FooterProps) {
   return (
     <footer
       className={cn(
-        'text-muted flex w-full items-center justify-center space-x-8',
+        'flex w-full items-center justify-center space-x-8 text-muted',
         {
           'justify-center space-x-8 lg:justify-between ': hasVin,
         },
@@ -23,7 +23,7 @@ export default function Footer({ className, hasVin, ...props }: FooterProps) {
         <a href='https://driv.ly/terms' target='_blank'>
           Terms
         </a>
-        <div className='bg-muted/60 h-[16px] w-px rotate-12' />
+        <div className='h-[16px] w-px rotate-12 bg-muted/60' />
         <a href='https://driv.ly/privacy' target='_blank'>
           Privacy
         </a>

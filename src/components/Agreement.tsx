@@ -1,5 +1,4 @@
-import { cn } from '@utils'
-import React from 'react'
+import { cn } from '@drivly/ui'
 
 type AgreementProps = {
   dealer?: string

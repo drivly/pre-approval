@@ -1,19 +1,19 @@
 'use client'
 
 import useCustomer from '@app/store'
+import { cn } from '@drivly/ui'
 import { states, suffixes } from '@lib/categories'
-import { cn } from '@utils'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
-import InputField from '../form-inputs/InputField'
-import RequiredPhone from '../form-inputs/PhoneField'
-import RadioInput from '../form-inputs/RadioInput'
-import SelectMenu from '../form-inputs/SelectField'
 import { emailReg, zipReg } from '../lib/regex'
 import Agreement from './Agreement'
 import Footer from './Footer'
+import InputField from './form-inputs/InputField'
+import RequiredPhone from './form-inputs/PhoneField'
+import RadioInput from './form-inputs/RadioInput'
+import SelectMenu from './form-inputs/SelectField'
 
 type FormProps = {
   search?: any
@@ -65,12 +65,13 @@ export default function Form({ search, hasVin, brand }: FormProps) {
     const toastId = toast.loading('Processing your Pre-Approval Request...')
     try {
       await handlePreApproval(data, toastId)
-      reset()
     } catch (error) {
       console.error(error)
       toast.error('Something went wrong. Please try again later.', {
         id: toastId,
       })
+    } finally {
+      reset()
     }
   }
 

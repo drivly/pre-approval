@@ -9,13 +9,13 @@ interface Props {
 }
 
 export default async function VehicleCard({ vin }: Props) {
-    const vehicleInfo = await fetchVehicleDetails(vin)
-    const vehicle = { vin, ...vehicleInfo }
+  const vehicleInfo = await fetchVehicleDetails(vin)
+  const vehicle = { vin, ...vehicleInfo }
 
-    if (Object?.keys(vehicle)?.length === 0) {
-      redirect('/')
-    }
-    
+  if (Object?.keys(vehicle)?.length === 0) {
+    redirect('/')
+  }
+
   return (
     <div className='relative mt-12 flex max-w-[640px] flex-col justify-between py-8 lg:mt-0 lg:min-h-[800px]'>
       <Backarrow className='-top-6 left-4 my-2 sm:left-8 lg:-top-6' />

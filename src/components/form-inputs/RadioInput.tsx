@@ -1,4 +1,4 @@
-import { cn } from '@utils'
+import { cn } from '@drivly/ui'
 import React from 'react'
 
 interface RadioProps {

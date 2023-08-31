@@ -3,6 +3,16 @@ Pre-Approval
 
 Pre-Approval is a web application that allows users to fill out a form to get pre-approved for a car loan. The application is built with React, Next.js, TailwindCSS and TypeScript and uses react-hook-form for form validation and submission. Slack messaging is built in as well to keep you notified of any new applicants
 
+APIs Used
+------------
+- [airtable.do](https://github.com/drivly/airtable.do)
+- [700credit.apis.do](https://github.com/drivly/700credit.apis.do)
+- [build.vin](https://github.com/drivly/build.vin)
+- [stock.photos.vin](https://github.com/drivly/stock.photos.vin)
+- [camel.case.do](https://github.com/drivly/camel.case.do)
+- [listing.vin](https://github.com/drivly/listing.vin)
+- [concierge.vin](https://github.com/drivly/concierge.vin)
+
 Get Your Own
 ------------
 

@@ -1,5 +1,5 @@
 import VehicleCard from '@components/VehicleCard'
-import { cn } from '@utils'
+import { cn } from '@drivly/ui'
 import { redirect } from 'next/navigation'
 import Form from '../../components/Form'
 

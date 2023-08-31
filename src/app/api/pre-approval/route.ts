@@ -1,10 +1,14 @@
 import { emailReg, zipReg } from '@lib/regex'
+import { mutateRecord, searchAirtable } from '@utils/airtable'
+import { createLead } from '@utils/createLead'
 import { slackMsgRequest } from '@utils/slackMsg'
+import { submitCredit } from '@utils/submitCredit'
 import { NextResponse } from 'next/server'
 
 const slackUrl = process.env.SLACK_WEBHOOK_URL
-const AT_KEY = process.env.AIRTABLE_KEY
 const creditURL = process.env.CREDIT_700_URL!
+const conciergeId = 'app0ha03ugcl45qM1'
+const commerceId = 'appKhmwoJTqB95JT9'
 
 export async function POST(request: Request) {
   let leadId = ''
@@ -26,20 +30,34 @@ export async function POST(request: Request) {
     ...rest,
   }
 
+  if (!recId) {
+    const { middleinitial, address, ...payload } = data
+
+    // Check if lead exists
+    const { records } = await searchAirtable(
+      conciergeId,
+      'Leads',
+      `AND({Email}=%27${data.email}%27)`
+    )
+    const existingLeadId = records?.[0]?.id
+
+    if (existingLeadId) {
+      leadId = existingLeadId
+    } else {
+      const leadRequest = await createLead(payload)
+      leadId = leadRequest?.id
+    }
+  }
+
   if (recId) leadId = 'rec' + recId
-  const search = new URLSearchParams({ ...credit })
+  const search = new URLSearchParams({ ...credit }).toString()
 
   try {
     const [preAppId] = await Promise.all([
       handleAirtableRequest(credit, leadId),
       slackMsgRequest({ url: slackUrl, data }),
+      creditURL?.length > 0 && submitCredit(creditURL, search),
     ])
-
-    if (creditURL?.length > 0) {
-      await fetch(`${creditURL}/credit?${search.toString()}`, { method: 'GET' }).then((res) =>
-        res.json()
-      )
-    }
 
     return NextResponse.json({ status: 200, success: true, data: { preAppId } })
   } catch (error: any) {
@@ -59,21 +77,13 @@ const handleAirtableRequest = async (credit: any, leadId?: string) => {
       6
     )}-${formattedPhone.slice(6, 10)}`
 
-  const filter = `&filterByFormula=AND({Email}=%27${credit.email}%27)`
-  const conciergeId = 'app0ha03ugcl45qM1'
-  const commerceId = 'appKhmwoJTqB95JT9'
+  const filter = `AND({Email}=%27${email}%27)`
 
   try {
-    const { records } = await fetch(
-      `https://camel.case.do/api.airtable.com/v0/${commerceId}/Pre-Approvals?cellFormat=string&userLocale=en-us&timeZone=America/Chicago${filter}&api_key=${AT_KEY}`,
-      {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      }
-    ).then((res) => res.json())
+    const { records } = await searchAirtable(commerceId, 'Pre-Approvals', filter)
 
     let preApprovalId = records?.[0]?.id
-    const record = records?.[0]?.fields
+    const record = records?.[0]
 
     if (
       !records?.length ||
@@ -103,29 +113,16 @@ const handleAirtableRequest = async (credit: any, leadId?: string) => {
       }
 
       if (preApprovalId) {
-        const url = mutateAirtable(commerceId, 'Pre-Approvals', preApprovalId)
-        await fetch(url, {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ fields }),
-        })
+        await mutateRecord(commerceId, 'Pre-Approvals', preApprovalId, fields)
       } else {
-        const url = mutateAirtable(commerceId, 'Pre-Approvals')
-        const { id } = await fetch(url, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ fields }),
-        }).then((res) => res.json())
+        const { id } = await mutateRecord(commerceId, 'Pre-Approvals', undefined, fields)
         preApprovalId = id
       }
 
       if (leadId) {
-        const leadUrl = mutateAirtable(conciergeId, 'Leads', leadId)
-        await fetch(leadUrl, {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ fields: { 'Pre-Approval ID': preApprovalId } }),
-        }).then((res) => res.json())
+        await mutateRecord(conciergeId, 'Leads', leadId, {
+          'Pre-Approval ID': preApprovalId,
+        })
       }
       return preApprovalId?.replace('rec', '')
     }
@@ -134,8 +131,3 @@ const handleAirtableRequest = async (credit: any, leadId?: string) => {
     throw new Error(`Error updating Airtable: ${error?.message}`)
   }
 }
-
-const mutateAirtable = (base: string, table: string, id?: string) =>
-  `https://camel.case.do/api.airtable.com/v0/${base}/${table}${
-    id ? `/${id}` : ''
-  }?cellFormat=string&userLocale=en-us&timeZone=America/Chicago&api_key=${AT_KEY}`

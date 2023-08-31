@@ -3,7 +3,7 @@ import Navbar from './Navbar'
 
 const layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <main className='bg-slate-50 flex-1'>
+    <main className='flex-1 bg-slate-50'>
       <Navbar />
       {children}
     </main>
