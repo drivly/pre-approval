@@ -5,13 +5,13 @@ Pre-Approval is a web application that allows users to fill out a form to get pr
 
 APIs Used
 ------------
-- [airtable.do](https://github.com/drivly/airtable.do)
 - [700credit.apis.do](https://github.com/drivly/700credit.apis.do)
+- [airtable.do](https://github.com/drivly/airtable.do)
 - [build.vin](https://github.com/drivly/build.vin)
-- [stock.photos.vin](https://github.com/drivly/stock.photos.vin)
 - [camel.case.do](https://github.com/drivly/camel.case.do)
-- [listing.vin](https://github.com/drivly/listing.vin)
 - [concierge.vin](https://github.com/drivly/concierge.vin)
+- [listing.vin](https://github.com/drivly/listing.vin)
+- [stock.photos.vin](https://github.com/drivly/stock.photos.vin)
 
 Get Your Own
 ------------

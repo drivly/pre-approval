@@ -26,7 +26,7 @@ export async function slackMsgRequest({ url, data }: SlackMsgRequest) {
         type: 'section',
         text: {
           type: 'mrkdwn',
-          text: `*Full name:* ${data.firstName} ${data?.middleInitial ? data?.middleInitial : ''} ${
+          text: `*Full name:* ${data.firstName} ${data?.middleinitial ? data?.middleinitial : ''} ${
             data.lastName
           } ${data?.suffix ? data?.suffix : ''}\n*Email:* ${data.email}\n*Phone:* ${
             data.phone

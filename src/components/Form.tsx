@@ -103,23 +103,19 @@ export default function Form({ search, hasVin, brand }: FormProps) {
               maxLength: { value: 30, message: 'Max 30 chars' },
             })}
             label='First Name*'
-            type='text'
-            name='firstName'
             variant='w-full sm:col-span-2'
             errormsg={errors.firstName?.message!}
             placeholder='Jon'
           />
           <InputField
-            {...register('middleInitial', {
+            {...register('middleinitial', {
               maxLength: { value: 3, message: '< 3' },
               onChange: (e) => {
                 e.target.value = e.target.value.toUpperCase()
               },
             })}
             label='MI'
-            type='text'
-            name='middleInitial'
-            errormsg={errors.middleInitial?.message!}
+            errormsg={errors.middleinitial?.message!}
             variant='sm:col-span-1'
             placeholder='B'
           />
@@ -129,8 +125,6 @@ export default function Form({ search, hasVin, brand }: FormProps) {
               maxLength: { value: 30, message: 'Max 30 chars' },
             })}
             label='Last Name*'
-            type='text'
-            name='lastName'
             variant='w-full sm:col-span-2'
             errormsg={errors.lastName?.message!}
             placeholder='Smith'
@@ -148,8 +142,6 @@ export default function Form({ search, hasVin, brand }: FormProps) {
               pattern: { value: emailReg, message: 'Invalid' },
             })}
             label='Email*'
-            type='text'
-            name='email'
             errormsg={errors.email?.message!}
             variant='sm:col-span-3'
             placeholder='jonsmith@gmail.com'
@@ -168,8 +160,6 @@ export default function Form({ search, hasVin, brand }: FormProps) {
               maxLength: { value: 200, message: 'Max 200 chars' },
             })}
             label='Street address*'
-            type='text'
-            name='streetAddress'
             variant=''
             errormsg={errors.streetAddress?.message!}
             placeholder='512 E. Main St.'
@@ -180,8 +170,6 @@ export default function Form({ search, hasVin, brand }: FormProps) {
               maxLength: { value: 30, message: 'Max 30 chars' },
             })}
             label='City*'
-            type='text'
-            name='city'
             variant='sm:col-span-3'
             errormsg={errors.city?.message!}
             placeholder='Juno Beach'
@@ -201,8 +189,6 @@ export default function Form({ search, hasVin, brand }: FormProps) {
               pattern: { value: zipReg, message: 'Invalid' },
             })}
             label='Zipcode*'
-            type='text'
-            name='zipcode'
             errormsg={errors.zipcode?.message!}
             variant='sm:col-span-2'
             placeholder='33408'

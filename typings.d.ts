@@ -1,6 +1,6 @@
 interface RequestInput {
   firstName: string
-  middleInitial?: string
+  middleinitial?: string
   lastName: string
   suffix?: string
   email: string
