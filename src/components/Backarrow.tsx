@@ -16,7 +16,7 @@ const Backarrow: FC<BackArrowProps> = ({ className, ...props }) => {
     <button
       onClick={() => router.back()}
       className={cn(
-        'absolute z-50 grid h-8 w-8 place-content-center place-items-center rounded-[5px] border-none bg-[#f1f5f9] outline-none ring-0 drop-shadow-sm active:outline-none',
+        'absolute z-50 grid h-8 w-8 place-content-center place-items-center rounded-[5px] border-none hover:bg-[#f1f5f9] outline-none ring-0 drop-shadow-sm active:outline-none',
         { hidden: !source },
         className
       )}

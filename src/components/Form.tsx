@@ -217,12 +217,7 @@ export default function Form({ search, hasVin, brand }: FormProps) {
           <button
             disabled={!isValid || !isDirty || isSubmitting}
             className={cn(
-              'inline-flex w-full min-w-[174px] justify-center rounded-md border border-transparent bg-primary py-4 text-[16px] font-medium text-white shadow-sm hover:border-primary focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 sm:w-48 sm:px-4 sm:py-2 sm:text-sm',
-              {
-                // Add branding for Button
-                'bg-[#910D22] hover:bg-[#7D0C1E]': source || brand === 'rocket',
-                //  === 'cloudmotors'
-              }
+              'inline-flex w-full min-w-[174px] justify-center rounded-md border border-transparent bg-primary py-4 text-[16px] font-medium text-white shadow-sm hover:border-primary focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 sm:w-48 sm:px-4 sm:py-2 sm:text-sm'
             )}
             type='submit'>
             Submit
