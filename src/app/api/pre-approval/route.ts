@@ -31,7 +31,7 @@ export async function POST(request: Request) {
   }
 
   if (!recId) {
-    const { middleinitial, streetAddress, recId, ...payload } = data
+    const { middleinitial, streetAddress, suffix, recId, ...payload } = data
 
     // Check if lead exists
     const { records } = await searchAirtable(
