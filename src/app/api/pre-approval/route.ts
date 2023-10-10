@@ -35,7 +35,7 @@ export async function POST(request: Request) {
 
     // Check if lead exists
     const { records } = await searchAirtable(
-      conciergeId,
+      'CRM',
       'Leads',
       `AND({Email}=%27${data.email}%27)`
     )
@@ -80,7 +80,7 @@ const handleAirtableRequest = async (credit: any, leadId?: string) => {
   const filter = `AND({Email}=%27${email}%27)`
 
   try {
-    const { records } = await searchAirtable(commerceId, 'Pre-Approvals', filter)
+    const { records } = await searchAirtable('commerce', 'Pre-Approvals', filter)
 
     let preApprovalId = records?.[0]?.id
     const record = records?.[0]
