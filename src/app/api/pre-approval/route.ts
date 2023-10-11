@@ -10,6 +10,9 @@ const creditURL = process.env.CREDIT_700_URL!
 const conciergeId = 'app0ha03ugcl45qM1'
 const commerceId = 'appKhmwoJTqB95JT9'
 
+export const maxDuration = 300
+export const dynamic = 'force-dynamic'
+
 export async function POST(request: Request) {
   let leadId = ''
   const data = await request.json()
