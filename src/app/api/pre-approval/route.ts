@@ -37,7 +37,7 @@ export async function POST(request: Request) {
     const { records } = await searchAirtable(
       'CRM',
       'Leads',
-      `AND({Email}=%27${data.email}%27)`
+      `email=${data.email}`
     )
     const existingLeadId = records?.[0]?.id
 
@@ -77,7 +77,7 @@ const handleAirtableRequest = async (credit: any, leadId?: string) => {
       6
     )}-${formattedPhone.slice(6, 10)}`
 
-  const filter = `AND({Email}=%27${email}%27)`
+  const filter = `email=${email}`
 
   try {
     const { records } = await searchAirtable('commerce', 'Pre-Approvals', filter)
